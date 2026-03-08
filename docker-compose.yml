@@ -5,36 +5,37 @@ services:
     ports:
       - "5500"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     restart: always
-    env_file:
-      - .env
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5500/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+    environment:
+      - SECRET_KEY="Z/p%RLT}EB:^[#^>SvaXpb#/,0qKQ%"
+      - SESSION_TYPE=filesystem
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=david1998
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DB=base_grigori
+      - MAIL_SERVER=smtp.gmail.com
+      - MAIL_PORT=465
+      - MAIL_USERNAME=glifosmayascicipn@gmail.com
+      - MAIL_PASSWORD=djidujmnparrakgk
+      - MAIL_USE_TLS=False
+      - MAIL_USE_SSL=True
 
 
   db:
     container_name: db
     restart: always
-    image: mysql:8.0
+    image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: david1998
+      
     ports:
       - '3308:3306'
+
     volumes:
       - ./db:/docker-entrypoint-initdb.d:rw
       - ./db_data15:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -46,10 +47,10 @@ services:
     environment:
       - PMA_HOST=db
       - PMA_USER=root
-      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - PMA_PASSWORD=david1998
+
     depends_on: 
-      db:
-        condition: service_healthy
+      - db
 
   nginx:
     image: nginx:latest
