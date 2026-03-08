@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario de glifos mayas</title>
+    <link rel="stylesheet" href="../static/css/style_imagenes.css">
+    <link rel="shortcut icon" href="../static/imgs/icono.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body>
+    <div class="contenedor-carga" id="contenedor-carga">
+        <div class="triangulo">
+
+        </div>
+    </div>
+
+    <header class="encabezado"> <!--Encabezado de la pagina-->
+        <h3>Instituto Politecnico Nacional</h3>
+    </header>
+
+    <script>
+        function llevo_inicio()
+        {
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result 
+            console.log(enlace_nuevo)
+
+            window.location.href = enlace_nuevo
+        }
+
+        function llevar_a_glifos()
+        {
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result + "/index_ingles/thomson/default/default/default/default/#1"
+            console.log(enlace_nuevo)
+
+            window.location.href = enlace_nuevo
+        }
+    </script>
+
+    <!-- Boton de regreso a inicio -->
+    <button class="boton-cabecera" onclick=llevo_inicio()>
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+    </button>
+
+    <!--Seccion de contenedor principal-->
+    <section class="contenedor-principal">
+        <button class="glifos_boton" onclick=llevar_a_glifos()>
+            Glyphs
+        </button>
+        <button class="imagenes_boton" disabled>
+            Pictures
+        </button>
+        <div class="contenedor_imagenes">
+
+        </div>
+        <div class="contenedor_1">
+            <img class="imagen" id="picture" src="" alt="Sin glifo registrado"> 
+            <p id="dato1" class="item dato1"></p>
+        </div>
+        <div class="contenedor_2">
+            <img class="imagen" id="picture_1" src="" alt="Sin glifo registrado">
+            <p id="dato2" class="item dato2"></p>
+        </div>
+        <div class="contenedor_3">
+            <img class="imagen" id="picture_2" src="" alt="Sin glifo registrado">
+            <p id="dato3" class="item dato3"></p>
+        </div>
+        <button class="boton1 boton" onclick="principio(); mostrar_imagen();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi  bi-chevron-double-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </button>
+        <button class="boton2 boton" onclick="atras(); mostrar_imagen();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi  bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </button>
+        <button class="boton3 boton" onclick="adelante(); mostrar_imagen();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi  bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+        <button class="boton4 boton" onclick="final(); mostrar_imagen();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi  bi-chevron-double-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </section>
+
+    <script>
+        var datos = {{conjunto_datos|tojson}};
+        var id_glifo = {{id_glifo|tojson}};
+        var imagen = {{arreglo_imagenes_procesadas|tojson}}
+        
+        var numero_dato = 0;
+        var total = 0;
+        for(dato in datos){
+            total = total +1;
+        }
+        console.log(total);
+
+        function principio(){
+            numero_dato = 1;
+            numero_dato_1 = numero_dato+1;
+            numero_dato_2 = numero_dato_1 + 1;
+            console.log("***************");
+            valor_1 = datos[((numero_dato-1))][1].toString() + datos[((numero_dato-1))][2].toString() + datos[((numero_dato-1))][3].toString() + datos[((numero_dato-1))][4].toString() + datos[((numero_dato-1))][5].toString();
+            valor_2 = datos[((numero_dato_1-1))][1].toString() + datos[((numero_dato_1-1))][2].toString() + datos[((numero_dato_1-1))][3].toString() + datos[((numero_dato_1-1))][4].toString() + datos[((numero_dato_1-1))][5].toString();
+            valor_3 = datos[((numero_dato_2-1))][1].toString() + datos[((numero_dato_2-1))][2].toString() + datos[((numero_dato_2-1))][3].toString() + datos[((numero_dato_2-1))][4].toString() + datos[((numero_dato_2-1))][5].toString();
+            document.getElementById("dato1").innerHTML = valor_1;
+            document.getElementById("dato2").innerHTML = valor_2;
+            document.getElementById("dato3").innerHTML = valor_3;
+        }
+        function atras(){
+            if(numero_dato >= 1)
+            {
+                numero_dato = numero_dato-1;
+                numero_dato_1 = numero_dato_1 - 1 ;
+                numero_dato_2 = numero_dato_2 - 1;
+                console.log("***************");
+               
+
+                valor_1 = datos[((numero_dato-1))][1].toString() + datos[((numero_dato-1))][2].toString() + datos[((numero_dato-1))][3].toString() + datos[((numero_dato-1))][4].toString() + datos[((numero_dato-1))][5].toString();
+                valor_2 = datos[((numero_dato_1-1))][1].toString() + datos[((numero_dato_1-1))][2].toString() + datos[((numero_dato_1-1))][3].toString() + datos[((numero_dato_1-1))][4].toString() + datos[((numero_dato_1-1))][5].toString();
+                valor_3 = datos[((numero_dato_2-1))][1].toString() + datos[((numero_dato_2-1))][2].toString() + datos[((numero_dato_2-1))][3].toString() + datos[((numero_dato_2-1))][4].toString() + datos[((numero_dato_2-1))][5].toString();
+               
+
+                document.getElementById("dato1").innerHTML = valor_1;
+                document.getElementById("dato2").innerHTML = valor_2;
+                document.getElementById("dato3").innerHTML = valor_3;
+            }
+        }
+
+        function adelante(){
+            numero_dato = numero_dato+1;
+            numero_dato_1 = numero_dato + 1 ;
+            numero_dato_2 = numero_dato + 2;
+            console.log("***************");
+           
+
+            valor_1 = datos[((numero_dato-1))][1].toString() + datos[((numero_dato-1))][2].toString() + datos[((numero_dato-1))][3].toString() + datos[((numero_dato-1))][4].toString() + datos[((numero_dato-1))][5].toString();
+            valor_2 = datos[((numero_dato_1-1))][1].toString() + datos[((numero_dato_1-1))][2].toString() + datos[((numero_dato_1-1))][3].toString() + datos[((numero_dato_1-1))][4].toString() + datos[((numero_dato_1-1))][5].toString();
+            valor_3 = datos[((numero_dato_2-1))][1].toString() + datos[((numero_dato_2-1))][2].toString() + datos[((numero_dato_2-1))][3].toString() + datos[((numero_dato_2-1))][4].toString() + datos[((numero_dato_2-1))][5].toString();
+           
+            document.getElementById("dato1").innerHTML = valor_1;
+            document.getElementById("dato2").innerHTML = valor_2;
+            document.getElementById("dato3").innerHTML = valor_3;
+        }
+        function final(){
+            numero_dato_2 = total;
+            numero_dato_1 = total-1;
+            numero_dato = numero_dato_1 -1;
+            console.log("***************");
+          
+
+            valor_1 = datos[((numero_dato-1))][1].toString() + datos[((numero_dato-1))][2].toString() + datos[((numero_dato-1))][3].toString() + datos[((numero_dato-1))][4].toString() + datos[((numero_dato-1))][5].toString();
+            valor_2 = datos[((numero_dato_1-1))][1].toString() + datos[((numero_dato_1-1))][2].toString() + datos[((numero_dato_1-1))][3].toString() + datos[((numero_dato_1-1))][4].toString() + datos[((numero_dato_1-1))][5].toString();
+            valor_3 = datos[((numero_dato_2-1))][1].toString() + datos[((numero_dato_2-1))][2].toString() + datos[((numero_dato_2-1))][3].toString() + datos[((numero_dato_2-1))][4].toString() + datos[((numero_dato_2-1))][5].toString();
+           
+            document.getElementById("dato1").innerHTML = valor_1;
+            document.getElementById("dato2").innerHTML = valor_2;
+            document.getElementById("dato3").innerHTML = valor_3;
+        }
+
+        /*function mostrar_imagen()
+        {
+            var i =0;
+            var total=0;
+            imagen_capturada = 0
+            imagen_capturada_1 = 0
+            imagen_capturada_2 = 0
+            id_glifo_1 = numero_dato;
+            id_glifo_2 = numero_dato+1;
+            id_glifo_3  = numero_dato+2;
+
+            valor_id_glifo = datos[(id_glifo_1-1)][6].toString();
+            valor_id_glifo_1 = datos[(id_glifo_2-1)][6].toString();
+            valor_id_glifo_2 = datos[(id_glifo_3-1)][6].toString();
+
+            for(i=0;i<id_glifo.length;i++)
+            {
+                if(valor_id_glifo == id_glifo[i])
+                {
+                    console.log("Si encontro el valor" + id_glifo[i].toString());
+                    numero = i;
+                    console.log(numero);
+                    imagen_capturada = imagen[numero];
+                }
+                if(valor_id_glifo_1 == id_glifo[i])
+                {
+                    console.log("Si encontro el valor" + id_glifo[i].toString());
+                    numero_1 = i;
+                    console.log(numero_1)
+                    imagen_capturada_1 = imagen[numero_1];
+                }
+                if(valor_id_glifo_2 == id_glifo[i])
+                {
+                    console.log("Si encontro el valor" + id_glifo[i].toString());
+                    numero_2 = i;
+                    console.log(numero_2)
+                    imagen_capturada_2 = imagen[numero_2];
+                }
+                total = total+1;
+            }
+            console.log(total);
+            instruccion_src = 'data:image/bmp;base64,' + imagen_capturada;
+            instruccion_src_1 = 'data:image/bmp;base64,' + imagen_capturada_1;
+            instruccion_src_2 = 'data:image/bmp;base64,' + imagen_capturada_2;
+
+            document.getElementById("picture").src = instruccion_src;
+            document.getElementById("picture_1").src = instruccion_src_1;
+            document.getElementById("picture_2").src = instruccion_src_2;
+        }*/
+
+        function mostrar_imagen()
+        {
+            var i =0;
+            var total=0;
+            id_glifo_1 = numero_dato;
+            id_glifo_2 = numero_dato+1;
+            id_glifo_3  = numero_dato+2;
+            imagen_capturada = 0
+            imagen_capturada_1 = 0
+            imagen_capturada_2 = 0
+            valor_id_glifo = datos[(id_glifo_1-1)][6].toString();
+            valor_id_glifo_1 = datos[(id_glifo_2-1)][6].toString();
+            valor_id_glifo_2 = datos[(id_glifo_3-1)][6].toString();
+
+            console.log("Valores de id glifo")
+            console.log(valor_id_glifo)
+            console.log(valor_id_glifo_1)
+            console.log(valor_id_glifo_2)
+            console.log(id_glifo)
+
+            for(i=0;i<id_glifo.length;i++)
+            {
+                if(valor_id_glifo == id_glifo[i])
+                {
+                    console.log("Si encontro el valor" + id_glifo[i].toString());
+                    numero = i;
+                    console.log(numero);
+                    imagen_capturada = imagen[numero];
+                }
+                if(valor_id_glifo_1 == id_glifo[i])
+                {
+                    console.log("Si encontro el valor" + id_glifo[i].toString());
+                    numero_1 = i;
+                    console.log(numero_1)
+                    imagen_capturada_1 = imagen[numero_1];
+                }
+                if(valor_id_glifo_2 == id_glifo[i])
+                {
+                    console.log("Si encontro el valor" + id_glifo[i].toString());
+                    numero_2 = i;
+                    console.log(numero_2)
+                    imagen_capturada_2 = imagen[numero_2];
+                }
+                total = total+1;
+            }
+            console.log(total);
+            console.log("Imagen capturada: " + imagen_capturada)
+            console.log("Imagen capturada: " + imagen_capturada_1)
+            console.log("Imagen capturada: " + imagen_capturada_2)
+
+            instruccion_src = 'data:image/bmp;base64,' + imagen_capturada;
+            instruccion_src_1 = 'data:image/bmp;base64,' + imagen_capturada_1;
+            instruccion_src_2 = 'data:image/bmp;base64,' + imagen_capturada_2;
+            
+            console.log(instruccion_src)
+            console.log(instruccion_src_1)
+            console.log(instruccion_src_2)
+
+            document.getElementById("picture").src = instruccion_src;
+            document.getElementById("picture_1").src = instruccion_src_1;
+            document.getElementById("picture_2").src = instruccion_src_2;
+        }
+
+        window.onload = function() 
+        {
+            var contenedor = document.getElementById('contenedor-carga');
+            contenedor.style.visibility = 'hidden';
+            contenedor.style.opacity = '0';
+            numero_dato = 1;
+            numero_dato_1 = 2;
+            numero_dato_2 = 3;
+            valor_1 = "[" + datos[((numero_dato-1))][1].toString() +"],[" + datos[((numero_dato-1))][2].toString() +"],["+ datos[((numero_dato-1))][3].toString() + "],[" + datos[((numero_dato-1))][4].toString() +"],[" + datos[((numero_dato-1))][5].toString()+"]";
+            valor_2 = "[" + datos[((numero_dato_1-1))][1].toString() + "],[" + datos[((numero_dato_1-1))][2].toString()+"],[" + datos[((numero_dato_1-1))][3].toString()+ "],[" + datos[((numero_dato_1-1))][4].toString()+"],[" + datos[((numero_dato_1-1))][5].toString()+"]";
+            valor_3 = "[" + datos[((numero_dato_2-1))][1].toString() +"],["+ datos[((numero_dato_2-1))][2].toString()+"],[" + datos[((numero_dato_2-1))][3].toString() +"],[" + datos[((numero_dato_2-1))][4].toString()+"],[" + datos[((numero_dato_2-1))][5].toString()+"]";
+           
+            document.getElementById("dato1").innerHTML = valor_1;
+            document.getElementById("dato2").innerHTML = valor_2;
+            document.getElementById("dato3").innerHTML = valor_3;
+        }
+    </script>
+</body>
+</html>

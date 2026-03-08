@@ -1,0 +1,309 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(10,50,67);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top:50vh;
+}
+
+h2{
+    text-align: center;
+    grid-column: auto;
+    grid-row: 1/2;
+}
+
+.container{
+    width: 40%;
+    height: 30vh;
+    color: rgb(10,50,67);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    position: absolute;
+    top:30vh;
+    border: 3px solid rgb(10,50,67);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 15% 14% 55% 14%;
+}
+
+.container_1
+{
+    grid-column: auto;
+    grid-row: 4/5;
+    width: 30%;
+
+    background-color:white;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:red;
+    position: relative;
+    left:35%;
+}
+
+.cajas_texto{
+    grid-column: auto;
+    grid-row: 2/3;
+    display: block;
+    width: 80%;
+    text-align: center;
+    background-color: white;
+    margin-left: 10%;
+    /*margin-right: 10%;*/
+    border: 2px solid rgb(10,50,67);
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: medium;
+}
+.submit_boton
+{
+    grid-column: auto;
+    grid-row: 4/5;
+    background-color: rgb(10,50,67);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 30%;
+    text-align: center;
+    position: relative;
+    left:35%;
+    right: 20%;
+}
+.encabezado
+{
+    color:white;
+    font-family:'Times New Roman', Times, serif ;
+    font-size: 2vw;
+    display: block;
+    font-weight: 400;
+    text-align: center;
+}
+.boton-cabecera{
+    color:black;
+    display:block;
+    position:absolute;
+    left:0;
+    z-index: 11;
+    animation-name: animacion-encabezado;
+    animation-duration:1.5s;
+    animation-fill-mode: forwards;
+    background-color:rgb(10,49,67);
+    height:6vh;
+    width:5vw;
+}
+
+.boton-cabecera:hover{
+    border-color: white;
+    transition:0.5s;
+}
+.material-symbols-outlined{
+color:white;
+background-color:rgb(10,49,67);
+}
+
+.material-symbols-outlined:hover{
+    border-color: white;
+    cursor: pointer;
+}
+.submit_boton:hover
+{
+    opacity:0.9;
+    transition:0.5s;
+}
+.enlace_contrasena
+{
+    display:block;
+    width:100%;
+    height:2%;
+    text-align:center;
+}
+.letrero_anuncio
+{
+    text-align:center;
+    display:block;
+    grid-column: auto;
+    grid-row: 2/3;
+}
+.email_correo
+{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-top:10px;
+    grid-column: auto;
+    grid-row: 1/2;
+}
+.form_recuperacion
+{
+    grid-row: 3/4;
+    grid-column: auto;
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20% 30% 10% 25%;
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+    
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(10,50,67);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top:50vh;
+}
+
+h2{
+    text-align: center;
+    grid-column: auto;
+    grid-row: 1/2;
+    font-size: 2.8vh;
+}
+
+.container{
+    width: 70%;
+    height: 50vh;
+    color: rgb(10,50,67);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    position: absolute;
+    top:25vh;
+    border: 3px solid rgb(10,50,67);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 15% 14% 55% 14%;
+}
+
+.container_1
+{
+    grid-column: auto;
+    grid-row: 4/5;
+    width: 30%;
+
+    background-color:white;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:red;
+    position: relative;
+    left:35%;
+}
+
+.cajas_texto{
+    grid-column: auto;
+    grid-row: 2/3;
+    display: block;
+    width: 80%;
+    text-align: center;
+    background-color: white;
+    margin-left: 10%;
+    /*margin-right: 10%;*/
+    border: 2px solid rgb(10,50,67);
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: medium;
+}
+.submit_boton
+{
+    grid-column: auto;
+    grid-row: 4/5;
+    background-color: rgb(10,50,67);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 60%;
+    text-align: center;
+    position: relative;
+    left:20%;
+    right: 20%;
+    font-size: 1.8vh;
+}
+.encabezado
+{
+    color:white;
+    font-family:'Times New Roman', Times, serif ;
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    font-size: 2.0vh;
+}
+.boton-cabecera{
+    color:black;
+    display:block;
+    position:absolute;
+    left:0;
+    z-index: 11;
+    animation-name: animacion-encabezado;
+    animation-duration:1.5s;
+    animation-fill-mode: forwards;
+    background-color:rgb(10,49,67);
+    height:6vh;
+    width:5vw;
+}
+
+.boton-cabecera:hover{
+    border-color: white;
+    transition:0.5s;
+}
+.material-symbols-outlined{
+color:white;
+background-color:rgb(10,49,67);
+}
+
+.material-symbols-outlined:hover{
+    border-color: white;
+    cursor: pointer;
+}
+.submit_boton:hover
+{
+    opacity:0.9;
+    transition:0.5s;
+}
+.enlace_contrasena
+{
+    display:block;
+    width:100%;
+    height:2%;
+    text-align:center;
+}
+.letrero_anuncio
+{
+    text-align:center;
+    display:block;
+    grid-column: auto;
+    grid-row: 2/3;
+}
+.email_correo
+{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-top:10px;
+    grid-column: auto;
+    grid-row: 1/2;
+}
+.form_recuperacion
+{
+    grid-row: 3/4;
+    grid-column: auto;
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20% 30% 10% 25%;
+}
+}

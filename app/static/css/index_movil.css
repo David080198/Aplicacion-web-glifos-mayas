@@ -1,0 +1,665 @@
+html{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    padding:0;margin:0;
+}
+
+*,*::after,*::before{
+    box-sizing:inherit;
+}
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilos para el contenedor de carga */
+
+.contenedor-carga{
+    background-color: rgba(10,50,67,0.9);
+    opacity: 0.9;
+    width:100%;
+    height:100%;
+    position:fixed;
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    z-index: 10000;
+}
+
+.triangulo{
+    border:15px solid rgb(206,207,201);
+    border-top-color: rgb(39,207,201);
+    border-top-style: groove;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    animation: girar 1.5s linear infinite;
+    -o-transition: girar 1.5s linear infinite;
+    transition: girar 1.5s linear infinite;
+}
+
+@keyframes girar {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+body{
+    background-color:white;
+    padding:0;
+    margin:0;
+}
+
+/* Estilos de contenedores principales */
+
+.contenedor-principal
+{
+    display:none;
+}
+.bloque-informativo
+{
+    display:none;
+}
+.contenedor-tabla{
+    display:none;
+}
+.encabezado
+{
+    padding:0;
+    margin:0;
+    position:absolute;
+    position:fixed;
+    text-align:center;
+    animation-name: animacion-encabezado;
+    animation-duration:1.5s;
+    animation-fill-mode: forwards;
+    background-color:rgb(10,49,67);
+    height:6vh;
+    width:100%;
+    color:rgb(239,239,239);
+    z-index: 10;
+}
+
+.boton-cabecera{
+    color:white;
+    display:block;
+    position:fixed;
+    z-index: 20;
+    animation-name: animacion-encabezado;
+    animation-duration:1.5s;
+    animation-fill-mode: forwards;
+    background-color:rgb(10,49,67);
+    height:6vh;
+    width:10vw;
+}
+
+.contenedor_principal_movil{
+    display:block;
+    width:100%;
+    height:40vh;
+    position:absolute;
+    top:6vh;
+    margin:0;
+    padding:0;
+    background-color:#CECFC9;
+    display:grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(10,1fr);
+}
+.tabla_principal_movil{
+    display:block;
+    position:absolute;
+    top:46vh;
+    width:100%;
+    height:50vh;
+    background-color:white;
+    overflow:scroll;
+}
+
+.tamaño_caja_texto_movil{
+    height:100%;
+    background-color:white;
+    padding:0;
+    margin:0;
+    overflow-y: scroll;
+    border:thin solid black;
+}
+.tamaño_caja_texto_movil{
+    padding:2rem;
+    scroll-behavior: smooth;
+}
+.tamaño_caja_texto_movil table{
+    border: thin solid #0A3143;
+    width:100%;
+    border-collapse: collapse;
+}
+.tamaño_caja_texto_movil td{
+    padding:0.5rem;
+    border:thin solid #0A3143;
+}
+.tamaño_caja_texto_movil .valor_td_movil{
+    padding:0.5rem;
+    width:30%;
+}
+.tamaño_caja_texto_movil .valor_td_movil_1{
+    text-align: center;
+}
+
+/* Estilos a la seccion del encabezado de opciones */
+.menu_movil{
+    color:white;
+    background-color:#276E90;
+}
+
+.imagen_glifo_movil{
+    grid-column:4/10 ;
+    grid-row:3/8 ;
+    background-color:white;
+    display:flex;
+}
+
+.imagen{
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    margin:auto;
+}
+
+#letrero_orden{
+    grid-row: 2/3;
+    grid-column: 1/13;
+    color:white;
+    background-color:#0A3143;
+    text-align: center;
+    font-size: 3vw;
+}
+
+.boton1_movil{
+    grid-column: 3/5;
+    grid-row: 9/10 ;
+}
+
+.boton2_movil{
+    grid-column:5/7 ;
+    grid-row:9/10 ;
+}
+
+.boton3_movil{
+    grid-column: 7/9;
+    grid-row:9/10 ;
+}
+
+.boton4_movil{
+    grid-column:9/11 ;
+    grid-row:9/10 ;
+}
+
+.menu_opciones_h2{
+    grid-column:1/11;
+    grid-row:1/2;
+    text-align: left;
+    padding:0;
+    margin:auto 0;
+    padding-left:12vw;
+    background-color:#276E90;
+    color:white;
+
+}
+.opciones_movil{
+    grid-column: 11/13;
+    grid-row:1/2;
+    border:none;
+    box-shadow: none;
+}
+
+.opcion_idioma_ingles{
+    grid-column: 6/7;
+    grid-row:1/2;
+    border:none;
+    box-shadow: none;
+}
+
+.opcion_idioma_español{
+    grid-column: 8/9;
+    grid-row:1/2;
+    border:none;
+    box-shadow: none;
+}
+
+.estilos_botones{
+    box-shadow: 0;
+    margin:none;
+    background-color:#276E90;
+    color:white;
+}
+
+.estilos_botones:hover{
+    opacity: 0.7;
+    cursor:pointer;
+}
+
+/* Opciones de menu movil */
+.opciones_movil_2{
+    grid-column:1/13;
+    grid-row: 2/6;
+    background-color:green;
+    display:grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(4,1fr);
+    display:none;
+    z-index: 30;
+}
+
+.opciones_movil_2 > button{
+    background-color:#276E90;
+    color:white;
+    width: 100%;
+    height: 5vh;
+    font-size: 4vw;
+    box-shadow:none;
+    border:none;
+    border: thin solid white;
+    z-index: 30;
+}
+
+@keyframes opciones_de_menu_movil_aparecer {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes opciones_de_menu_movil_desaparecer {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* Estilos para ventanas modales */
+
+.ventanas_modales{
+    display:none;
+    position:absolute;
+    z-index: 50;
+    width:100vw;
+    height:100vh;
+    background-color:#0A3143;
+    opacity: 0.5;
+}
+.ventana_modal_base_de_datos{
+    display: none;
+    opacity: 1;
+    position:absolute;
+    width:80vw;
+    height:40vh;
+    background-color:white;
+    z-index: 50;
+    margin:auto;
+    left:10%;
+    right:10%;
+    top:30vh;
+}
+
+.vetana_modal_identificacion{
+    display: none;
+    opacity: 1;
+    position:absolute;
+    width:80vw;
+    height:70vh;
+    background-color:white;
+    z-index: 50;
+    margin:auto;
+    left:10%;
+    right:10%;
+    top:15vh;
+}
+
+.ventana_modal_busqueda_atributos{
+    display: none;
+    opacity: 1;
+    position:absolute;
+    width:80vw;
+    height:40vh;
+    background-color:white;
+    z-index: 50;
+    margin:auto;
+    left:10%;
+    right:10%;
+    top:30vh;
+}
+
+.contenido_atributos_modal-botton1:hover
+{
+    background-color:rgb(39,110,144,0.7);
+    transition:0.5s;
+    cursor: pointer;
+}
+
+
+.ventana_modal_atributos_personalizados{
+    display: none;
+    opacity: 1;
+    position:absolute;
+    width:80vw;
+    height:70vh;
+    background-color:white;
+    z-index: 50;
+    margin:auto;
+    left:10%;
+    right:10%;
+    top:20vh;
+}
+
+.ventana_modal_atributos_personalizados_1{
+    display: none;
+    opacity: 1;
+    position:absolute;
+    width:90vw;
+    height:90vh;
+    background-color:white;
+    z-index: 50;
+    margin:auto;
+    left:5%;
+    right:5%;
+    top:5vh;
+}
+
+/* Estilos de los elementos de caja */
+
+.texto_atributos_default
+{
+    grid-column: 1/3;
+    grid-row: 2/3;
+    text-align: center;
+    margin:auto;
+}
+
+.conjuntos_con_base
+{
+    grid-column: 1/3;
+    grid-row: 3/5;
+    border: thin solid black;
+    margin:10px;
+}
+.texto_atributos_personales
+{
+    grid-column: 1/3;
+    grid-row: 5/6;
+    text-align: center;
+    margin:auto;
+}
+.nuevos_conjuntos
+{
+    grid-column: 1/3;
+    grid-row: 6/8;
+    border: thin solid black;
+    margin:10px;
+}
+
+.boton_nuevo_atributo
+{
+    grid-column: 1/3;
+    grid-row:8/9;
+    text-align: center;
+    margin: auto;
+}
+
+.boton_nuevo_atributo_1
+{
+    width: 60vw;
+    height: 5vh;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(39,110,144);
+}
+
+.contenedor_anuncio_atributos
+{
+    grid-column: 1/3;
+    grid-row: 10/11;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+}
+
+.eliminar_conjunto
+{
+    grid-column: 1/3;
+    grid-row:8/9;
+    text-align: center;
+    margin: auto;
+}
+
+.eliminar_conjunto_1
+{
+    width: 60vw;
+    height: 5vh;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(39,110,144);
+}
+
+.ventana-encabezado
+{
+    background-color:rgb(39,110,144) ;
+}
+
+.ver_simbolos
+{
+    grid-column: 1/3;
+    grid-row: 9/10;
+    text-align: center;
+    margin: auto;
+}
+
+.ver_simbolos_1
+{
+    width: 60vw;
+    height: 5vh;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(39,110,144);
+}
+
+
+.boton_modal_x{
+   background-color:#276E90;
+   box-shadow: none;
+   border:none;
+   color:white;
+}
+
+.texto_ventana_encabezado{
+    background-color:#276E90;
+}
+
+#texto_ventana_encabezado >h4{
+    padding-left: 10vw;
+    color:white;
+}
+
+#texto_ventana_encabezado_1 >h4{
+    padding-left: 10vw;
+    color:white;
+}
+
+#texto_ventana_encabezado_2 >h4{
+    padding-left: 10vw;
+    color:white;
+}
+
+@keyframes ventas_modales_animacion_aparecer {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0.5;
+    }
+}
+@keyframes ventas_modales_animacion_aparecer_1 {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes ventas_modales_animacion_desaparecer {
+    from{
+        opacity: 0.5;
+    }
+    to{
+        opacity: 0;
+        display:none;
+        z-index:-10;
+    }
+}
+@keyframes ventas_modales_animacion_desaparecer_1 {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        display:none;
+        z-index:-10;
+    }
+}
+
+.boton-submit-filtrar{
+    border:none;
+    background-color:#276E90;
+    color: white;
+    cursor: pointer;
+    font-size: 3.5vw;
+    width: 30vw; 
+    margin-bottom:1vw;
+}
+
+.boton-submit-filtrar:hover{
+    opacity:0.7;
+    cursor:pointer;
+    transition:0.5s;
+}
+
+/* Estilos de elementos de la ventana modal de busqueda de atributos */
+
+.boton_hechos_iniciales_1{
+    border:none;
+    background-color: #276E90;
+    color:white;
+    border:medium solid white;
+}
+
+.boton_hechos_iniciales_1:hover{
+    opacity: 0.7;
+}
+
+.boton_limpiar_feature{
+    border:none;
+    background-color: #276E90;
+    color:white;
+    border:medium solid white;
+}
+
+.boton_limpiar_feature:hover{
+    opacity: 0.7;
+}
+
+.menu_cajas
+{
+    display: flex;
+    
+}
+.botones_submit
+{
+    display:flex;
+    align-items: center;
+}
+
+@keyframes ventana_modal_cerrar_atributos
+{
+    0%{
+        opacity: 1;
+    }
+    40%{
+        opacity:0;
+    }
+    60%{
+        opacity:0;
+        z-index:-10;
+    }
+    100%{
+        opacity:0;
+        z-index: -10;
+        display:none;
+    }
+}
+
+@keyframes ventana_modal_animacion-abrir {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@media screen and (orientation: landscape) 
+{
+    .mensaje {
+        position: fixed;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        
+        /* Con esto ajustamos la posición del texto */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        /* Un color de fondo */
+        
+        background-color: #276E90;
+        color:white;
+       
+        /* Debemos superponerlo */
+        z-index: 1000;
+      }
+      
+      /* El texto que vamos a mostrar */
+      .mensaje::before {
+        content: "Voltee su dispositivo";
+        font-size: 2rem;
+        border: medium solid white;
+        padding:10vw;
+        border-radius: 1vw;
+        font-family: 'Times New Roman', Times, serif;
+      }
+}
+
+/* Estilos de la ventana de identificación */
+
+@keyframes ventana_modal_animacion-abrir {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

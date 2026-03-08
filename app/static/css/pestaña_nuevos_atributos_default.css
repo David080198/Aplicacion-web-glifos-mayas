@@ -1,0 +1,483 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(10,50,67);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top:50vh;
+}
+
+h2{
+    text-align: center;
+}
+
+
+label{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    
+}
+
+.cajas_texto{
+    display: block;
+    width: 80%;
+    text-align: center;
+    background-color: white;
+    margin-left: 10%;
+    /*margin-right: 10%;*/
+    border: 2px solid rgb(10,50,67);
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: medium;
+}
+
+
+.encabezado
+{
+    color:white;
+    font-family:'Times New Roman', Times, serif ;
+    font-size: 2vw;
+    display: block;
+    font-weight: 400;
+    height: 5vh;
+    text-align: center;
+}
+.boton-cabecera{
+    color:black;
+    display:block;
+    position:absolute;
+    left:0;
+    z-index: 11;
+    animation-name: animacion-encabezado;
+    animation-duration:1.5s;
+    animation-fill-mode: forwards;
+    background-color:rgb(10,49,67);
+    height:6vh;
+    width:5vw;
+}
+
+.boton-cabecera:hover{
+    border-color: white;
+    transition:0.5s;
+}
+.material-symbols-outlined{
+color:white;
+background-color:rgb(10,49,67);
+}
+
+.material-symbols-outlined:hover{
+    border-color: white;
+    cursor: pointer;
+}
+.container
+{
+    width: 100%;
+    height: 70vh;
+    display: block;
+    position: relative;
+    color:black;
+    z-index: 100000;
+    background-color:rgb(10,49,67);
+}
+.container_1
+{
+    width: 100%;
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(10, 1fr); /* 10 columnas, cada una con 1 fracción del espacio disponible */
+    grid-template-rows: repeat(10, 1fr);    /* 10 filas, cada una con 1 fracción del espacio disponible */
+}
+
+.texto_nombre_atributo
+{
+    text-align: center;
+    border:solid black;
+    border-radius: 10px;
+}
+
+.texto_nombre
+{
+    margin:auto;
+    text-align: center;
+    grid-column: 4/8;
+    grid-row: 1/2;
+    font-size: 1.5vw;
+    color:white;
+    font-weight: bold;
+}
+
+.texto_nombre_atributo
+{
+    grid-column: 4/8;
+    grid-row: 2/3;
+}
+
+.tabla_check
+{
+    grid-column: 2/10;
+    grid-row: 3/10;
+    margin:10px;
+    overflow: auto;
+    border: solid black;
+    border-radius: 10px;
+}
+
+.tabla_check table
+{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color:white;
+}
+
+.form_check_1
+{
+    grid-column: 1/11;
+    grid-row: 2/9;
+    
+    overflow: auto;
+}
+
+th, td {
+    border: 1px solid rgb(10,49,67);
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: rgb(10,49,67);
+    text-align: center;
+    color:white;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.boton_enviar
+{
+    padding:10px;
+    grid-column: 5/7;
+    grid-row: 10/11;  
+    height: 6vh;  
+    border-radius: 10px;
+}
+.boton_enviar:hover
+{
+    opacity: 0.7;
+    transition: 0.5s;
+    cursor:pointer;
+}
+.idiomas
+{
+    display:block;
+    width: 20%;
+    height: 5vh;
+    right: 0;
+    top:0;
+    position:absolute;
+    display:flex;
+    flex-direction: row;
+}
+.español
+{
+    width: 50%;
+    height: 5vh;
+    border:solid thin white;
+    color:white;
+    background-color:rgb(10,49,67);
+    border-radius: 5px 0px 0px 5px;
+}
+.ingles
+{
+    width: 50%;
+    height: 5vh;
+    border: solid thin white;
+    color: white;
+    background-color:rgb(10,49,67);
+    border-radius: 0px 5px 5px 0px;
+}
+.español:hover
+{
+    
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.ingles:hover
+{
+    
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.2s;
+}
+input[type="checkbox"] {
+    margin-right: 5px;
+    width: 20px; /* Ancho del checkbox */
+    height: 20px; /* Altura del checkbox */
+    background-color:rgb(10,49,67);
+}
+.seleccionar
+{
+    width: 10%;
+}
+.id
+{
+    width: 10%;
+}
+.atributo
+{
+    width: 20%;
+}
+.descripcion
+{
+    width: 60%;
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) 
+{
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(10,50,67);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top:50vh;
+    }
+    
+    h2{
+        text-align: center;
+    }
+    
+    
+    label{
+        display: block;
+        width: 100%;
+        text-align: center;
+        background-color: white;
+        
+    }
+    
+    .cajas_texto{
+        display: block;
+        width: 80%;
+        text-align: center;
+        background-color: white;
+        margin-left: 10%;
+        /*margin-right: 10%;*/
+        border: 2px solid rgb(10,50,67);
+        border-radius: 4px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: medium;
+    }
+    
+    
+    .encabezado
+    {
+        color:white;
+        font-family:'Times New Roman', Times, serif ;
+        font-size: 2vh;
+        display: block;
+        font-weight: 400;
+        height: 5vh;
+        text-align: center;
+    }
+    .boton-cabecera{
+        color:black;
+        display:block;
+        position:absolute;
+        left:0;
+        z-index: 11;
+        animation-name: animacion-encabezado;
+        animation-duration:1.5s;
+        animation-fill-mode: forwards;
+        background-color:rgb(10,49,67);
+        height:6vh;
+        width:10vw;
+    }
+    
+    .boton-cabecera:hover{
+        border-color: white;
+        transition:0.5s;
+    }
+    .material-symbols-outlined{
+    color:white;
+    background-color:rgb(10,49,67);
+    }
+    
+    .material-symbols-outlined:hover{
+        border-color: white;
+        cursor: pointer;
+    }
+    .container
+    {
+        width: 100%;
+        height: 70vh;
+        display: block;
+        position: relative;
+        color:black;
+        z-index: 100000;
+        background-color:rgb(10,49,67);
+    }
+    .container_1
+    {
+        width: 100%;
+        height: 100%;
+        display:grid;
+        grid-template-columns: repeat(10, 1fr); /* 10 columnas, cada una con 1 fracción del espacio disponible */
+        grid-template-rows: repeat(10, 1fr);    /* 10 filas, cada una con 1 fracción del espacio disponible */
+    }
+    
+    .texto_nombre_atributo
+    {
+        text-align: center;
+        border:solid black;
+        border-radius: 10px;
+        font-size: 1vh;
+    }
+    
+    .texto_nombre
+    {
+        margin:auto;
+        text-align: center;
+        grid-column: 3/9;
+        grid-row: 1/2;
+        font-size: 1.7vh;
+        color:white;
+        font-weight: bold;
+    }
+    
+    .texto_nombre_atributo
+    {
+        grid-column: 2/10;
+        grid-row: 2/3;
+        font-size: 1.8vh;
+    }
+    
+    .tabla_check
+    {
+        grid-column: 1/11;
+        grid-row: 3/10;
+        margin:10px;
+        overflow: auto;
+        border: solid black;
+        border-radius: 10px;
+    }
+    
+    .tabla_check table
+    {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color:white;
+    }
+    
+    .form_check_1
+    {
+        grid-column: 1/11;
+        grid-row: 2/9;
+        
+        overflow: auto;
+    }
+    
+    th, td {
+        border: 1px solid rgb(10,49,67);
+        padding: 8px;
+        text-align: center;
+    }
+    
+    th {
+        background-color: rgb(10,49,67);
+        text-align: center;
+        color:white;
+    }
+    
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+    
+    .boton_enviar
+    {
+        padding:10px;
+        grid-column: 3/9;
+        grid-row: 10/11;  
+        height: 6vh;  
+        border-radius: 10px;
+    }
+    .boton_enviar:hover
+    {
+        opacity: 0.7;
+        transition: 0.5s;
+        cursor:pointer;
+    }
+    .idiomas
+    {
+        display:block;
+        width: 40vw;
+        height: 5vh;
+        right: 0;
+        top:95vh;
+        position:absolute;
+        display:flex;
+        flex-direction: row;
+        left: 30vw;
+    }
+    .español
+    {
+        width: 50%;
+        height: 5vh;
+        border:solid thin white;
+        color:white;
+        background-color:rgb(10,49,67);
+        border-radius: 5px 0px 0px 5px;
+    }
+    .ingles
+    {
+        width: 50%;
+        height: 5vh;
+        border: solid thin white;
+        color: white;
+        background-color:rgb(10,49,67);
+        border-radius: 0px 5px 5px 0px;
+    }
+    .español:hover
+    {
+        
+        opacity: 0.5;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .ingles:hover
+    {
+        
+        opacity: 0.5;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    input[type="checkbox"] {
+        margin-right: 5px;
+        width: 20px; /* Ancho del checkbox */
+        height: 20px; /* Altura del checkbox */
+        background-color:rgb(10,49,67);
+    }
+    .seleccionar
+    {
+        width: 10%;
+    }
+    .id
+    {
+        width: 10%;
+    }
+    .atributo
+    {
+        width: 20%;
+    }
+    .descripcion
+    {
+        width: 60%;
+    }
+}

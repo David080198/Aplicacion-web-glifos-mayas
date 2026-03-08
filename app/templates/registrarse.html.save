@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../static/imgs/icono.ico">
+    <link rel="stylesheet" href="../static/css/inicio.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeafycpAAAAAG8woENXa9XFgr2VCKzUevZG7iDQ"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/css/registrarse.css') }}" />
+    <link rel="stylesheet" href="../static/css/registrarse.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+    <!-- Replace the variables below. -->
+        
+    
+    <title>Registrarse</title>
+   
+</head>
+<body>
+
+    <div class="idiomas">
+        <button class="espanol" onclick=registro_espanol()> 
+            Español
+        </button>
+        <button class="ingles" onclick=registro_ingles()>
+            Inglés
+        </button>
+    </div>
+    
+
+    <button class="boton-cabecera" onclick=llevo_inicio()>
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+    </button>
+    <div>
+        <p class="encabezado">Instituto Politénico Nacional</p>
+        <p class="encabezado">Centro de Investigación en Computación</p>
+    </div>
+    <div class="container">
+        <h2 id="registro">Registro</h2>
+        <form method="POST" id="form_register">
+            <label id="label_nombre">Nombre y apellidos:</label>
+            <input class="cajas_texto" type="text" id="nombre" name="nombre" required placeholder="Nombre">
+            <label for="" id="falta_dato_1" ></label>
+
+            <label id="label_user" for="apellidos">Nombre de usuario:</label>
+            <input class="cajas_texto" type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+            <label for="" id="falta_dato_2" ></label>
+
+            <label id="label_mail" for="email">Correo Electrónico:</label>
+            <input class="cajas_texto" type="email" id="email" name="email" required placeholder="Correo electronico" >
+            <label for="" id="mensaje_correcto_incorrecto" ></label>
+
+            <label id="label_uni" for="universidad">Universidad:</label>
+            <input class="cajas_texto" type="text" id="universidad" name="universidad" placeholder="Universidad" required>
+            <label for="" id="falta_dato_3" ></label>
+
+            <label id="label_password" for="contrasena">Contraseña:</label>
+            <input class="cajas_texto" type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+            <label for="" id="falta_contraseña" ></label>
+
+            <label id="label_con_password" for="contrasena">Confirmar contraseña:</label>
+            <input class="cajas_texto" type="password" id="con-contrasena" name="con-contrasena"placeholder="Confirmar contraseña"  required>
+            <label for="" id="falta_contraseña_con" ></label>
+            
+            <!--<div class="captcha">
+                <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LeE4ywpAAAAAJy-JLCxVHfSYf-94aWM6KYZqEFn"></div>
+            </div>-->
+
+
+            <p style="color:red; font-weight:bold; text-align:center;">{{mensaje}}</p>
+            <input style="margin-bottom:20px;" id="submit_boton" class="submit_boton"  type="submit" value="Registrarse"> 
+        </form>
+    </div>
+
+    <div class="container_modal" id="container_modal">
+    </div>
+    <!--<div class="modal" id="modal_1">
+        <p class="texto_container" id="texto_container">Registro exitoso</p>
+        <button class="boton-cabecera_modal" id="boton-cabecera_modal" onclick=llevo_inicio()>
+            Regresar a Inicio
+        </button>
+        <input type="button" class="cerrar" id="cerrarModal" onclick="desaparecer_modal()" value="X">
+    </div>-->
+
+
+</body>
+</html>
+
+<script>
+   
+    
+    //document.getElementById("modal_1").style.display = "none"
+    function onClick(e) {
+        e.preventDefault();
+        grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LfsnycpAAAAAPmub5tGEl7OMckSm4N6plmXOu0e', { action: 'submit' });
+            
+            // Agrega el token al formulario antes de enviarlo
+            document.getElementById('form_register').innerHTML += '<input type="hidden" name="g-recaptcha-response" value="' + token + '">';
+            
+            // Envía el formulario
+            document.getElementById('form_register').submit();
+        });
+    }
+    function registro_espanol()
+    {
+        document.getElementById("registro").innerHTML = "Registro"
+        document.getElementById("label_nombre").innerHTML = "Nombre completo"
+        document.getElementById("label_user").innerHTML = "Nombre de usuario"
+        document.getElementById("label_mail").innerHTML = "Córreo eléctronico"
+        document.getElementById("label_uni").innerHTML = "Univesidad"
+        document.getElementById("label_password").innerHTML = "Contraseña"
+        document.getElementById("label_con_password").innerHTML = "Confirmar contraseña"
+        document.getElementById("submit_boton").value = "Registrar"
+    }
+    function registro_ingles()
+    {
+        document.getElementById("registro").innerHTML = "Register"
+        document.getElementById("label_nombre").innerHTML = "Full name"
+        document.getElementById("label_user").innerHTML = "User name"
+        document.getElementById("label_mail").innerHTML = "Email address"
+        document.getElementById("label_uni").innerHTML = "University"
+        document.getElementById("label_password").innerHTML = "Password"
+        document.getElementById("label_con_password").innerHTML = "Confirm password"
+        document.getElementById("submit_boton").value = "Register"
+
+    }
+
+    function llevo_inicio()
+    {
+        enlace_actual = window.location.href
+        enlace_actual_1 = window.location.hostname
+        enlace_actual_2 = window.location.pathname
+        enlace_actual_3 = window.location.protocol
+
+        console.log(enlace_actual.toString())
+        console.log(enlace_actual_1.toString())
+        console.log(enlace_actual_2.toString())
+        console.log(enlace_actual_3.toString())
+
+        var url = new URL(enlace_actual);
+        var result = url.port;
+
+        enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result 
+
+        console.log(enlace_nuevo)
+
+        window.location.href = enlace_nuevo
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Coloca aquí el código JavaScript que agrega eventos a los elementos
+        const caja1 = document.getElementById('contrasena');
+        const caja2 = document.getElementById('con-contrasena');
+        const caja3 = document.getElementById('email');
+        const caja4 = document.getElementById('nombre');
+        const caja5 = document.getElementById('apellidos');
+        const caja6 = document.getElementById('universidad');
+        
+
+
+        caja1.addEventListener('input', verificarIgualdad);
+        caja2.addEventListener('input', verificarIgualdad);
+        caja3.addEventListener('input', verificar_correo);
+        caja4.addEventListener('input', verificar_nombre);
+        caja5.addEventListener('input', verificar_apellidos);
+        caja6.addEventListener('input', verificar_universidad);
+        
+
+
+        function verificarContraseña(contraseña) {
+            const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*0-9])(?=.*[0-9]).{8,}$/;
+            return passwordRegex.test(contraseña);
+        }
+        
+
+        function verificarIgualdad() {
+            
+            let nombre = document.getElementById('nombre').value;
+            let apellidos = document.getElementById('apellidos').value;
+            let correo = document.getElementById('email').value;
+            let universidad = document.getElementById('universidad').value;
+            const valorCaja1 = caja1.value;
+            const valorCaja2 = caja2.value;
+            
+            if (valorCaja1 === valorCaja2 && valorCaja1 != "" && valorCaja2 != "") {
+                caja1.style.borderColor = 'green';
+                caja2.style.borderColor = 'green';
+                document.getElementById('falta_contraseña').innerHTML = "";
+                document.getElementById('falta_contraseña_con').innerHTML = "Las contraseñas son iguales"
+                document.getElementById('falta_contraseña_con').style.color= "green"
+            } 
+            else if(valorCaja1 == "" && valorCaja2 == "")
+            {
+                document.getElementById('falta_contraseña').innerHTML = "";
+                document.getElementById('falta_contraseña').style.color = "red";
+                document.getElementById('falta_contraseña_con').innerHTML = ""
+                document.getElementById('falta_contraseña_con').style.color= "red"
+            }
+            else {
+                caja1.style.borderColor = 'red';
+                caja2.style.borderColor = 'red';
+                valor = verificarContraseña(valorCaja1); // Devolverá true
+                document.getElementById('falta_contraseña_con').innerHTML = "Las contraseñas no son iguales"
+                document.getElementById('falta_contraseña_con').style.color = "red"
+                if(valor === false)
+                {
+                    document.getElementById('falta_contraseña').innerHTML = "Debe tener minimo una mayuscula, digito y símbolo. ";
+                    document.getElementById('falta_contraseña').style.color = "red";
+                }
+                if(valor === true)
+                {
+                    document.getElementById('falta_contraseña').innerHTML = "La contraseña cumple con los parametros";
+                    document.getElementById('falta_contraseña').style.color = "green";
+                }
+            }
+
+            if( valorCaja1 === "")
+            {
+                caja1.style.borderColor = 'red';
+            }
+            if( valorCaja2 === "")
+            {
+                caja2.style.borderColor = 'red';
+            }
+        }
+
+        function verificar_nombre()
+        {
+            let nombre = document.getElementById('nombre').value;
+            document.getElementById("nombre").style.borderColor = 'red'
+
+            if(nombre === "")
+            {
+                document.getElementById("nombre").style.borderColor = 'red'
+            }
+            else
+            {
+                document.getElementById("nombre").style.borderColor = 'green'
+                document.getElementById("falta_dato_1").textContent = ""
+            }
+        }
+
+        function verificar_apellidos()
+        {
+            let apellidos = document.getElementById('apellidos').value;
+            
+            if(apellidos === "")
+            {
+                document.getElementById("apellidos").style.borderColor = 'red'
+            }
+            else
+            {
+                document.getElementById("apellidos").style.borderColor = 'green'
+                document.getElementById("falta_dato_2").textContent = ""
+            }
+        }
+
+        function verificar_universidad()
+        {
+            let universidad = document.getElementById('universidad').value;
+            if(universidad === "")
+            {
+                document.getElementById("universidad").style.borderColor = 'red'
+            }
+            else
+            {
+                document.getElementById("universidad").style.borderColor = 'green'
+                document.getElementById("falta_dato_3").textContent = ""
+            }
+        }
+        
+        function verificar_correo()
+        {
+            const regexCorreoElectronico = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+            let correo = document.getElementById('email').value;
+
+            if(regexCorreoElectronico.test(correo))
+            {
+                console.log("Su correo es valido")
+                //document.getElementById("mensaje_correcto_incorrecto").textContent = "Correo valido"
+                document.getElementById("mensaje_correcto_incorrecto").style.color = 'green'
+                document.getElementById("email").style.borderColor = 'green'
+                document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+            }
+            else
+            {
+                console.log("Correo no valido")
+                //document.getElementById("mensaje_correcto_incorrecto").textContent = "Correo no valido"
+                document.getElementById("mensaje_correcto_incorrecto").style.color = 'red'
+                document.getElementById("email").style.borderColor = 'red'
+                document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+            }
+        }
+    });
+
+    function enviar_alerta_datos()
+    {
+        let nombre = document.getElementById('nombre').value;
+        let apellidos = document.getElementById('apellidos').value;
+        let correo = document.getElementById('email').value;
+        let universidad = document.getElementById('universidad').value;
+        let password = document.getElementById('contrasena').value;
+        let pass_con = document.getElementById('con-contrasena').value;
+        var response = grecaptcha.getResponse();
+        alert(response)
+        console.log(response)
+        if(pass_con == password)
+        {
+            alert("Si entro a la condicion 1")
+            document.getElementById('contrasena').style.borderColor = 'green';
+            //document.getElementById("form_register").submit();
+        } else
+        {
+            document.getElementById('contrasena').style.borderColor = 'red';
+        }
+
+        console.log(nombre)
+        console.log(apellidos)
+        console.log(correo)
+        console.log(universidad)
+        console.log(password)
+
+        // Expresión regular para contraseña 
+        const regexCorreoElectronico = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        if(regexCorreoElectronico.test(correo))
+        {
+            console.log("Su correo es valido")
+            document.getElementById("mensaje_correcto_incorrecto").style.color = 'green'
+            document.getElementById("email").style.borderColor = 'green'
+            document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+        }
+        else
+        {
+            console.log("Correo no valido")
+            document.getElementById("mensaje_correcto_incorrecto").textContent = "Correo no valido"
+            document.getElementById("mensaje_correcto_incorrecto").style.color = 'red'
+            document.getElementById("email").style.borderColor = 'red'
+            document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+
+        }
+
+        if(nombre === "")
+        {
+            document.getElementById("falta_dato_1").textContent = "Falta tu nombre"
+            document.getElementById("falta_dato_1").style.color = 'red'
+            document.getElementById("nombre").style.borderColor = 'red'
+            document.getElementById("falta_dato_1").style.padding = 0
+        }
+
+        if(apellidos === "")
+        {
+            document.getElementById("falta_dato_2").textContent = "Falta tu apellido"
+            document.getElementById("falta_dato_2").style.color = 'red'
+            document.getElementById("apellidos").style.borderColor = 'red'
+            document.getElementById("falta_dato_2").style.padding = 0
+        }
+
+        if(universidad === "")
+        {
+            document.getElementById("falta_dato_3").textContent = "Falta tu universidad"
+            document.getElementById("falta_dato_3").style.color = 'red'
+            document.getElementById("universidad").style.borderColor = 'red'
+            document.getElementById("falta_dato_3").style.padding = 0
+        }
+        if(password === "")
+        {
+            document.getElementById("falta_contraseña").textContent = "Falta tu contraseña"
+            document.getElementById("falta_contraseña").style.color = 'red'
+            document.getElementById("contrasena").style.borderColor = 'red'
+            document.getElementById("falta_contraseña").style.padding = 0
+        }
+
+        if(pass_con === "")
+        {
+            document.getElementById("falta_contraseña_con").textContent = "Falta confirmar tu contraseña"
+            document.getElementById("falta_contraseña_con").style.color = 'red'
+            document.getElementById("con-contrasena").style.borderColor = 'red'
+            document.getElementById("falta_contraseña_con").style.padding = 0
+        }
+        //alert("si cumplo con la entrada a esta funcion")
+
+        if(regexCorreoElectronico.test(correo) && universidad != "" && nombre != "" && apellidos != "" && password == pass_con)
+        {   
+            console.log("Si entro a la secuencia de condicionales completas");
+            //document.getElementById("container_modal").style.display = "block";
+            //document.getElementById("modal_1").style.display = "block";
+
+            let nombre = document.getElementById('nombre').value;
+            let apellidos = document.getElementById('apellidos').value;
+            let correo = document.getElementById('email').value;
+            let universidad = document.getElementById('universidad').value;
+            let password = document.getElementById('contrasena').value;
+            let pass_con = document.getElementById('con-contrasena').value;
+    
+            
+            $.ajax({
+                        type:'POST',
+                        url:'/registrarse/',
+                        data: {  
+                                nombre: nombre,
+                                apellidos: apellidos,
+                                correo:correo,
+                                universidad:universidad,
+                                password:password,
+                                pass_con:pass_con
+                        }
+                    });
+                   
+        }
+        
+    }
+    function desaparecer_modal()
+    {
+        console.log("Si entro a la funcion")
+        document.getElementById("container_modal").style.display = "none";
+        document.getElementById("modal_1").style.display = "none";
+    }
+</script>

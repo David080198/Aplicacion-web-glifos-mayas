@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../static/imgs/icono.ico">
+    <link rel="stylesheet" href="../static/css/inicio.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/css/ingresar_clave.css') }}" />
+    <link rel="stylesheet" href="../static/css/ingresar_clave.css">
+
+    <title>Iniciar sesión</title>
+    
+    <script>
+        function llevo_inicio()
+        {
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result 
+
+            console.log(enlace_nuevo)
+
+            window.location.href = enlace_nuevo
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Coloca aquí el código JavaScript que agrega eventos a los elementos
+           
+            const caja3 = document.getElementById('email');
+            const caja1 = document.getElementById('contrasena');
+            
+            caja3.addEventListener('input', verificar_correo);
+            
+            
+            function verificar_correo()
+            {
+                const regexCorreoElectronico = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                let correo = document.getElementById('email').value;
+    
+                if(regexCorreoElectronico.test(correo))
+                {
+                    console.log("Su correo es valido")
+                    
+                    document.getElementById("mensaje_correcto_incorrecto").style.color = 'green'
+                    document.getElementById("email").style.borderColor = 'green'
+                    document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+                }
+                else
+                {
+                    console.log("Correo no valido")
+                    
+                    document.getElementById("mensaje_correcto_incorrecto").style.color = 'red'
+                    document.getElementById("email").style.borderColor = 'red'
+                    document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+                }
+            }
+        });
+
+        function enviar_alerta_datos()
+        {
+        
+        let correo = document.getElementById('email').value;
+        let password = document.getElementById('contrasena').value;
+        
+        // Expresión regular para contraseña 
+        const regexCorreoElectronico = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        if(regexCorreoElectronico.test(correo))
+        {
+            console.log("Su correo es valido")
+            document.getElementById("mensaje_correcto_incorrecto").style.color = 'green'
+            document.getElementById("email").style.borderColor = 'green'
+            document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+        }
+        else
+        {
+            console.log("Correo no valido")
+            document.getElementById("mensaje_correcto_incorrecto").textContent = "Correo no valido"
+            document.getElementById("mensaje_correcto_incorrecto").style.color = 'red'
+            document.getElementById("email").style.borderColor = 'red'
+            document.getElementById("mensaje_correcto_incorrecto").style.padding = 0
+
+        }
+
+        if(password === "")
+        {
+            document.getElementById("falta_contraseña").textContent = "Falta tu contraseña"
+            document.getElementById("falta_contraseña").style.color = 'red'
+            document.getElementById("contrasena").style.borderColor = 'red'
+            document.getElementById("falta_contraseña").style.padding = 0
+        }
+
+        if(regexCorreoElectronico.test(correo) && password != "")
+        {   
+            console.log("Si entro a la secuencia de condicionales completas");
+            //document.getElementById("container_modal").style.display = "block";
+            //document.getElementById("modal_1").style.display = "block";
+
+            return true;
+                   
+        }
+        
+    }
+    function llevar_a_recuperar_contraseña()
+    {
+        enlace_actual = window.location.href
+        enlace_actual_1 = window.location.hostname
+        enlace_actual_2 = window.location.pathname
+        enlace_actual_3 = window.location.protocol
+
+        console.log(enlace_actual.toString())
+        console.log(enlace_actual_1.toString())
+        console.log(enlace_actual_2.toString())
+        console.log(enlace_actual_3.toString())
+
+        var url = new URL(enlace_actual);
+        var result = url.port;
+
+        enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result + "/recuperar_contraseña"
+        console.log(enlace_nuevo)
+
+        //window.location.replace(enlace_nuevo);
+    }
+
+    </script>
+</head>
+<body>
+    <button class="boton-cabecera" onclick=llevo_inicio()>
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+    </button>
+    <div>
+        <p class="encabezado">Instituto Politénico Nacional</p>
+        <p class="encabezado">Centro de Investigación en Computación</p>
+    </div>
+    <div class="container">
+        <p class="anuncio_instruccion">Enviamos una clave de confirmación a tu correo eléctronico</p>
+        <form method="POST" id="form_register"> 
+            
+            <label for="contrasena">Ingresa el número:</label>
+            <input class="cajas_texto contrasena" type="text" id="clave" name="clave" placeholder="número de confirmacion" required>
+            <label for="" id="falta_contraseña" ></label>
+            <br>
+            <input class="submit_boton" name = "form1_submit"  type="submit" value="Confirmar correo">
+            <!--<input class="submit_boton"  type="submit" value="Registrarse" onclick="enviar_alerta_datos()"> -->
+        </form>
+        <form method="POST" id="form_register">
+            <input type="hidden" name="valor_especifico" value="reenviar_clave">
+            <button class = "boton_reenviar" name = "form2_submit" type="submit" >Reenviar el código</button>
+        </form>
+    </div>
+</body>
+</html>

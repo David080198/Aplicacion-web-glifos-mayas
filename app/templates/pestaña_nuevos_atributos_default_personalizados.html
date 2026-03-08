@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../static/imgs/icono.ico">
+    <link rel="stylesheet" href="../static/css/inicio.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/css/pestaña_nuevos_atributos_default_personalizados.css') }}" />
+    <link rel="stylesheet" href="../static/css/pestaña_nuevos_atributos_default_personalizados.css">
+
+    <title id="titulo_principal">Crear Nuevo atributo personalizado</title>
+</head>
+<body>
+    <button class="boton-cabecera" onclick=llevo_inicio()>
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+    </button>
+    <div>
+        <p class="encabezado">Instituto Politénico Nacional</p>
+        <p class="encabezado">Centro de Investigación en Computación</p>
+    </div>
+    <div class="idiomas">
+        <button id="español" class="español" onclick="cambiar_español()">Español</button>
+        <button id="ingles" class="ingles" onclick="cambiar_ingles()">Inglés</button>
+    </div>
+
+   
+
+    <div class="container" id="container">
+        
+        <form method="post" class="container_1">
+            <div class="imagenes_glifos">
+                <img class="imagen" id="imagenes_glifos" src="" alt="Sin glifo registrado"> 
+            </div>
+            <p class="texto_nombre" id="texto_nombre">Nombre del nuevo conjunto de atributos</p>
+            <input id="texto_nombre_1" type="text" value="" placeholder="Escribe el nombre" class="texto_nombre_atributo" name="texto_nombre_atributo" required> 
+            <div class="tabla_check">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="seleccionar" id="seleccionar">Seleccionar</th>
+                        <th class="numero_id" style="text-align:center;">No.</th>
+                        <th id="thomson_number_per" class="thomson_number_per" style="text-align:center;">Número de Thomson</th>
+                        <th id= "referencia_fonetica_per" class= "referencia_fonetica_per" style="text-align:center;">Referencia fonética</th>
+                        <th id= "transcripcion_per" class= "transcripcion_per" style="text-align:center;">Transcripción</th>
+                        <th id = "traduccion_per" class = "traduccion_per" style="text-align:center;">Traducción</th>
+                        <th id = "montgomery_per" class="montgomery_per" style="text-align:center;">Comentarios de Montgomery</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Fila 1 -->
+                    {% set count = namespace(value=1) %}
+                    {% for dato in conjunto_datos %}
+                        <tr>
+                            <td><input onclick="iniciarNuevaImagen({{dato[6]}},this)" type="checkbox" name="checkbox" value="{{dato[6]}}"></td>
+                            <td>{{count.value}}</td>
+                            <td>{{dato[2]}}</td>
+                            <td>{{dato[3]}}</td>
+                            <td>{{dato[5]}}</td>
+                            <td>{{dato[4]}}</td>
+                            <td>{{dato[1]}}</td> 
+                        </tr>
+                    {% set count.value = count.value + 1 %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            <br>
+            <input id="boton_enviar" type="submit" value="Crear atributo" class="boton_enviar">
+        </form>
+    </div>
+</body>
+
+
+
+<script>
+
+    function iniciarNuevaImagen(valor_glifo,checkbox)
+    {
+        if(checkbox.checked)
+        {
+            console.log("ESTAMOS EJECUTANDO LA FUNCION INICIAR IMAGEN")
+            imagenes = {{arreglo_imagenes_image_1|tojson}}
+            glifo = {{arreglo_imagenes_id_glifo|tojson}}
+            
+            console.log(imagenes.length)
+            console.log(glifo)
+
+            for (var i = 0; i < imagenes.length; i++) 
+            {
+                if(glifo[i] == valor_glifo)
+                {
+                    console.log("SI entro a la condicion")
+                    imagen_a_colocar = imagenes[i]
+                    console.log(imagen_a_colocar)
+                }
+            }
+            instruccion_src = 'data:image/bmp;base64,' + imagen_a_colocar;
+            document.getElementById("imagenes_glifos").src = instruccion_src;
+            document.getElementById("imagenes_glifos").src = instruccion_src;
+        }
+        else
+        {
+            console.log("El checkbox ha sido desmarcado")
+        }
+    }
+
+    function llevo_inicio()
+    {
+        {% set orden_datos = "thomson" %}
+        {% set datos_filtro = "1" %}
+        {% set datos_busqueda = "default" %}
+        {% set datos_atributes = "default" %}
+        {% set dato_usuario = "default" %}
+        {% set busqueda = "default" %}
+        // Construye la URL con parámetros
+        var nuevaUrl = "{{ url_for('index_movil', orden_datos=orden_datos, datos_filtro=datos_filtro,busqueda=busqueda,datos_atributes=datos_atributes,dato_usuario=dato_usuario) }}";
+
+        window.location.href = nuevaUrl;
+    } 
+
+    function cambiar_español()
+    {
+        document.getElementById("español").innerHTML = "Español"
+        document.getElementById("ingles").innerHTML = "Ingles"
+        document.getElementById("texto_nombre_1").placeholder = "Nombre del nuevo conjunto de atributos"
+        document.getElementById("texto_nombre").innerHTML = "Nombre del nuevo conjunto de atributos"
+        document.getElementById("boton_enviar").value = "Crear atributo"
+        document.getElementById("seleccionar").innerHTML = "Seleccionar"
+        document.getElementById("thomson_number_per").innerHTML = "Número de Thomson"
+        document.getElementById("referencia_fonetica_per").innerHTML = "Referencia fonética"
+        document.getElementById("transcripcion_per").innerHTML = "Transcripción"
+        document.getElementById("traduccion_per").innerHTML = "Traducción"
+        document.getElementById("montgomery_per").innerHTML = "Comentarios de Montgomery"
+        document.getElementById("boton_enviar").value = "Crear atributo"
+        document.getElementById("titulo_principal").innerHTML = "Crear Nuevo atributo personalizado"
+        document.getElementById("imagenes_glifos").alt = "Sin glifo registrado"
+    }
+
+    function cambiar_ingles()
+    {
+        document.getElementById("español").innerHTML = "Spanish"
+        document.getElementById("ingles").innerHTML = "English"
+        document.getElementById("texto_nombre_1").placeholder = "Name of the new attribute set"
+        document.getElementById("texto_nombre").innerHTML = "Name of the new attribute"
+        document.getElementById("boton_enviar").value = "Create attribute"
+        document.getElementById("seleccionar").innerHTML = "Select"
+        document.getElementById("thomson_number_per").innerHTML = "Thomson number"
+        document.getElementById("referencia_fonetica_per").innerHTML = "Phonetic reference"
+        document.getElementById("transcripcion_per").innerHTML = "Transcription"
+        document.getElementById("traduccion_per").innerHTML = "Translation"
+        document.getElementById("montgomery_per").innerHTML = "Montgomery's Comments"
+        document.getElementById("boton_enviar").value = "Create attribute"
+        document.getElementById("titulo_principal").innerHTML = "Create New Custom Attribute"
+        document.getElementById("imagenes_glifos").alt = "No registered glyph"
+    }
+</script>
+</html>

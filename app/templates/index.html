@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario de glifos mayas</title>
+    <link rel="shortcut icon" href="../static/imgs/icono.ico">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="../static/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/css/style.css') }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="shortcut icon" type="text/css" href="{{ url_for('static', filename='../static/imgs/icono.ico') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="{{ url_for('static', filename='../static/js/main.js') }}"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+
+</head>
+<body>
+    <!-- ************************************Seccion de elementos para Escritorio *******************************************************-->
+    <!--Prueba para dibujar un triangulo-->
+
+    <div class="contenedor-carga" id="contenedor-carga">
+        <div class="triangulo">
+
+        </div>
+    </div>
+
+    <header class="encabezado"> <!--Encabezado de la pagina-->
+        <h3 style="font-size: 2vh;">Instituto Politécnico Nacional</h3>
+    </header>
+
+
+    <!-- Boton de regreso a inicio -->
+    <!--<button class="boton-cabecera" onclick="window.location.href='http://127.0.0.1:5500/'">-->
+
+    <!--<button class="boton-cabecera" onclick=llevo_inicio()>
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+    </button>-->
+
+    <div class="boton-cabecera_2" >
+        <p style="font-size:1vw;text-align:center;">{{username}}</p>
+    </div>
+
+    <button class="boton-cabecera_1" onclick=llevo_inicio()>
+        <p>Cerrar sesión</p>
+    </button>
+
+    <script>
+        function llevo_inicio()
+        {
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result 
+
+            console.log(enlace_nuevo)
+
+            window.location.href = enlace_nuevo
+        }
+
+        function llevar_a_imagenes()
+        {
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result + "/imagenes.html"
+            console.log(enlace_nuevo)
+
+            window.location.replace(enlace_nuevo);
+        }
+    </script>
+
+    <section class="contenedor-principal">
+        <div class="item_1"> <!-- Item 1-->
+            <button id = "boton_glifos_idioma" class="boton-glifos" disabled="true">Glifos</button> <!-- Boton para sección de glifos-->
+        </div>
+        <div class="item_2"><!-- Item 2-->
+            <button id="boton_imagenes_idioma" class="boton-imagenes" onclick="llevar_a_imagenes()">Imágenes</button> <!--Boton para mostrar las otras imagenes-->
+        </div>
+        <div id="glifo_img_ant" class="item_3"><!-- Item 3--> 
+            <div id="glifo_imagen" class="glifo-imagen"> <!--Sección para presentar la imagen del glifo-->
+                
+                <img class="imagen" id="picture" src="" alt="Sin glifo registrado"> 
+
+            </div>
+        </div>
+
+        
+
+        <div class="item_4"><!-- Item 4--> 
+            <button id= "detalles_idioma" class="detalles-glifos" onclick=abrir_detalles()>Detalles</button> <!--Boton para mostrar los detalles del glifo-->
+        </div>
+        <div class="item_5"><!-- Item 5-->
+            <div class="opciones"> <!--Contenedor de la sección donde van las opciones de busqueda y acomodo-->
+                
+            </div>
+        </div>
+        <div id="caja_base_de_datos" class="item_6"><!-- Item 6-->
+            <button id ="base-de-datos_1" class="base-de-datos" onclick="informacion_busqueda()" >Base de datos</button> <!--Boton de pestaña base de datos-->
+        </div>
+        <div class="item_7"><!-- Item 7-->
+            <button id ="identificacion_1" class="opciones-de-identificacion" onclick="identificacion()">Atributos personalizados</button> <!--Boton de pestaña opciones de identificacion -->
+        </div>
+        <div class="item_8"><!-- Item 8-->
+            <button id="atributos" onclick="atributos_busqueda()" class="busqueta-de-atributos">Búsqueda de atributos</button> <!--Boton de pestaña opciones de identificacion-->
+        </div>
+
+        <!--Contenedor de todos los elementos-->
+        <div class="item_9 bloque_de_datos"><!-- Item 9-->
+            
+        </div>
+        <div id="formulario_checkbox" class="item_10 opciones "><!-- Item 10--><!-- En este segmento se almacena el formulario de los checkbox-->
+            <form style="padding-left: 5%;" class ="item-2" action="">
+                <br>
+                <label id= "ordenar_por_idioma" for="" style="font-size: 1.2vw;">Ordenar por:</label><br><br>
+                <input id="boton_traduccion" name="checkbox" onclick="todas_las_funciones(1)" type="radio"><label style="font-size: 1.2vw;">Traducción</label><br><br>
+                <input id="boton_thomson" name="checkbox" onclick="todas_las_funciones(2)" type="radio"><label style="font-size: 1.2vw;">Numeros de Thomson</label><br><br>
+                <input id="boton_transcripcion" name="checkbox" onclick="todas_las_funciones(3)" type="radio"><label style="font-size: 1.2vw;">Transcripción</label><br><br>
+                <!--<input style="font-size: 1.5vw;" class="boton-submit-radio" type="submit" value="Ordenar">-->
+            </form>
+        </div>
+        <div id="busqueda_filtro" class="item_11"><!-- Item 11-->
+            <form class ="item-2" action="">
+                <br>
+                <label id="filtrar_por" for="" style="font-size: 1.2vw; margin-bottom: 1vw;">Filtrar:</label><br>
+                <input id="dato_a_buscar" type="label" style="margin-bottom: 1vw; width:90%; font-size:1.2vw">
+                <div class="botones_submit">
+                    <input style="text-align:center; font-size:1.2vw" onclick="filtro_datos()" required target="_blank" class="boton-submit" style="font-size: 1.5vw; margin-bottom:1vw" value="Filtrar la tabla"><br>
+                    <input style="text-align:center; font-size:1.2vw" onclick="quitar_filtro()" required target="_blank" class="boton-submit" style="font-size: 1.5vw; margin-bottom:1vw" value="Quitar filtro"><br>
+                </div>
+                <br>
+                <label id="ordenado_por" style="font-size: 1vw;"></label>
+            </form>
+        </div>
+    
+<!-- *************************************** Estos son los botones para navejar por los datos *********************--> 
+        <!--conjunto_datos : Tabla con toda la informacion-->
+        {% set total_datos_codificado = "#" + total_datos +"#" %}
+        <div class="item_12 botones-caja"><!-- Item 12--> <!--Estos son los botones para navegar en los datos-->
+            
+            <button class="botones" onclick="dato=menor(this.id); imprimir_datos();mostrar_imagen();" id="{{total_datos_codificado}}"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+            </button>
+            
+        </div>
+        <div class="item_13 botones-caja"><!-- Item 13--> <!--Estos son los botones para navegar en los datos-->
+            
+                <button class="botones" onclick="restar(this.id); imprimir_datos();mostrar_imagen();" id="{{total_datos_codificado}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                </button>
+            
+        </div>
+
+        <div class="item_14 botones-caja"><!-- Item 14--> <!--Estos son los botones para navegar en los datos-->
+            
+                <button class="botones" onclick="sumar(this.id);imprimir_datos();mostrar_imagen();" id="{{total_datos_codificado}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+                </button>
+            
+        </div>
+
+        <div class="item_15 botones-caja"><!-- Item 15--> <!--Estos son los botones para navegar en los datos-->
+
+                <button class="botones"  onclick="mayor(this.id);imprimir_datos();mostrar_imagen();" id="{{total_datos_codificado}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+                </button>            
+        </div>
+
+<!-- ************************Boton para aumentar y disminuir tamaño de imagen - glido ******************************-->
+
+        <div class="item_16"><!-- Item 16-->
+            <button class="aumentar-glifo" onclick="aumentar()">+</button> <!--Boton de pestaña opciones de identificacion-->
+        </div>
+        <div class="item_17"><!--Item 17-->
+            <button class="aumentar-glifo" onclick="disminuir()">-</button>
+        </div>
+
+<!--****************************Opciones para la crecion de nuevos atributos personalizados ***************************************-->
+
+<div class="contenedor_anuncio_atributos">
+    <p class = "texto_para_anunciar" id="texto_para_anunciar"></p>
+</div>
+
+<div id="boton_nuevo_atributo" class="boton_nuevo_atributo"> 
+    <button class="boton_nuevo_atributo_1" onclick="abrir_detalles_atributos()">
+        Crear nuevos atributos
+    </button>
+</div>
+<div id="eliminar_conjunto" class="eliminar_conjunto"> 
+    <button class="eliminar_conjunto_1" onclick = "eliminar_atributos()">
+        Eliminar conjuntos
+    </button>
+</div>
+
+<div id="ver_simbolos" class="ver_simbolos"> 
+    <button class="ver_simbolos_1" value="Ver simbolos" onclick = "enviarFormularioSimbolos()">
+        Ver simbolos
+    </button>
+</div>
+
+<p class= "texto_atributos_default" id="texto_atributos_default">Mezcla de atributos estandar</p>
+<div class = "conjuntos_con_base" id="conjuntos_con_base" style="overflow:auto;">
+    <form method="post" class="container_2" id="container_2">
+        <div class="tabla_check_2">
+        <table>
+            
+            <tbody>
+                <!-- Fila 1 -->
+                {% for atributos in atributos_limpios %}
+                    <tr style="margin:0;padding:0;border:none;">
+                        <td style="margin:0;padding:0;border:none;"><input type="checkbox" id="{{atributos[0]}}" name="{{atributos[0]}}" value="{{atributos[1]}}" onclick="seleccionUnica(this.id)"></td>
+                        <td style="margin:0;padding:0;border:none;"><label for="{{atributos[0]}}">{{atributos[0]}}</label></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </form>
+</div>
+
+<p class= "texto_atributos_personales" id = "texto_atributos_personales">Nuevos atributos del usuario</p>
+<div class = "nuevos_conjuntos" id = "nuevos_conjuntos" style="overflow:auto;">
+    <form method="post" class="container_3" id="container_3">
+        <div class="tabla_check_2">
+        <table>
+            <tbody>
+                <!-- Fila 1 -->
+                {% for atributos_1 in atributos_personales_caja_derecha_limpios %}
+                    <tr style="margin:0;padding:0;border:none;">
+                        <td style="margin:0;padding:0;border:none;"><input type="checkbox" id="{{atributos_1[0]}}" name="{{atributos_1[0]}}" value="{{atributos_1[1]}}" onclick="seleccionUnica(this.id)"></td>
+                        <td style="margin:0;padding:0;border:none;"><label for="{{atributos_1[0]}}">{{atributos_1[0]}}</label></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </form>
+</div>
+
+<section class="ventana-modal" id="ventanas_1">
+    <div class="caja-ventana-modal" id="ventanas_1">
+        <div class="ventana-encabezado">
+            <h2 style="padding-left:3vw; color:white">Atributos personalizados</h2>
+        </div>
+        <div class="boton" id="cerrar">
+            <a class="enlace" href="javascript:cerrar_atributos_1()"><h4>X</h4></a>
+        </div>
+
+        <p class="contenido_atributos_modal-p">Selecciona alguna de la siguientes opciones</p>
+        
+        <p class="contenido_atributos_modal-p1">Crear un nuevo conjunto de atributos considerando los atributos que se encuentran por default en el sistema</p>
+        <button class= "contenido_atributos_modal-botton" onclick="ejecutar_crear_nuevo_atributo_1()"> 
+            Crear nuevo atributo
+        </button>
+        
+        <p class="contenido_atributos_modal-p1a">Crear un nuevo conjunto de atributos desde cero</p>
+        <button class="contenido_atributos_modal-botton1" onclick="ejecutar_crear_nuevo_atributo_1_personalizado()">
+            Crear nuevo atributo
+        </button>
+        </div>
+      
+    </div>
+</section>
+
+<!-- ************************Elementos de la caja de opciones Identificacion (VIEJA VERSION) **************************************-->
+        
+        <!--<div id="selector_opciones" class="item_18">  Item 18 Este es el seleccionador de opciones 
+            <select class="selector-optiones-items" id="selector-options" onchange = "usuario_seleccionado();">
+                <option value="">Seleccione un usuario</option>
+                {% for usuario in usuarios %}
+                <option value="{{usuario[0]}}">{{usuario[1]}}</option>
+                {% endfor %}
+            </select>
+        </div> -->
+        <!--<div id="texto_instrucciones" class="item_19">  Item 19 Este es un texto
+            <label id="texto_instrucciones_1" class="label-intrucciones">Seleccioné las características del glifo</label>
+        </div>
+
+        <div id="caja_izquierda" class="item_20 caja_izquierda_ajuste"> Item 20 Caja de lado izquierdo
+            <form action="" name = "f1">
+                {% set posicion = namespace(value=1) %}
+                {% for atributo in atributos_de_usuario %}
+                <input type="checkbox" name="atributos_opciones" value = {{atributo[0]}}>{{atributo[2]}}</input><br>
+                {% endfor %}
+            </form>
+        </div>
+        <div id="caja_derecha" class="item_21 caja_deracha_ajuste"> Item 21 Caja de lado derecho
+            <form action="" name="f2" id="caja_derecha_1">
+                {% set posicion = namespace(value=1) %}
+                {% for atributo in atributos_lado_derecho %}
+                {% set idlabel = atributo[0]| string() +"label" %}
+                {% set idbr = atributo[0]| string() +"br" %}
+                <input type="checkbox" name="atributos_opciones" id = {{atributo[0]}} value = {{atributo[0]}}></input>
+                <label id={{idlabel}} for="Shading">{{atributo[2]}}</label>
+                <br id={{idbr}}>
+                **************************************************
+                {% endfor %}
+            </form>
+        </div> 
+        <div id="boton_izquierda" class="item_22"> Item 22 boton con flecha apunta izquierda
+            <button class="boton_lado_izquierdo" onclick="eliminar_nuevos_checkbox();">
+                <span class="material-symbols-outlined botones_identificacion">
+                    keyboard_double_arrow_left
+                </span>
+            </button>
+        </div>
+        <div id="boton_derecha" class="item_23"> Item 23 boton con flecha apunta derecha
+            <button class="boton_lado_derecha" onclick="pasar_otra_caja();">
+                <span class="material-symbols-outlined botones_identificacion">
+                    double_arrow
+                </span>
+            </button>
+        </div>
+       Item 24 boton para agregar nuevos usuarios
+            <button id="nuevo_conjunto" class="item_24 nuevo_conjunto"  onclick="nuevo_conjunto();">
+                Nuevo Conjunto
+            </button>
+        Item 25 boton para limpiar caja izquierda
+            <button id="limpiar" class="item_25 limpiar" onclick="remove_limpiar_caja_derecha();">
+                Limpiar
+            </button>
+        -->
+            
+
+<!-- ************************Elementos de la caja de opciones de busqueda por atributos **************************************-->
+
+       <!--Item 26-->
+        <p id ="texto_label_default" class="item_26 texto_label_default">Características predeterminadas</p>
+       
+       <!--Item 27-->
+        <P id="texto_label_features" class="item_27 texto_label_features">Conjunto de características</P>
+       
+       <!--Item 28-->
+        <button id="boton_hechos_iniciales" onclick = "hechos_iniciales()" class="item_28 boton_hechos_iniciales_1">Atributos</button>
+    
+        <!--Item 29-->
+        <button id ="boton_limpiar_feature" onclick="limpiar_area();quitar_filtro()" class="item_29 boton_limpiar_feature">Limpiar</button>
+       
+      <!--Item 30-->
+        <textarea id="caja_texto_features" class="item_30 caja_texto_features" name="" id="" cols="30" rows="7"></textarea>
+    
+        <!-- Ese componente es de la segunda pestaña ITEM 31
+        <button id ="guardar_datos" class="item_31 guardar_datos" onclick="guardar_datos_1();">Guardar</button>
+        *************************************** Sección de selección de idiomas *****************************************-->
+   
+        <!-- Item 32 -->
+        
+            <button id="boton_ingles" onclick="idioma_ingles();" class="item_32 boton_ingles">Ingles</button>
+        
+        <!-- Item 33 -->
+
+            <button id="boton_español" onclick="idioma_español();" class="item_33 boton_español">Español</button>
+        
+    </section>
+
+
+   
+<!--***************************************Sección para imprimir información del glifo *****************************+-->
+
+    <section class="bloque-informativo">
+        <div class="informacion">
+            <p id="texto_informacion">
+
+            </p>
+        </div>
+    </section>
+
+<!--*********************************Sección donde debe ir la tabla ***********************************************-->
+
+    <section class="contenedor-tabla" style="margin:0; padding:0; border:none;"> <!-- Tabla principal para almacenar la tabla-->
+        <table class="tabla1" style="margin:0; padding:0; border:none">
+                <thead id="encabezado">
+                    <tr> 
+                        <th style="text-align:center;">No.</th>
+                        <th style="text-align:center;">Número de Thomson</th>
+                        <th style="text-align:center;">Referencia fonética</th>
+                        <th style="text-align:center;">Transcripción</th>
+                        <th style="text-align:center;">Traducción</th>
+                        <th style="text-align:center;">Comentarios de Montgomery</th>
+                    </tr>    
+                </thead>
+            {% set count = namespace(value=1) %}
+            {% set palabra = '####' %}
+            {% if conjunto_datos|length == 0 %}
+                <p style="color:red; text-align:center; font-weight: bold;"  class="texto_de_vacio" id="texto_de_vacio">No hay elementos que cumplan con esta búsqueda</p>
+            {% endif %}
+            {% for dato in conjunto_datos %}
+                <tbody id="{{count.value}}" style="margin:0; padding:0; border:none;">
+                            {% set valor = count.value|string + palabra|string + dato[0]|string + palabra|string + dato[1]|string + palabra|string + dato[2]|string + palabra|string + dato[3]|string + palabra|string + dato[4]|string + palabra|string + dato[5]|string + palabra|string %}
+                            <tr ondblclick="abrir(this.id);" onclick="llevar_a_otro(this.id);mostrar_imagen();imprimir_datos();" id="{{valor}}" class="{{dato[0]}} tabla_grande">  
+                                <td>{{count.value}}</td>
+                                <td>{{dato[2]}}</td>
+                                <td>{{dato[3]}}</td>
+                                <td>{{dato[5]}}</td>
+                                <td>{{dato[4]}}</td>
+                                <td>{{dato[1]}}</td> 
+                            </tr>
+                </tbody>
+            {% set count.value = count.value + 1 %}
+            {% endfor %}
+           
+        </table>
+    </section>
+    
+    <!--*********************************Seccion donde va la ventana modal***********************************************-->
+    <section class="ventana-modal" id="ventanas">
+        <div class="caja-ventana-modal" id="ventanas">
+            <div class="ventana-encabezado">
+                <h2 style="padding-left:3vw; color:white">Detalles de glifo</h2>
+            </div>
+            <div class="boton" id="cerrar">
+                <a class="enlace" href="javascript:cerrar()"><h4>X</h4></a>
+            </div>
+            <div class="botones_aumento_ventana_modal"> <!--Boton de pestaña opciones de identificacion-->
+                <button class="aumentar-glifo_1" onclick="disminuir_1()">-</button>
+                <button class="aumentar-glifo_1" onclick="aumentar_1()">+</button>
+            </div>
+            <div id="glifo_img_ant_1" class="ventana-modal-imagen">
+                <img class="imagen" id="picture_2" src="" alt="Sin glifo registrado"> 
+            </div>
+
+            <div class="ventana-modal-info">
+
+                <div class="titulo thomson-number"> <!--Vetana modal titulo thomson number -->
+                    <p>Número de Thomson: </p>
+                </div>
+                <div class="caja-texto info-thomson-numer"> <!--Vetana modal info thomson number -->
+                    <p class="texto texto-thomson-number" id="texto-thomson-number"></p>
+                </div>
+                <!-- ***********************************************-->
+                <div class="titulo referencia-fonetica"> <!--Vetana modal titulo thomson number -->
+                    <p>Referencia fonética: </p>
+                </div>
+                <div class="caja-texto info-referencia-fonetica"> <!--Vetana modal info thomson number -->
+                    <p class ="texto texto-referencia-fonetica" id="texto-referencia-fonetica"></p>
+                </div>
+                <!-- ***********************************************-->
+                <div class="titulo transcripcion"> <!--Vetana modal titulo thomson number -->
+                    <p>Transcripción: </p>
+                </div>
+                <div class="caja-texto info-transcripcion"> <!--Vetana modal info thomson number -->
+                    <p class ="text texto-info-transcripcion" id="texto-info-transcripcion"></p>
+                </div>
+                <!-- ***********************************************-->
+                <div class="titulo traduccion"> <!--Vetana modal titulo thomson number -->
+                    <p>Traducción: </p>
+                </div>
+                <div class="caja-texto info-traduccion"> <!--Vetana modal info thomson number -->
+                    <p class ="texto texto-info-traduccion" id="texto-info-traduccion"></p>
+                </div>
+                <!-- ***********************************************-->
+                <div class="titulo montgomery"> <!--Vetana modal titulo thomson number -->
+                    <p>Comentarios Montgomery: </p>
+                </div>
+                <div class="caja-texto info-montgomery"> <!--Vetana modal info thomson number -->
+                    <p class ="texto texto-info-montgomery" id="texto-info-montgomery"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Seccion de ventana modal  de la pestaa de busqueda de atributos-->
+    <section class="ventana_modal_busqueda_atributos" id="ventanas_busqueda_atributos">
+        <div class="caja-ventana-modal_busqueda_atributos" id="ventanas_busqueda_atributos_1">
+            <div class="boton" id="cerrar_1">
+                <a class="enlace" href="javascript:cerrar_atributos()"><h4>X</h4></a>
+            </div>
+            <div class="cabecera_atributos" id="cabecera_atributos">
+                <p style="text-align:left; color:white; padding-left: 10px;">Seleccione los atributos</p>
+            </div>
+            <div class="opciones" id="opciones_atributos">
+                <form action="">
+                    {% set posicion = namespace(value=1) %}
+                    {% for atributo in atributos %}
+                    <input type="checkbox" name="atributos_opciones" value = {{atributo[0]}}>{{atributo[2]}}</input><br>
+                    {% endfor %}
+                </form>
+            </div>
+            <div class="boton_submit" id="boton_submit_atributos">
+                <input class="botom_input_submit" id="boton_atributos" type="submit" value="Buscar" onclick="atributos_seleccionados();" style = "margin:auto;">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seccion de la ventana modal de Nuevo conjunto de la pestaña Identificación-->
+
+    <section class="ventana_modal_busqueda_atributos" id="ventana_ingresar_nuevo_usuario">
+       <div class="caja-ventana-modal_busqueda_atributos" id="ventanas_nuevo_usuario">
+            <div class="boton" id="cerrar_2">
+                <a class="enlace" href="javascript:cerrar_nuevo_usuario()"><h4>X</h4></a>
+            </div>
+            <div class="cabecera_atributos" id="cabecera_nuevo_usuario">
+                <p style="text-align:left; color:white; padding-left: 10px;">Crear nuevo usuario</p>
+            </div>
+
+            <div id="contenedor_elementos_usuario">
+                <label id="name_user">Nombre de usuario</label>
+                <input id="label_usuario" type="label" placeholder="Ingrese el nombre del usuario"></input>
+                <label id="nuevo_atributo_instrucciones">Escriba la lista de atributos (Escriba un atributo por fila)</label>
+                <textarea placeholder="Ingrese los atributos" id="nuevos_atributos"></textarea>
+            </div>
+            
+           <div class="boton_submit" id="boton_submit_usuario">
+                <input id="boton_atributos" type="submit" value="Crear nuevo usuario" onclick="nuevo_usuario_con_atributos();" style = "margin:auto;">
+            </div>
+        </div>
+    </section>
+
+    <section class="ventana_modal_busqueda_atributos" id="ventana_correcta">
+        <div class="caja-ventana-modal_busqueda_atributos" id="ventana_correcta_1">
+            <h2 id="ventana_correcta_2" style="position:absolute">Usuario agregado correctamente</h2>
+        </div>
+    </section>
+
+    <section class="ventana_modal_guardados" id="ventana_guardados">
+        <div class="caja-ventana-modal_guardados" id="ventana_guardados_1">
+            <h2 id="ventana_guardados_2" style="position:absolute">Atributos guardados correctamente</h2>
+        </div>
+    </section>
+
+    <script>
+            var datos_seleccionados = [];
+            var contador = 0;
+            function eliminarCookies() {
+            document.cookie.split(";").forEach(function(c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            });}
+
+            console.log()
+            enlace_actual = window.location.href
+            console.log("ENLACE ACTUAL")
+            console.log(enlace_actual)
+            valor_thomson = enlace_actual.includes("thomson")
+            valor_traduccion = enlace_actual.includes("traduccion")
+            valor_transcripcion = enlace_actual.includes("transcripcion")
+            
+            if(valor_thomson == true && valor_traduccion == false && valor_transcripcion == false) 
+            {
+                document.getElementById("filtrar_por").innerHTML = "Filtrar por el número de thomson"
+            }
+            else if(valor_thomson == false && valor_traduccion == true && valor_transcripcion == false) 
+            {
+                document.getElementById("filtrar_por").innerHTML = "Filtrar por traduccion"
+            }
+            else if(valor_thomson == false && valor_traduccion == false && valor_transcripcion == true) 
+            {
+                document.getElementById("filtrar_por").innerHTML = "Filtrar por transcripción"
+            }
+            var urlCompleta = window.location.href;
+            var elementosURL = urlCompleta.split('/');
+            //alert(elementosURL[7])
+            if (elementosURL[7].includes("final") || elementosURL[7].includes("eliminar") )
+            {
+                //alert("Entro a esta condiciona de que si hay final")
+                document.getElementById("formulario_checkbox").style.display = "none";
+                document.getElementById("busqueda_filtro").style.display = "none";
+                document.getElementById("caja_base_de_datos").style.opacity = "1";
+                document.getElementById("atributos").style.opacity = "0.7";
+                document.getElementById("base-de-datos_1").style.opacity = "1";
+                //document.getElementById("identificacion_1").style.opacity = "1";
+
+                document.getElementById("texto_label_default").style.display = "none";
+                document.getElementById("texto_label_features").style.display = "none";
+                document.getElementById("boton_hechos_iniciales").style.display = "none";
+                document.getElementById("boton_limpiar_feature").style.display = "none";
+                document.getElementById("caja_texto_features").style.display = "none";
+
+                document.getElementById("boton_nuevo_atributo").style.display = "block"
+                document.getElementById("eliminar_conjunto").style.display = "block"
+                document.getElementById("ver_simbolos").style.display = "block"
+                document.getElementById("conjuntos_con_base").style.display = "block"
+                document.getElementById("nuevos_conjuntos").style.display = "block"
+                document.getElementById("texto_atributos_default").style.display = "block"
+                document.getElementById("texto_atributos_personales").style.display = "block"
+            }
+            if (elementosURL[7] == "default")
+            {
+                //alert("ENTRO EN LA OPCION DE QUE HAY DEFAULT EN 7")
+                document.getElementById("formulario_checkbox").style.display = "block";
+                document.getElementById("busqueda_filtro").style.display = "block";
+                document.getElementById("caja_base_de_datos").style.opacity = "1";
+                document.getElementById("atributos").style.opacity = "0.7";
+                document.getElementById("base-de-datos_1").style.opacity = "1";
+                //document.getElementById("identificacion_1").style.opacity = "1";
+
+                document.getElementById("texto_label_default").style.display = "none";
+                document.getElementById("texto_label_features").style.display = "none";
+                document.getElementById("boton_hechos_iniciales").style.display = "none";
+                document.getElementById("boton_limpiar_feature").style.display = "none";
+                document.getElementById("caja_texto_features").style.display = "none";
+
+                document.getElementById("boton_nuevo_atributo").style.display = "none"
+                document.getElementById("eliminar_conjunto").style.display = "none"
+                document.getElementById("ver_simbolos").style.display = "none"
+                document.getElementById("conjuntos_con_base").style.display = "none"
+                document.getElementById("nuevos_conjuntos").style.display = "none"
+                document.getElementById("texto_atributos_default").style.display = "none"
+                document.getElementById("texto_atributos_personales").style.display = "none"
+            }
+            if (elementosURL[7] != "default" && !elementosURL[7].includes("final") && !elementosURL[7].includes("eliminar"))
+            {
+                //alert("ENTRO EN LA OPCION DE QUE NO HAY DEFAULT EN 7 PERO TAMPOCO FINAL")
+                document.getElementById("formulario_checkbox").style.display = "none";
+                document.getElementById("busqueda_filtro").style.display = "none";
+                document.getElementById("caja_base_de_datos").style.opacity = "1";
+                document.getElementById("atributos").style.opacity = "0.7";
+                document.getElementById("base-de-datos_1").style.opacity = "1";
+                //document.getElementById("identificacion_1").style.opacity = "1";
+
+                document.getElementById("texto_label_default").style.display = "block";
+                document.getElementById("texto_label_features").style.display = "block";
+                document.getElementById("boton_hechos_iniciales").style.display = "block";
+                document.getElementById("boton_limpiar_feature").style.display = "block";
+                document.getElementById("caja_texto_features").style.display = "block";
+
+                document.getElementById("boton_nuevo_atributo").style.display = "none"
+                document.getElementById("eliminar_conjunto").style.display = "none"
+                document.getElementById("ver_simbolos").style.display = "none"
+                document.getElementById("conjuntos_con_base").style.display = "none"
+                document.getElementById("nuevos_conjuntos").style.display = "none"
+                document.getElementById("texto_atributos_default").style.display = "none"
+                document.getElementById("texto_atributos_personales").style.display = "none"
+                //document.getElementById("selector_opciones").style.display = "none";
+                //document.getElementById("texto_instrucciones").style.display = "none";
+                //document.getElementById("caja_izquierda").style.display = "none";
+                //document.getElementById("caja_derecha").style.display = "none";
+                //document.getElementById("boton_izquierda").style.display = "none";
+                //document.getElementById("boton_derecha").style.display = "none";
+                //document.getElementById("limpiar").style.display = "none";
+                //document.getElementById("guardar_datos").style.display = "none";
+                //document.getElementById("nuevo_conjunto").style.display = "none";
+                
+            }
+
+            /*Ventanas modales */
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.display = "none";
+            document.getElementById("ventana_correcta").style.display = "none";
+            document.getElementById("ventana_guardados").style.display = "none";
+
+            /* Botones idiomas */
+            document.getElementById('boton_español').style.opacity = "0.7"
+            document.getElementById('boton_español').disabled = true 
+
+            
+
+            window.onload = function() 
+            {
+                //alert("EJECUTO TODO LO QUE ESTA EN ESTA FUNCION DE CARGA, ATENCION")
+                eliminarCookies()
+
+                var urlCompleta = window.location.href;
+                var elementosURL = urlCompleta.split('/');
+                //alert(elementosURL[7])
+                if (elementosURL[7].includes("final") || elementosURL[7].includes("eliminar") || elementosURL[7].includes("num") )
+                {
+                    //alert("Entro a esta condiciona de que si hay final")
+                    document.getElementById("atributos").style.opacity = "1";
+
+                    document.getElementById("boton_nuevo_atributo").style.display = "none"
+                    document.getElementById("eliminar_conjunto").style.display = "none"
+                    document.getElementById("ver_simbolos").style.display = "none"
+                    document.getElementById("conjuntos_con_base").style.display = "none"
+                    document.getElementById("nuevos_conjuntos").style.display = "none"
+                    document.getElementById("texto_atributos_default").style.display = "none"
+                    document.getElementById("texto_atributos_personales").style.display = "none"
+                    document.getElementById("texto_label_default").style.display = "none";
+
+                    document.getElementById("texto_label_features").style.display = "none";
+                    document.getElementById("boton_hechos_iniciales").style.display = "none";
+                    document.getElementById("boton_limpiar_feature").style.display = "none";
+                    document.getElementById("caja_texto_features").style.display = "none";
+
+                    document.getElementById("boton_nuevo_atributo").style.display = "block"
+                    document.getElementById("eliminar_conjunto").style.display = "block"
+                    document.getElementById("ver_simbolos").style.display = "block"
+                    document.getElementById("conjuntos_con_base").style.display = "block"
+                    document.getElementById("nuevos_conjuntos").style.display = "block"
+                    document.getElementById("texto_atributos_default").style.display = "block"
+                    document.getElementById("texto_atributos_personales").style.display = "block"
+                }
+                else
+                {
+                    var atributos_caja_derecha = {{atributos_lado_derecho|tojson}}
+                    contador = contador+1;
+
+                    if(contador == 1)
+                    {
+                        for(j=0;j<atributos_caja_derecha.length;j++)
+                        {
+                            
+                            datos_seleccionados.push(atributos_caja_derecha[j][0]);
+                            
+                        }
+                    }
+                    console.log("Datos seleccionados directamente de la unload");
+                    console.log(datos_seleccionados);
+
+                    document.getElementById("atributos").style.opacity = "1";
+
+                    document.getElementById("boton_nuevo_atributo").style.display = "none"
+                    document.getElementById("eliminar_conjunto").style.display = "none"
+                    document.getElementById("ver_simbolos").style.display = "none"
+                    document.getElementById("conjuntos_con_base").style.display = "none"
+                    document.getElementById("nuevos_conjuntos").style.display = "none"
+                    document.getElementById("texto_atributos_default").style.display = "none"
+                    document.getElementById("texto_atributos_personales").style.display = "none"
+
+                    //document.getElementById("selector_opciones").style.display = "none";
+                    //document.getElementById("texto_instrucciones").style.display = "none";
+                    //document.getElementById("caja_izquierda").style.display = "none";
+                    //document.getElementById("caja_derecha").style.display = "none";
+                    //document.getElementById("boton_izquierda").style.display = "none";
+                    //document.getElementById("boton_derecha").style.display = "none";
+                    //document.getElementById("limpiar").style.display = "none";
+                    //document.getElementById("guardar_datos").style.display = "none";
+                    //document.getElementById("nuevo_conjunto").style.display = "none";
+
+                    document.getElementById("texto_label_default").style.display = "none";
+                    document.getElementById("texto_label_features").style.display = "none";
+                    document.getElementById("boton_hechos_iniciales").style.display = "none";
+                    document.getElementById("boton_limpiar_feature").style.display = "none";
+                    document.getElementById("caja_texto_features").style.display = "none";
+
+                    document.getElementById("ventanas_busqueda_atributos").style.display = "none";
+                    var tamaño_pantalla = screen.width;
+                    console.log(tamaño_pantalla.toString());
+                    var contenedor = document.getElementById('contenedor-carga');
+                    contenedor.style.visibility = 'hidden';
+                    contenedor.style.opacity = '0';
+                    document.getElementById("1").style.backgroundColor="rgb(39,110,144)";
+                    var enlace= window.location.pathname;
+                    var enlace_final = enlace + "#1";
+                    location.href = enlace_final;    
+                    datos_busqueda = {{datos_busqueda|tojson}};
+                    if(datos_busqueda != "default")
+                    {
+                        document.getElementById("ordenado_por").innerHTML = "Filtrado por: " + datos_busqueda;
+                    }
+                    imprimir_datos();
+                    mostrar_imagen();
+                    contador = 0;
+
+                    document.getElementById("boton_nuevo_atributo").style.display = "none"
+                    document.getElementById("eliminar_conjunto").style.display = "none"
+                    document.getElementById("ver_simbolos").style.display = "none"
+                    document.getElementById("conjuntos_con_base").style.display = "none"
+                    document.getElementById("nuevos_conjuntos").style.display = "none"
+                    document.getElementById("texto_atributos_default").style.display = "none"
+                    document.getElementById("texto_atributos_personales").style.display = "none"
+
+                    //document.getElementById("selector_opciones").style.display = "none";
+                    //document.getElementById("texto_instrucciones").style.display = "none";
+                    //document.getElementById("caja_izquierda").style.display = "none";
+                    //document.getElementById("caja_derecha").style.display = "none";
+                    //document.getElementById("boton_izquierda").style.display = "none";
+                    //document.getElementById("boton_derecha").style.display = "none";
+                    //document.getElementById("limpiar").style.display = "none";
+                    //document.getElementById("nuevo_conjunto").style.display = "none";
+
+                    document.getElementById("texto_label_default").style.display = "none";
+                    document.getElementById("texto_label_features").style.display = "none";
+                    document.getElementById("boton_hechos_iniciales").style.display = "none";
+                    document.getElementById("boton_limpiar_feature").style.display = "none";
+                    document.getElementById("caja_texto_features").style.display = "none";
+
+                    document.getElementById("ventanas_busqueda_atributos").style.display = "none";
+
+                    var link_pagina = window.location.pathname
+                    console.log(link_pagina);
+                    var verdadero = link_pagina.includes("traduccion");
+                    var verdadero_2 = link_pagina.includes("thomson");
+                    var verdadero_3 = link_pagina.includes("transcripcion")
+                    console.log(verdadero);
+                    console.log(verdadero_2);
+                    console.log(verdadero_3);
+
+                    if(verdadero == true)
+                    {
+                        document.getElementById("boton_traduccion").checked = true;
+                        console.log("boton aplicado");
+                    }
+                    if(verdadero_2 == true)
+                    {
+                        document.getElementById("boton_thomson").checked = true;
+                    }
+                    if(verdadero_3 == true)
+                    {
+                        document.getElementById("boton_transcripcion").checked = true;
+                    }
+
+                    link_actual = window.location.pathname
+                
+                    var link_separado = link_actual.split("/");
+                    var datos_atributos = link_separado[5];
+                    var datos_busqueda_1 = link_separado[4];
+                    console.log("LOS VALORES DE LOS ATRIBUTOS SON : " + datos_atributos.toString())
+                    console.log("LOS VALORES DE LOS ATRIBUTOS SON : " + datos_busqueda_1.toString())
+
+            
+                    if(datos_atributos != "default" & datos_busqueda_1 == "default")
+                    {
+                        console.log("LOGRO ENTRAR EN ESTA LINEA 121")
+                        document.getElementById("formulario_checkbox").style.display = "none";
+                        document.getElementById("busqueda_filtro").style.display = "none";
+                        document.getElementById("caja_base_de_datos").style.opacity = "1";
+                        document.getElementById("atributos").style.opacity = "0.7";
+                        document.getElementById("base-de-datos_1").style.opacity = "1";
+                        //document.getElementById("identificacion_1").style.opacity = "1";
+
+                        console.log("EJECUTO ESTA PARTE")
+                        document.getElementById("boton_nuevo_atributo").style.display = "none"
+                        document.getElementById("eliminar_conjunto").style.display = "none"
+                        document.getElementById("ver_simbolos").style.display = "none"
+                        document.getElementById("conjuntos_con_base").style.display = "none"
+                        document.getElementById("nuevos_conjuntos").style.display = "none"
+                        document.getElementById("texto_atributos_default").style.display = "none"
+                        document.getElementById("texto_atributos_personales").style.display = "none"
+                        //document.getElementById("selector_opciones").style.display = "none";
+                        //document.getElementById("texto_instrucciones").style.display = "none";
+                        //document.getElementById("caja_izquierda").style.display = "none";
+                        //document.getElementById("caja_derecha").style.display = "none";
+                        //document.getElementById("boton_izquierda").style.display = "none";
+                        //document.getElementById("boton_derecha").style.display = "none";
+                        //document.getElementById("limpiar").style.display = "none";
+                        //document.getElementById("nuevo_conjunto").style.display = "none";
+                        
+                        document.getElementById("texto_label_default").style.display = "block";
+                        document.getElementById("texto_label_features").style.display = "block";
+                        document.getElementById("boton_hechos_iniciales").style.display = "block";
+                        document.getElementById("boton_limpiar_feature").style.display = "block";
+                        document.getElementById("caja_texto_features").style.display = "block";
+
+                        var elementos_que_si_estan = [];
+                        datos_atributos_separados = datos_atributos.split("-");
+                        
+                        var conjunto_datos_atributos = {{atributos|tojson}};
+                        for(i=0;i<conjunto_datos_atributos.length;i++)
+                        {
+                            
+                            valor_conjunto = conjunto_datos_atributos[i];
+
+                            valor_conjunto_1 = valor_conjunto[0];
+                            valor_conjunto_2 = valor_conjunto[2];
+
+                            for(j=0;j<datos_atributos_separados.length;j++)
+                            {
+                                
+                                if(valor_conjunto_1 == datos_atributos_separados[j])
+                                {
+                                    elementos_que_si_estan.push(valor_conjunto_2); 
+                                }
+                            }
+                        }
+                        console.log(elementos_que_si_estan);
+                        document.getElementById("caja_texto_features").innerHTML = elementos_que_si_estan;
+
+                    }
+                
+                    /* SEGUNDA PESTAÑA */
+                    var link_separado = link_actual.split("/");
+                    var dato_de_identificacion = link_separado[6];
+                    if(dato_de_identificacion != "default")
+                    {
+                        document.getElementById("formulario_checkbox").style.display = "none";
+                        document.getElementById("busqueda_filtro").style.display = "none";
+                        document.getElementById("caja_base_de_datos").style.opacity = "1";
+                        document.getElementById("base-de-datos_1").style.opacity = "1";
+                        document.getElementById("base-de-datos_1").style.background = "rgb(39,110,144)";
+                        //document.getElementById("identificacion_1").style.opacity = "0.7";
+                        document.getElementById("atributos").style.opacity = "1";
+                        
+                        document.getElementById("boton_nuevo_atributo").style.display = "block"
+                        document.getElementById("eliminar_conjunto").style.display = "block"
+                        document.getElementById("ver_simbolos").style.display = "block"
+                        document.getElementById("conjuntos_con_base").style.display = "block"
+                        document.getElementById("nuevos_conjuntos").style.display = "block"
+                        document.getElementById("texto_atributos_default").style.display = "block"
+                        document.getElementById("texto_atributos_personales").style.display = "block"
+                        //document.getElementById("selector_opciones").style.display = "block";
+                        //document.getElementById("texto_instrucciones").style.display = "block";
+                        //document.getElementById("caja_izquierda").style.display = "block";
+                        //document.getElementById("caja_derecha").style.display = "block";
+                        //document.getElementById("boton_izquierda").style.display = "block";
+                        //document.getElementById("boton_derecha").style.display = "block";
+                        //document.getElementById("limpiar").style.display = "block";
+                        //document.getElementById("guardar_datos").style.display = "block";
+                        //document.getElementById("nuevo_conjunto").style.display = "block";
+
+                        document.getElementById("texto_label_default").style.display = "none";
+                        document.getElementById("texto_label_features").style.display = "none";
+                        document.getElementById("boton_hechos_iniciales").style.display = "none";
+                        document.getElementById("boton_limpiar_feature").style.display = "none";
+                        document.getElementById("caja_texto_features").style.display = "none";
+
+                        document.getElementById("selector-options").options.item(dato_de_identificacion).selected = 'selected';
+                    }
+                }
+            }   
+
+        function imprimir_datos()
+        {
+            var url_actual = window.location.hash;
+            var url_actual_limpio = "";
+            for(i=1;i<url_actual.length;i++){
+                url_actual_limpio += url_actual[i];
+            }
+            url_actual_limpio = parseInt(url_actual_limpio);
+            url_actual_limpio = url_actual_limpio-1;
+            var datos = {{conjunto_datos|tojson}};  
+            document.getElementById("texto_informacion").innerHTML = datos[url_actual_limpio][2] +"," + datos[url_actual_limpio][3] + "," + datos[url_actual_limpio][5] + "," + datos[url_actual_limpio][4] + "," + datos[url_actual_limpio][1];
+
+        }
+
+        function abrir_detalles()
+        {   
+            mostrar_imagen();
+            var url_actual_limpio = "";
+            var url_actual = window.location.hash;
+            for(i=1;i<url_actual.length;i++){
+                url_actual_limpio += url_actual[i];
+            }
+            url_actual_limpio = parseInt(url_actual_limpio);
+            url_actual_limpio = url_actual_limpio-1;
+            var datos = {{conjunto_datos|tojson}};        
+
+            document.getElementById("ventanas").style.display="block";
+            document.getElementById("ventanas").style.zIndex ="40";
+            document.getElementById("ventanas").style.animationName="ventana_modal_animacion-abrir";
+            document.getElementById("ventanas").style.animationDuration="1s";
+            document.getElementById("ventanas").style.display="grid";
+
+            console.log(datos[url_actual_limpio])
+            console.log("*****************************************************")
+            document.getElementById("texto-thomson-number").innerHTML = datos[url_actual_limpio][2];
+            console.log(datos[url_actual_limpio][2])
+
+            document.getElementById("texto-referencia-fonetica").innerHTML = datos[url_actual_limpio][3];
+            console.log(datos[url_actual_limpio][3])
+
+            document.getElementById("texto-info-transcripcion").innerHTML = datos[url_actual_limpio][5];
+            console.log(datos[url_actual_limpio][5])
+
+            document.getElementById("texto-info-traduccion").innerHTML = datos[url_actual_limpio][4];
+            console.log(datos[url_actual_limpio][4])
+
+            document.getElementById("texto-info-montgomery").innerHTML = datos[url_actual_limpio][1];
+            console.log(datos[url_actual_limpio][1])
+        }
+
+        function abrir_detalles_atributos()
+        {
+            document.getElementById("ventanas_1").style.display="block";
+            document.getElementById("ventanas_1").style.zIndex ="40";
+            document.getElementById("ventanas_1").style.animationName="ventana_modal_animacion-abrir";
+            document.getElementById("ventanas_1").style.animationDuration="1s";
+            document.getElementById("ventanas_1").style.display="grid";
+            document.getElementById("ventanas_1").style.zIndex="10000";
+            document.getElementById("encabezado").style.zIndex="0";
+        }
+
+        function mostrar_imagen()
+        {
+            porcentaje = 0;
+            var url_actual_limpio = "";
+            var url_actual = window.location.hash;
+            
+            for(i=1;i<url_actual.length;i++){
+                url_actual_limpio += url_actual[i];
+            }
+            console.log("Posicion de datos: " + url_actual_limpio);
+            url_actual_limpio = parseInt(url_actual_limpio); /* es la url actual */
+            /* Invocando a los arreglos de datos de SQL */
+
+            var datos = {{conjunto_datos|tojson}};  /* datos de la tabla t_general */
+            var id_glifo = {{id_glifo|tojson}}; /* valores de id_glifo de la imagen */
+            var imagenes = {{arreglo_imagenes_procesadas|tojson}}; /* codificaciones de los arreglos */
+            
+            console.log("APARTADO QUE MUESTRAS LAS")
+            console.log(datos)
+            console.log(id_glifo)
+            console.log(imagenes)
+            /* Buscar los elementos en datos */
+            
+            valor_glifo_buscado = datos[url_actual_limpio-1][6];
+           
+          
+            //console.log(typeof(id_glifo[0]));
+            posicion_url = "";
+           
+            for(i=0;i<id_glifo.length;i++)
+            {
+               
+                if(id_glifo[i] == valor_glifo_buscado)
+                {
+                    posicion_url = i;
+                }
+            }
+          
+            imagen_a_presentar = imagenes[posicion_url];
+            instruccion_src = 'data:image/bmp;base64,' + imagen_a_presentar;
+            document.getElementById("picture").src = instruccion_src;
+            document.getElementById("picture_2").src = instruccion_src;
+        }
+
+
+        var contador = 0;
+
+        function aumentar(){
+            var img = document.getElementById("picture");
+            var contenedor_ancho = document.getElementById("glifo_img_ant").clientWidth
+            var contenedor_alto = document.getElementById("glifo_img_ant").clientHeight
+
+            var ancho = img.clientWidth;
+            var alto = img.clientHeight;
+
+            console.log("Dimensiones caja")
+            console.log(contenedor_ancho)
+            console.log(contenedor_alto)
+            console.log("Dimensoines imagen")
+            console.log(ancho)
+            console.log(alto)
+
+            alto_1 = alto + 50
+            console.log(alto_1)
+            if(ancho > contenedor_ancho || alto > contenedor_alto)
+            {
+                document.getElementById("picture").style.width = "100px";
+                document.getElementById("picture").style.height = "auto";
+            }
+
+            if(ancho < contenedor_ancho && alto < contenedor_alto)
+            {
+                console.log("ENTRO EN ESTA SECCION")
+                if(ancho < contenedor_ancho-100 && alto_1 < contenedor_alto)
+                {
+                    alto_2 = alto_1.toString() + "px";
+                    console.log(alto_2);
+                    document.getElementById("picture").style.width = "auto";
+                    document.getElementById("picture").style.height = alto_2;
+                }
+            }
+           
+        }
+        function disminuir()
+        {
+            var img = document.getElementById("picture");
+            var contenedor_ancho = document.getElementById("glifo_img_ant").clientWidth
+            var contenedor_alto = document.getElementById("glifo_img_ant").clientHeight
+
+            var ancho = img.clientWidth;
+            var alto = img.clientHeight;
+
+            console.log("Dimensiones caja")
+            console.log(contenedor_ancho)
+            console.log(contenedor_alto)
+            console.log("Dimensoines imagen")
+            console.log(ancho)
+            console.log(alto)
+
+            alto_1 = alto - 50
+            console.log(alto_1)
+            if(ancho > contenedor_ancho || alto > contenedor_alto)
+            {
+                document.getElementById("picture").style.width = "auto";
+                document.getElementById("picture").style.height = "100px";
+            }
+
+            if(ancho < contenedor_ancho && alto < contenedor_alto)
+            {
+                console.log("ENTRO EN ESTA SECCION")
+                if(ancho > 100 && alto_1 > 20)
+                {
+                    alto_2 = alto_1.toString() + "px";
+                    console.log(alto_2);
+                    document.getElementById("picture").style.width = "auto";
+                    document.getElementById("picture").style.height = alto_2;
+                }
+            }
+        }
+        
+        function aumentar_1(){
+            var img = document.getElementById("picture_2");
+            var contenedor_ancho = document.getElementById("glifo_img_ant_1").clientWidth
+            var contenedor_alto = document.getElementById("glifo_img_ant_1").clientHeight
+
+            var ancho = img.clientWidth;
+            var alto = img.clientHeight;
+
+            console.log("Dimensiones caja")
+            console.log(contenedor_ancho)
+            console.log(contenedor_alto)
+            console.log("Dimensoines imagen")
+            console.log(ancho)
+            console.log(alto)
+
+            alto_1 = alto + 50
+            console.log(alto_1)
+            if(ancho > contenedor_ancho || alto > contenedor_alto)
+            {
+                document.getElementById("picture_2").style.width = "100px";
+                document.getElementById("picture_2").style.height = "auto";
+            }
+
+            if(ancho < contenedor_ancho && alto < contenedor_alto)
+            {
+                console.log("ENTRO EN ESTA SECCION")
+                if(ancho < contenedor_ancho-100 && alto_1 < contenedor_alto)
+                {
+                    alto_2 = alto_1.toString() + "px";
+                    console.log(alto_2);
+                    document.getElementById("picture_2").style.width = "auto";
+                    document.getElementById("picture_2").style.height = alto_2;
+                }
+            }
+           
+        }
+        function disminuir_1()
+        {
+            var img = document.getElementById("picture_2");
+            var contenedor_ancho = document.getElementById("glifo_img_ant_1").clientWidth
+            var contenedor_alto = document.getElementById("glifo_img_ant_1").clientHeight
+
+            var ancho = img.clientWidth;
+            var alto = img.clientHeight;
+
+            console.log("Dimensiones caja")
+            console.log(contenedor_ancho)
+            console.log(contenedor_alto)
+            console.log("Dimensoines imagen")
+            console.log(ancho)
+            console.log(alto)
+
+            alto_1 = alto - 50
+            console.log(alto_1)
+            if(ancho > contenedor_ancho || alto > contenedor_alto)
+            {
+                document.getElementById("picture_2").style.width = "auto";
+                document.getElementById("picture_2").style.height = "100px";
+            }
+
+            if(ancho < contenedor_ancho && alto < contenedor_alto)
+            {
+                console.log("ENTRO EN ESTA SECCION")
+                if(ancho > 100 && alto_1 > 20)
+                {
+                    alto_2 = alto_1.toString() + "px";
+                    console.log(alto_2);
+                    document.getElementById("picture_2").style.width = "auto";
+                    document.getElementById("picture_2").style.height = alto_2;
+                }
+            }
+        }
+
+        function cerrar_atributos()
+        {
+            document.getElementById("ventanas_busqueda_atributos").style.animationName="ventana_modal_animacion-cerrar";
+            document.getElementById("ventanas_busqueda_atributos").style.animationDuration="3s";
+            document.getElementById("ventanas_busqueda_atributos").style.animationDirection="normal";
+            document.getElementById("ventanas_busqueda_atributos").style.animationFillMode="forwards";
+        }
+
+        function cerrar_atributos_1()
+        {
+            document.getElementById("ventanas_1").style.animationName="ventana_modal_animacion-cerrar";
+            document.getElementById("ventanas_1").style.animationDuration="3s";
+            document.getElementById("ventanas_1").style.animationDirection="normal";
+            document.getElementById("ventanas_1").style.animationFillMode="forwards";
+        }
+       
+
+        function informacion_busqueda()
+        {
+           
+
+            document.getElementById("formulario_checkbox").style.display = "block";
+            document.getElementById("busqueda_filtro").style.display = "block";
+            document.getElementById("caja_base_de_datos").style.opacity = "1";
+            //document.getElementById("identificacion_1").style.opacity = "1";
+            //document.getElementById("identificacion_1").style.background = "rgb(39,110,144)";
+            document.getElementById("base-de-datos_1").style.opacity = "0.7";
+            document.getElementById("atributos").style.opacity = "1";
+            document.getElementById("identificacion_1").style.opacity = "1";
+
+
+            document.getElementById("boton_nuevo_atributo").style.display = "none"
+            document.getElementById("eliminar_conjunto").style.display = "none"
+            document.getElementById("ver_simbolos").style.display = "none"
+            document.getElementById("conjuntos_con_base").style.display = "none"
+            document.getElementById("nuevos_conjuntos").style.display = "none"
+            document.getElementById("texto_atributos_default").style.display = "none"
+            document.getElementById("texto_atributos_personales").style.display = "none"
+            //document.getElementById("selector_opciones").style.display = "none";
+            //document.getElementById("texto_instrucciones").style.display = "none";
+            //document.getElementById("caja_izquierda").style.display = "none";
+            //document.getElementById("caja_derecha").style.display = "none";
+            //document.getElementById("boton_izquierda").style.display = "none";
+            //document.getElementById("boton_derecha").style.display = "none";
+            //document.getElementById("limpiar").style.display = "none";
+            //document.getElementById("guardar_datos").style.display = "none";
+            //document.getElementById("nuevo_conjunto").style.display = "none";
+
+            document.getElementById("texto_label_default").style.display = "none";
+            document.getElementById("texto_label_features").style.display = "none";
+            document.getElementById("boton_hechos_iniciales").style.display = "none";
+            document.getElementById("boton_limpiar_feature").style.display = "none";
+            document.getElementById("caja_texto_features").style.display = "none";
+        } 
+        function identificacion()
+        {
+            document.getElementById("formulario_checkbox").style.display = "none";
+            document.getElementById("busqueda_filtro").style.display = "none";
+            document.getElementById("caja_base_de_datos").style.opacity = "1";
+            document.getElementById("base-de-datos_1").style.opacity = "1";
+            document.getElementById("base-de-datos_1").style.background = "rgb(39,110,144)";
+            document.getElementById("identificacion_1").style.opacity = "0.7";
+            document.getElementById("atributos").style.opacity = "1";
+            
+
+            document.getElementById("boton_nuevo_atributo").style.display = "block"
+            document.getElementById("eliminar_conjunto").style.display = "block"
+            document.getElementById("ver_simbolos").style.display = "block"
+            document.getElementById("conjuntos_con_base").style.display = "block"
+            document.getElementById("nuevos_conjuntos").style.display = "block"
+            document.getElementById("texto_atributos_default").style.display = "block"
+            document.getElementById("texto_atributos_personales").style.display = "block"
+            //document.getElementById("selector_opciones").style.display = "block";
+            //document.getElementById("texto_instrucciones").style.display = "block";
+            //document.getElementById("caja_izquierda").style.display = "block";
+            //document.getElementById("caja_derecha").style.display = "block";
+            //document.getElementById("boton_izquierda").style.display = "block";
+            //document.getElementById("boton_derecha").style.display = "block";
+            //document.getElementById("limpiar").style.display = "block";
+            //document.getElementById("guardar_datos").style.display = "block";
+            //document.getElementById("nuevo_conjunto").style.display = "block";
+
+            document.getElementById("texto_label_default").style.display = "none";
+            document.getElementById("texto_label_features").style.display = "none";
+            document.getElementById("boton_hechos_iniciales").style.display = "none";
+            document.getElementById("boton_limpiar_feature").style.display = "none";
+            document.getElementById("caja_texto_features").style.display = "none";
+        }
+        function atributos_busqueda()
+        {
+            document.getElementById("formulario_checkbox").style.display = "none";
+            document.getElementById("busqueda_filtro").style.display = "none";
+            document.getElementById("caja_base_de_datos").style.opacity = "1";
+            document.getElementById("atributos").style.opacity = "0.7";
+            document.getElementById("base-de-datos_1").style.opacity = "1";
+            document.getElementById("identificacion_1").style.opacity = "1";
+           
+            //document.getElementById("identificacion_1").style.opacity = "1";
+
+            document.getElementById("boton_nuevo_atributo").style.display = "none"
+            document.getElementById("eliminar_conjunto").style.display = "none"
+            document.getElementById("ver_simbolos").style.display = "none"
+            document.getElementById("conjuntos_con_base").style.display = "none"
+            document.getElementById("nuevos_conjuntos").style.display = "none"
+            document.getElementById("texto_atributos_default").style.display = "none"
+            document.getElementById("texto_atributos_personales").style.display = "none"
+            //document.getElementById("selector_opciones").style.display = "none";
+            //document.getElementById("texto_instrucciones").style.display = "none";
+            //document.getElementById("caja_izquierda").style.display = "none";
+            //document.getElementById("caja_derecha").style.display = "none";
+            //document.getElementById("boton_izquierda").style.display = "none";
+            //document.getElementById("boton_derecha").style.display = "none";
+            //document.getElementById("limpiar").style.display = "none";
+            //document.getElementById("guardar_datos").style.display = "none";
+            //document.getElementById("nuevo_conjunto").style.display = "none";
+            
+            document.getElementById("texto_label_default").style.display = "block";
+            document.getElementById("texto_label_features").style.display = "block";
+            document.getElementById("boton_hechos_iniciales").style.display = "block";
+            document.getElementById("boton_limpiar_feature").style.display = "block";
+            document.getElementById("caja_texto_features").style.display = "block";
+        }
+
+        function filtro_datos()
+        {
+            var dato = document.getElementById("dato_a_buscar").value;
+            
+            var link_host = window.location.host;
+           
+            var link_actual = window.location.pathname;
+            //console.log(link_actual);
+            //console.log(link_host);
+            datos_busqueda = {{datos_busqueda|tojson}};
+            //alert(datos_busqueda);
+            //alert(typeof(datos_busqueda));
+            var datos_arreglo = datos_busqueda.split("");
+            var datos_busqueda_procesado = "";
+            for(i = 0;i<=datos_arreglo.length;i++)
+            {
+                if(datos_arreglo[i] == " ")
+                {
+                    datos_arreglo[i] = "%20";
+                }
+                
+                if(datos_arreglo[i] != undefined)
+                {
+                    datos_busqueda_procesado += datos_arreglo[i];
+                }
+            }
+            
+            //alert(datos_busqueda_procesado);
+            var link_nuevo = link_actual.replace(datos_busqueda_procesado,dato);
+           
+            link_nuevo_completo = link_host+ link_nuevo+"#1";
+            location.href = "http://"+link_host+link_nuevo+"#1";
+        }
+
+        function hechos_iniciales()
+        {
+            document.getElementById("ventanas_busqueda_atributos").style.animationName="ventana_modal_animacion-abrir";
+            document.getElementById("ventanas_busqueda_atributos").style.animationDuration="1s";
+            document.getElementById("ventanas_busqueda_atributos").style.animationFillMode="forwards";
+            document.getElementById("ventanas_busqueda_atributos").style.display="block";
+            document.getElementById("ventanas_busqueda_atributos").style.position = "absolute";
+            document.getElementById("ventanas_busqueda_atributos").style.width = "100vw";
+            document.getElementById("ventanas_busqueda_atributos").style.height = "100vh";
+            document.getElementById("ventanas_busqueda_atributos").style.top = "0";
+            document.getElementById("ventanas_busqueda_atributos").style.backgroundColor = "rgba(10,50,67,0.7)";
+            document.getElementById("ventanas_busqueda_atributos").style.display = "grid";
+            document.getElementById("ventanas_busqueda_atributos").style.gridTemplateColumns = "repeat(10,1fr)";
+            document.getElementById("ventanas_busqueda_atributos").style.gridTemplateRows = "repeat(10,1fr)";
+            document.getElementById("ventanas_busqueda_atributos").style.zIndex = "50";
+
+
+            document.getElementById("ventanas_busqueda_atributos_1").style.opacity = "1";
+            document.getElementById("ventanas_busqueda_atributos_1").style.gridRow = "2/10";
+            document.getElementById("ventanas_busqueda_atributos_1").style.gridColumn = "4/8";
+            document.getElementById("ventanas_busqueda_atributos_1").style.backgroundColor = "white";
+            document.getElementById("ventanas_busqueda_atributos_1").style.display = "grid";
+            document.getElementById("ventanas_busqueda_atributos_1").style.gridTemplateColumns = "90% 10%";
+            document.getElementById("ventanas_busqueda_atributos_1").style.gridTemplateRows = "10% 80% 10%";
+            document.getElementById("ventanas_busqueda_atributos_1").style.border = "medium solid black";
+            document.getElementById("ventanas_busqueda_atributos_1").style.zIndex = "50";
+
+            document.getElementById("cerrar_1").style.gridRow = "1/2";
+            document.getElementById("cerrar_1").style.gridColumn = "2/3";
+            document.getElementById("opciones_atributos").style.gridRow = "2/3";
+            document.getElementById("opciones_atributos").style.gridColumn = "1/3";
+            document.getElementById("opciones_atributos").style.overflowX = "auto";
+            document.getElementById("opciones_atributos").style.overflowy = "auto";
+            document.getElementById("opciones_atributos").style.backgroundColor = "white";
+
+            document.getElementById("cabecera_atributos").style.gridRow = "1/2";
+            document.getElementById("cabecera_atributos").style.gridColumn = "1/2";
+            document.getElementById("cabecera_atributos").style.backgroundColor = "#276E90";
+            document.getElementById("boton_submit_atributos").style.gridRow = "3/4";
+            document.getElementById("boton_submit_atributos").style.gridColumn = "1/3"
+            document.getElementById("boton_submit_atributos").style.display = "flex";
+            document.getElementById("boton_submit_atributos").style.backgroundColor = "#276E90";
+            document.getElementById("boton_atributos").style.alignItems = "center"
+        }
+
+        function atributos_seleccionados()
+        {
+            var seleccionados = $('input:checkbox:checked');
+            var atributos_seleccionados = "";
+            var atributos_seleccionados_1 = "";
+            for(i=0;i<seleccionados.length;i++)
+            {
+                console.log(seleccionados[i].value);
+                atributos_seleccionados += seleccionados[i].value.toString() + "-";
+            }
+            atributos_seleccionados_1 = atributos_seleccionados.substring(0, atributos_seleccionados.length-1);
+            
+            var link_host = window.location.host;
+            var link_actual = window.location.pathname;
+            
+
+            nuevo_link_atributos = "http://" + link_host + "/index/thomson/default/default/" + atributos_seleccionados_1 +"/default" +  "/#1";
+            location.href = nuevo_link_atributos;
+        }
+
+        function limpiar_area(){
+            document.getElementById("caja_texto_features").innerHTML = "";
+        }
+
+        // Funcion para imprimir datos
+
+        function usuario_seleccionado()
+        {
+           var usuario = document.getElementById("selector-options").value;
+          
+           var link_actual = window.location.pathname;
+           var link_actual_completo = window.location.href;
+           var link_host = window.location.host;
+           var link_completo_dividio = link_actual_completo.split("/");
+           
+           var  link_componente_1 = link_completo_dividio[link_completo_dividio.length-1];
+           link_dividido  = link_actual.split("/");
+           nuevo_link = link_dividido[0] + "/" + link_dividido[1] + "/" + link_dividido[2] + "/" + link_dividido[3] + "/" + link_dividido[4] + "/" + usuario + "/" + link_componente_1;
+     
+           nuevo_link_identificacion = "http://" + link_host + nuevo_link;
+           contador = 0;
+           datos_seleccionados = [];
+           location.href = nuevo_link_identificacion;
+        }
+
+        function pasar_otra_caja()
+        {
+            var seleccionados = $('input:checkbox:checked');
+            var atributos_de_usuario = {{atributos_de_usuario|tojson}};
+            
+            console.log(datos_seleccionados)
+            console.log(atributos_de_usuario)
+
+            for(i=0;i<seleccionados.length;i++)
+            {
+                for(j=0;j<atributos_de_usuario.length;j++)
+                {
+                    if(seleccionados[i].value == atributos_de_usuario[j][0])
+                    {
+                        if(datos_seleccionados.includes(atributos_de_usuario[j][0]) != true)
+                        {
+                            datos_seleccionados.push(atributos_de_usuario[j][0]);
+                            console.log("Los datos seleccioandos son: " + datos_seleccionados.toString());
+                            agregar_checkbox(atributos_de_usuario[j][0],"atributos",atributos_de_usuario[j][0],atributos_de_usuario[j][2]);
+                        }
+                        else
+                        {
+                            console.log("Estos elementos ya estan seleccionados");
+                        }
+                       
+                    }
+                }
+            }
+            desmarcar_checkbox();
+        }
+
+        function eliminar_nuevos_checkbox()
+        {
+            var seleccionados = $('input:checkbox:checked');
+            console.log("Los valores seleccionados para limpiar de la caja derecha son");
+            console.log(seleccionados);
+            for(let i =0;i<seleccionados.length;i++)
+            {
+                console.log(seleccionados[i].value);
+                remove(seleccionados[i].value);
+            }
+        }
+
+        function remove(id)
+        {
+            var datos_seleccionados_1 = [];
+            /*console.log("El valor de id a remover es: " + id);
+            var atributos_caja_derecha = {{atributos_lado_derecho|tojson}}
+
+            for(i=0;i<atributos_caja_derecha.length;i++)
+            {
+                datos_seleccionados.push(atributos_caja_derecha[i][0]);
+            }*/
+
+            var elemento = document.getElementById(id);
+            
+            for(let i=0;i<datos_seleccionados.length;i++)
+            {
+                if(datos_seleccionados[i] != id)
+                {
+                    datos_seleccionados_1.push(datos_seleccionados[i]);
+                }
+            }
+            datos_seleccionados = datos_seleccionados_1;
+            console.log(datos_seleccionados);
+
+            var segundo_elemento = document.getElementById(id+"label");
+            var tercer_elemento = document.getElementById(id+"br");
+            return  tercer_elemento.parentNode.removeChild(tercer_elemento),segundo_elemento.parentNode.removeChild(segundo_elemento),elemento.parentNode.removeChild(elemento);
+        }
+
+        function remove_limpiar_caja_derecha()
+        {
+            console.log("******************************");
+            console.log(datos_seleccionados);
+
+            var link_actual = window.location.pathname;
+            link_actual_separado = link_actual.split("/");
+            var usuario = link_actual_separado[5];
+            for(let i=0;i<datos_seleccionados.length;i++)
+            {
+                let labelid = document.getElementById(datos_seleccionados[i] + "label");
+                let labelbr = document.getElementById(datos_seleccionados[i] + "br");
+                let checkid = document.getElementById(datos_seleccionados[i]);
+                console.log(labelid);
+                console.log(labelbr);
+                console.log(checkid);
+                
+                labelid.parentNode.removeChild(labelid);
+                labelbr.parentNode.removeChild(labelbr);
+                checkid.parentNode.removeChild(checkid);
+            }
+
+            datos_eliminador_1 = usuario + "$eliminacion$"+"eliminar_datos"
+            $.ajax({
+                        type:'POST',
+                        url:'/index/traduccion/default/default/1/',
+                        data: { datos_eliminados: datos_eliminador_1
+                        }
+                    });
+            datos_seleccionados = [];
+        }
+
+        function desmarcar_checkbox(){
+            for(let i=0;i<document.f1.elements.length;i++)
+            {
+                if(document.f1.elements[i].type == "checkbox")
+                {
+                    document.f1.elements[i].checked = false;
+                }
+            }
+        }
+
+        function agregar_checkbox(id,name,value,text_label)
+        {
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = id;
+            checkbox.name = name;
+            checkbox.value = value;
+            var label = document.createElement('label');
+            label.id = id+"label";
+            label.htmlFor = text_label;
+            label.appendChild(document.createTextNode(text_label));
+            var br = document.createElement('br');
+            br.id = id+"br";
+            var caja_derecha = document.getElementById('caja_derecha_1');
+            caja_derecha.appendChild(checkbox);
+            caja_derecha.appendChild(label);
+            caja_derecha.appendChild(br);
+        }
+
+        function nuevo_conjunto()
+        {
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.animationName="ventana_modal_animacion-abrir";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.animationDuration="1s";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.animationFillMode="forwards";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.display="block";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.position = "absolute";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.width = "100vw";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.height = "100vh";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.top = "0";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.backgroundColor = "rgba(10,50,67,0.7)";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.display = "grid";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.gridTemplateColumns = "repeat(10,1fr)";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.gridTemplateRows = "repeat(10,1fr)";
+            document.getElementById("ventana_ingresar_nuevo_usuario").style.zIndex = "70";
+
+
+            document.getElementById("ventanas_nuevo_usuario").style.opacity = "1";
+            document.getElementById("ventanas_nuevo_usuario").style.gridRow = "2/10";
+            document.getElementById("ventanas_nuevo_usuario").style.gridColumn = "4/8";
+            document.getElementById("ventanas_nuevo_usuario").style.backgroundColor = "white";
+            document.getElementById("ventanas_nuevo_usuario").style.display = "grid";
+            document.getElementById("ventanas_nuevo_usuario").style.gridTemplateColumns = "90% 10%";
+            document.getElementById("ventanas_nuevo_usuario").style.gridTemplateRows = "10% 5% 75% 10%";
+            document.getElementById("ventanas_nuevo_usuario").style.border = "medium solid black";
+            document.getElementById("ventanas_nuevo_usuario").style.zIndex = "50";
+            document.getElementById("ventanas_nuevo_usuario").style.padding = "0";
+            document.getElementById("ventanas_nuevo_usuario").style.margin = "0";
+            
+            document.getElementById("cerrar_2").style.gridRow = "1/3";
+            document.getElementById("cerrar_2").style.gridColumn = "2/3";
+            document.getElementById("cerrar_2").style.padding = "0";
+            document.getElementById("cerrar_2").style.margin = "0";
+            document.getElementById("cerrar_2").style.border = "none";
+
+            document.getElementById("cabecera_nuevo_usuario").style.gridRow = "1/3";
+            document.getElementById("cabecera_nuevo_usuario").style.gridColumn = "1/2";
+            document.getElementById("cabecera_nuevo_usuario").style.backgroundColor = "#276E90";
+            document.getElementById("cabecera_nuevo_usuario").style.padding = "0";
+            document.getElementById("cabecera_nuevo_usuario").style.margin = "0";
+
+            document.getElementById("boton_submit_usuario").style.gridRow = "4/5";
+            document.getElementById("boton_submit_usuario").style.gridColumn = "1/3"
+            document.getElementById("boton_submit_usuario").style.display = "flex";
+            document.getElementById("boton_submit_usuario").style.backgroundColor = "#276E90";
+            document.getElementById("boton_atributos").style.alignItems = "center"
+            
+            document.getElementById("contenedor_elementos_usuario").style.gridRow = "3/4";
+            document.getElementById("contenedor_elementos_usuario").style.gridColumn = "1/3";
+            document.getElementById("contenedor_elementos_usuario").style.overflowX = "auto";
+            document.getElementById("contenedor_elementos_usuario").style.overflowy = "auto";
+            document.getElementById("contenedor_elementos_usuario").style.backgroundColor = "white";
+            document.getElementById("contenedor_elementos_usuario").style.display = "grid";
+            document.getElementById("contenedor_elementos_usuario").style.gridTemplateColumns = "5% 90% 5%";
+            document.getElementById("contenedor_elementos_usuario").style.gridTemplateRows = "10% 5% 5% 5% 5% 60% 10%";
+
+            document.getElementById("name_user").style.gridRow = "2/3";
+            document.getElementById("name_user").style.gridColumn = "2/3";
+         
+            
+            document.getElementById("label_usuario").style.gridRow = "3/4";
+            document.getElementById("label_usuario").style.gridColumn = "2/3";
+
+            document.getElementById("nuevo_atributo_instrucciones").style.gridRow = "5/6";
+            document.getElementById("nuevo_atributo_instrucciones").style.gridColumn = "2/3";
+
+            document.getElementById("nuevos_atributos").style.gridRow = "6/7";
+            document.getElementById("nuevos_atributos").style.gridColumn = "2/3";
+        }
+
+        function nuevo_usuario_con_atributos()
+        {
+            var usuario = document.getElementById("label_usuario").value;
+            var atributos = document.getElementById("nuevos_atributos").value;
+            
+            if(usuario == "")
+            {
+                document.getElementById("label_usuario").style.border = "medium solid red";
+            }
+            if(atributos == "")
+            {
+                document.getElementById("nuevos_atributos").style.border = "medium solid red";
+            }
+
+            if(usuario != "")
+            {
+                document.getElementById("label_usuario").style.border = "medium solid green";
+            }
+
+            if(atributos != ""){
+                document.getElementById("nuevos_atributos").style.border = "medium solid green";
+
+            }
+            
+            if(usuario != "" & atributos != "")
+            {
+
+                atributos_1 = []
+                atributos_1 = atributos.split("\n");
+            
+                document.getElementById("label_usuario").value = "";
+                document.getElementById("nuevos_atributos").value = "";
+
+                usuario_1 = usuario + "$atributos$" + atributos_1.toString();
+
+                    console.log('hello');
+                    $.ajax({
+                        type:'POST',
+                        url:'/index/traduccion/default/default/1/',
+                        data: { todo: usuario_1
+                        },success:function()
+                        {
+                            document.getElementById("ventana_ingresar_nuevo_usuario").style.animationName="ventana_modal_cerrar_atributos";
+                            document.getElementById("ventana_ingresar_nuevo_usuario").style.animationDuration="1s";
+                            document.getElementById("ventana_ingresar_nuevo_usuario").style.animationFillMode="forwards";
+                            
+                            envio_correcto();  
+                            setTimeout(function()
+                            {
+                                window.location.reload();
+                            },2000);  
+                        }
+                    });
+            }    
+        }
+
+        function guardar_datos_1()
+        {
+            var datos_en_caja_derecha = datos_seleccionados.toString();
+            var link_actual = window.location.pathname;
+            link_actual_separado = link_actual.split("/");
+            var usuario = link_actual_separado[5];
+
+            var datos_a_enviar = usuario+"$atributos_almacenados$"+datos_en_caja_derecha;
+            var datos_a_enviar = datos_a_enviar.toString();
+            $.ajax({
+                        type:'POST',
+                        url:'/index/traduccion/default/default/1/',
+                        data: { datos_guardados: datos_a_enviar
+                        },success:function()
+                        {
+                            if(datos_en_caja_derecha != "")
+                            datos_guardados();   
+                        }
+                    });
+        }
+
+        function datos_guardados()
+        {
+            document.getElementById("ventana_guardados").style.animationName="ventana_modal_animacion-abrir";
+            document.getElementById("ventana_guardados").style.animationDuration="1s";
+            document.getElementById("ventana_guardados").style.animationFillMode="forwards";
+            document.getElementById("ventana_guardados").style.display="block";
+            document.getElementById("ventana_guardados").style.position = "absolute";
+            document.getElementById("ventana_guardados").style.width = "100vw";
+            document.getElementById("ventana_guardados").style.height = "100vh";
+            document.getElementById("ventana_guardados").style.top = "0";
+            document.getElementById("ventana_guardados").style.backgroundColor = "rgba(10,50,67,0.7)";
+            document.getElementById("ventana_guardados").style.display = "grid";
+            document.getElementById("ventana_guardados").style.gridTemplateColumns = "repeat(10,1fr)";
+            document.getElementById("ventana_guardados").style.gridTemplateRows = "repeat(10,1fr)";
+            document.getElementById("ventana_guardados").style.zIndex = "80";
+
+
+            document.getElementById("ventana_guardados_1").style.opacity = "1";
+            document.getElementById("ventana_guardados_1").style.gridRow = "4/8";
+            document.getElementById("ventana_guardados_1").style.gridColumn = "4/8";
+            document.getElementById("ventana_guardados_1").style.backgroundColor = "white";
+            document.getElementById("ventana_guardados_1").style.display = "grid";
+            document.getElementById("ventana_guardados_1").style.gridTemplateColumns = "90% 10%";
+            document.getElementById("ventana_guardados_1").style.gridTemplateRows = "10% 5% 75% 10%";
+            document.getElementById("ventana_guardados_1").style.border = "medium solid black";
+            document.getElementById("ventana_guardados_1").style.zIndex = "50";
+            document.getElementById("ventana_guardados_1").style.padding = "0";
+            document.getElementById("ventana_guardados_1").style.margin = "0";
+            document.getElementById("ventana_guardados_1").style.borderRadius = "10px";
+            document.getElementById("ventana_guardados_1").style.display = "flex";
+            document.getElementById("ventana_guardados_1").style.justifyContent = "center";
+            document.getElementById("ventana_guardados_1").style.alignItems = "center";
+
+
+            document.getElementById("ventana_guardados_2").style.margin="auto";
+
+            setTimeout(function(){
+                document.getElementById("ventana_guardados").style.animationName="ventana_modal_cerrar_atributos";
+                document.getElementById("ventana_guardados").style.animationDuration="1s";
+                document.getElementById("ventana_guardados").style.animationFillMode="forwards";
+            },2000);     
+        }
+
+        function envio_correcto()
+        {
+            document.getElementById("ventana_correcta").style.animationName="ventana_modal_animacion-abrir";
+            document.getElementById("ventana_correcta").style.animationDuration="1s";
+            document.getElementById("ventana_correcta").style.animationFillMode="forwards";
+            document.getElementById("ventana_correcta").style.display="block";
+            document.getElementById("ventana_correcta").style.position = "absolute";
+            document.getElementById("ventana_correcta").style.width = "100vw";
+            document.getElementById("ventana_correcta").style.height = "100vh";
+            document.getElementById("ventana_correcta").style.top = "0";
+            document.getElementById("ventana_correcta").style.backgroundColor = "rgba(10,50,67,0.7)";
+            document.getElementById("ventana_correcta").style.display = "grid";
+            document.getElementById("ventana_correcta").style.gridTemplateColumns = "repeat(10,1fr)";
+            document.getElementById("ventana_correcta").style.gridTemplateRows = "repeat(10,1fr)";
+            document.getElementById("ventana_correcta").style.zIndex = "80";
+
+
+            document.getElementById("ventana_correcta_1").style.opacity = "1";
+            document.getElementById("ventana_correcta_1").style.gridRow = "4/8";
+            document.getElementById("ventana_correcta_1").style.gridColumn = "4/8";
+            document.getElementById("ventana_correcta_1").style.backgroundColor = "white";
+            document.getElementById("ventana_correcta_1").style.display = "grid";
+            document.getElementById("ventana_correcta_1").style.gridTemplateColumns = "90% 10%";
+            document.getElementById("ventana_correcta_1").style.gridTemplateRows = "10% 5% 75% 10%";
+            document.getElementById("ventana_correcta_1").style.border = "medium solid black";
+            document.getElementById("ventana_correcta_1").style.zIndex = "50";
+            document.getElementById("ventana_correcta_1").style.padding = "0";
+            document.getElementById("ventana_correcta_1").style.margin = "0";
+            document.getElementById("ventana_correcta_1").style.borderRadius = "10px";
+            document.getElementById("ventana_correcta_1").style.display = "flex";
+            document.getElementById("ventana_correcta_1").style.justifyContent = "center";
+            document.getElementById("ventana_correcta_1").style.alignItems = "center";
+
+
+            document.getElementById("ventana_correcta_2").style.margin="auto";
+
+            setTimeout(function(){
+                document.getElementById("ventana_correcta").style.animationName="ventana_modal_cerrar_atributos";
+                document.getElementById("ventana_correcta").style.animationDuration="1s";
+                document.getElementById("ventana_correcta").style.animationFillMode="forwards";
+            },2000);     
+        }
+
+        function idioma_ingles()
+        {
+            console.log("Si estoy funcionando, idioma ingles")
+            var link_actual = window.location.href;
+            
+            separado = link_actual.split('index')
+            console.log(separado)
+            
+            unido = separado[0] + 'index_ingles' + separado[1]
+            console.log(unido)
+
+            window.location.href = unido
+        }
+
+        function idioma_español()
+        {
+            console.log("Si estoy funcionando, idioma español")
+            var link_actual = window.location.href;
+            
+            separado = link_actual.split('index_ingles')
+            console.log(separado)
+            
+            unido = separado[0] + 'index' + separado[1]
+            console.log(unido)
+
+            window.location.href = unido
+
+        }
+
+        function todas_las_funciones(dato)
+        {
+            if(dato == 1)
+            {
+                orden_datos('traduccion',1); 
+                
+            } 
+            if(dato == 2)
+            {
+                orden_datos('thomson',2)
+                
+            }
+            if(dato == 3)
+            {
+                orden_datos('transcripcion',3)
+            }
+        }
+
+        
+
+        function quitar_filtro()
+        {
+            enlace_actual = window.location.href
+            valor_thomson = enlace_actual.includes("thomson")
+            valor_traduccion = enlace_actual.includes("traduccion")
+            valor_transcripcion = enlace_actual.includes("transcripcion")
+
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+            var url = new URL(enlace_actual);
+            var result = url.port;
+
+            if(valor_thomson == true && valor_traduccion == false && valor_transcripcion == false) 
+            {
+                window.location.href = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result +  "/index/thomson/1/default/default/default/#1"
+            }
+            else if(valor_thomson == false && valor_traduccion == true && valor_transcripcion == false) 
+            {
+                window.location.href = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result +   "/index/traduccion/2/default/default/default/#1"
+            }
+            else if(valor_thomson == false && valor_traduccion == false && valor_transcripcion == true) 
+            {
+                window.location.href = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result +   "/index/transcripcion/3/default/default/default/#1"
+            }
+        }
+
+        /* Seccion de funciones para aplicar atributos NUEVAS FUNCIONES */
+
+        function ejecutar_crear_nuevo_atributo_1()
+        {   
+            {% set dispositivo = "desk" %}
+            var url = "{{ url_for('nuevo_atributo',dispositivo=dispositivo)}}";
+            window.location.href = url;
+        }
+
+        function ejecutar_crear_nuevo_atributo_1_personalizado()
+        {
+            {% set dispositivo = "desk" %}
+            var url = "{{ url_for('nuevo_atributo_personalizado',dispositivo=dispositivo) }}";
+            window.location.href = url;
+        }
+
+        function enviarFormularioSimbolos()
+        {
+
+            var formulario1Checkboxes = document.querySelectorAll('#container_2 input[type="checkbox"]');
+            var formulario2Checkboxes = document.querySelectorAll('#container_3 input[type="checkbox"]');
+            var lista1 = [];
+            var lista2 = [];
+
+            for (var i = 0; i < formulario1Checkboxes.length; i++) {
+                if (formulario1Checkboxes[i].checked) {
+                    console.log('Checkbox del formulario 1 presionado, valor:', formulario1Checkboxes[i].value);
+                    localStorage.setItem(formulario1Checkboxes[i].id, formulario1Checkboxes[i].name);
+                    lista1.push(formulario1Checkboxes[i].name);
+                }
+            }
+        
+            for (var i = 0; i < formulario2Checkboxes.length; i++) {
+                if (formulario2Checkboxes[i].checked) {
+                    console.log('Checkbox del formulario 2 presionado, valor:', formulario2Checkboxes[i].name);
+                    localStorage.setItem(formulario2Checkboxes[i].id, formulario2Checkboxes[i].name);
+                    lista2.push(formulario2Checkboxes[i].name);
+                }
+            }
+            
+            console.log("Valor de la funcion para checkbox")
+            console.log(lista1)
+            console.log(lista2)
+
+            valoresSeleccionados = [];
+            //document.getElementById("container_2").submit();
+            var seleccionados = $('input:checkbox:checked');
+            seleccionados.each(function() {
+                valoresSeleccionados.push($(this).val());
+            });
+          
+            console.log(valoresSeleccionados);
+
+            // Convertir las cadenas en listas de JavaScript
+            var listas = valoresSeleccionados.map(cadena => JSON.parse(cadena));
+
+            // Unir las listas y obtener números únicos
+            var numerosSinRepetir = [...new Set(listas.flatMap(lista => lista))];
+
+            // Mostrar el resultado
+            console.log(numerosSinRepetir);
+
+            // Ordenar los números de menor a mayor
+            numerosSinRepetir.sort((a, b) => a - b);
+
+            if(numerosSinRepetir[0] != 'num')
+            {
+                // Agregar la palabra "final" al principio
+                numerosSinRepetir.unshift("final");
+                numerosSinRepetir = numerosSinRepetir.concat(lista1)
+                // Mostrar el resultado
+                console.log(numerosSinRepetir);
+
+                // Convertir el array a un string con los valores separados por "-"
+                resultadoFinal = ""
+                var resultadoFinal = numerosSinRepetir.join("-");
+
+                // Mostrar el resultado
+                console.log(resultadoFinal);
+                
+                var link_host = window.location.host;
+                var link_actual = window.location.pathname;
+                nuevo_link_atributos = "http://" + link_host + "/index/thomson/default/default/" + resultadoFinal +"/default" +  "/#1";
+                console.log(nuevo_link_atributos)
+                if(resultadoFinal != "final")
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = ""
+                    window.location.href = nuevo_link_atributos;
+                }
+                else
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = "No hay atributo seleccionado"
+                }
+            }
+            else if(numerosSinRepetir[0] == 'num')
+            {
+                // Mostrar el resultado
+                console.log(numerosSinRepetir);
+
+                // Convertir el array a un string con los valores separados por "-"
+                resultadoFinal = ""
+                numerosSinRepetir = numerosSinRepetir.concat(lista2)
+                var resultadoFinal = numerosSinRepetir.join("-");
+
+                // Mostrar el resultado
+                console.log(resultadoFinal);
+                
+                var link_host = window.location.host;
+                var link_actual = window.location.pathname;
+                nuevo_link_atributos = "http://" + link_host + "/index/thomson/default/default/" + resultadoFinal +"/default" +  "/#1";
+                console.log(nuevo_link_atributos)
+                if(resultadoFinal != "num")
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = ""
+                    window.location.href = nuevo_link_atributos;
+                }
+                else
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = "No hay atributo seleccionado"
+                }
+            }
+           
+        }
+
+        function eliminar_atributos()
+        {
+            var checkboxes = []
+            var checkboxes_1 = []
+            // Obtener todos los checkboxes dentro del formulario
+            var formulario1Checkboxes = document.querySelectorAll('#container_2 input[type="checkbox"]');
+            var formulario2Checkboxes = document.querySelectorAll('#container_3 input[type="checkbox"]');
+            var lista1 = [];
+            var lista2 = [];
+
+            for (var i = 0; i < formulario1Checkboxes.length; i++) {
+                if (formulario1Checkboxes[i].checked) {
+                    console.log('Checkbox del formulario 1 presionado, valor:', formulario1Checkboxes[i].value);
+                    localStorage.setItem(formulario1Checkboxes[i].id, formulario1Checkboxes[i].name);
+                    lista1.push(formulario1Checkboxes[i].name);
+                    
+                }
+            }
+        
+            for (var i = 0; i < formulario2Checkboxes.length; i++) {
+                if (formulario2Checkboxes[i].checked) {
+                    console.log('Checkbox del formulario 2 presionado, valor:', formulario2Checkboxes[i].name);
+                    localStorage.setItem(formulario2Checkboxes[i].id, formulario2Checkboxes[i].name);
+                    lista2.push(formulario2Checkboxes[i].name);
+                    
+                }
+            }
+
+            console.log("ELEMENTOS DE LOS CHECKBOXES")
+            console.log(lista1)
+            console.log(lista2)
+
+            if(lista1 != [])
+            {
+                nombresSeleccionados = lista1
+                console.log("Checkbox seleccionados")
+                console.log(nombresSeleccionados)
+    
+                // Agregar la palabra "final" al principio
+                nombresSeleccionados.unshift("eliminar");
+                
+                // Convertir el array a un string con los valores separados por "-"
+                var resultadoFinal = nombresSeleccionados.join("-");
+    
+                // Mostrar el resultado
+                console.log(resultadoFinal);
+    
+                var link_host = window.location.host;
+                var link_actual = window.location.pathname;
+                nuevo_link_atributos = "http://" + link_host + "/index/thomson/default/default/" + resultadoFinal +"/default" +  "/#1";
+                console.log(nuevo_link_atributos)
+    
+                if(resultadoFinal != "eliminar")
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = ""
+                    window.location.href = nuevo_link_atributos;
+                }
+                else if(nombresSeleccionados.length == 1 && resultadoFinal == "eliminar" && lista2.lenght == 0)
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = "No hay atributo para eliminar"
+                }           
+            }
+            if(lista2 != [])
+            {
+                nombresSeleccionados = lista2
+                console.log("Checkbox seleccionados")
+                console.log(nombresSeleccionados)
+    
+                // Agregar la palabra "final" al principio
+                nombresSeleccionados.unshift("eliminar1");
+    
+                // Convertir el array a un string con los valores separados por "-"
+                var resultadoFinal = nombresSeleccionados.join("-");
+    
+                // Mostrar el resultado
+                console.log(resultadoFinal);
+    
+                var link_host = window.location.host;
+                var link_actual = window.location.pathname;
+                nuevo_link_atributos = "http://" + link_host + "/index/thomson/default/default/" + resultadoFinal +"/default" +  "/#1";
+                console.log(nuevo_link_atributos)
+                console.log(nombresSeleccionados)
+    
+                if(resultadoFinal != "eliminar1")
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = ""
+                    window.location.href = nuevo_link_atributos;
+                }
+                else if(nombresSeleccionados.length == 1 && resultadoFinal == "eliminar1" && lista1.lenght == 0)
+                {
+                    document.getElementById('texto_para_anunciar').innerHTML = "No hay atributo para eliminar"
+                }           
+            }
+           
+        }
+
+        function seleccionUnica(id) 
+        {  
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            for (var i = 0; i < checkboxes.length; i++) 
+            {
+                // Desmarca todos los demás checkboxes
+                if (checkboxes[i].id !== id) {
+                checkboxes[i].checked = false;
+                }
+            }
+        }
+    
+
+    </script>
+</body>
+</html>

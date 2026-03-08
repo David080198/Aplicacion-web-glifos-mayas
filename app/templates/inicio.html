@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripción visual y estructural de glifos mayas</title>
+    <link rel="shortcut icon" href="../static/imgs/icono.ico">
+    <link rel="stylesheet" href="../static/css/inicio.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+
+    <!--Prueba para dibujar un triangulo-->
+
+    <div class="contenedor-carga" id="contenedor-carga">
+        <div class="triangulo">
+
+        </div>
+    </div>
+
+    
+    <!--********************************-->
+    <video muted autoplay loop>
+        <source src="../static/imgs/video_1.mp4" type="video/mp4">
+    </video>
+    <div class="principal" id="inicio">
+            <header class="cabecera">
+                <section class="flex">
+                    <div class="flex-item">
+
+                    </div>
+                    <div class="flex-item">
+                        <p>Instituto Politécnico Nacional</p>
+                        <p>Centro de Investigación en Computación</p>
+                    </div>
+                    <div class="flex-item">
+                        
+                    </div>
+                </section>
+
+                <div class="botones_idiomas">
+                    <button id= "boton_español" class="boton_español" onclick="inicio_idioma('español')" style="border: thin solid rgb(239,239,239);">Español</button>
+                    <button id= "boton_ingles" class="boton_ingles" onclick="inicio_idioma('ingles')" style="border: none">Ingles</button>
+                </div>
+
+                <script>
+                    
+                    function inicio_idioma(idioma)
+                    {
+                        if(idioma == "español")
+                        {
+                            document.getElementById("boton_español").style = "border: thin solid rgb(239,239,239);"
+                            document.getElementById("boton_ingles").style = "none"
+                            console.log("Idioma español")
+                            document.getElementById("texto_1i").textContent = "Descripción visual y estructural de glifos mayas";
+                            document.getElementById("texto_2i").textContent = "Iniciar sesión";
+                            document.getElementById("texto_3ia").textContent = "Registrarse"
+                            document.getElementById("texto_3i").textContent = "Información";
+                            document.getElementById("texto_4i").textContent = "Instrucciones";
+                            document.getElementById("texto_5i").textContent = "Desarrolladores";
+                            document.getElementById("texto_6i").textContent = "En este sitio web se busca que cualquier persona que esté interesada en el área tenga una herramienta computacional conformada por diferentes módulos para el almacenamiento, consulta y caracterización de los símbolos que componen el diccionario de glifos mayas de John Montgomery.";
+                            document.getElementById("texto_7i").textContent = "El uso de este software brinda a los investigadores una herramienta que facilita el proceso de búsqueda de los glifos y también sirve como una herramienta didáctica que apoya a los principiantes en el aprendizaje de los signos que componen la escritura maya.";
+                            document.getElementById("texto_8i").textContent = "Pestaña de base de datos";
+                            document.getElementById("texto_9i").textContent = "La información sobre los glifos se presenta de manera tabular, cada una de las filas equivale a un registro con la información completa del glifo, las columnas corresponden a un campo descriptivo que pertenece a una de las tablas que conforman la base de datos. ";
+                            document.getElementById("texto_10i").textContent = "En esta sección se pueden ordenar los datos tabulados en 3 criterios diferentes: Numero de Thomson, Traducción o Transcripción y también se permite realizar una búsqueda de un elemento en específico a través de su número de Thomson.";
+                            document.getElementById("texto_11i").textContent = "Pestaña de identificación";
+                            document.getElementById("texto_12i").textContent = "El usuario puede generar su propio grupo de características y almacenarlo, de esta forma cada vez que lo deseé podrá acceder a esta información de igual forma a través del botón de Nuevo conjunto es posible generar un nuevo usuario junto con sus atributos.";
+                            document.getElementById("texto_13i").textContent = "Para almacenar un grupo de características se debe presionar el botón de guardar, de esta manera cada que vez que se seleccione este usuario aparecerán del lado derecho todos los atributos que se guardaron. En caso de querer borrar los datos guardados es necesario presionar el botón de limpiar.";
+                            document.getElementById("texto_14i").textContent = "Pestaña búsqueda de atributos";
+                            document.getElementById("texto_15i").textContent = "Esta sección permite realizar búsquedas de datos por medio de las características del usuario, para realizar la búsqueda es necesario marcar los atributos que se van a considerar para la búsqueda, al dar en el botón de buscar datos la página se actualiza y solamente carga aquellos datos que correspondan con la búsqueda y estos atributos se muestran en la caja de conjunto de características, en caso de querer realizar otra búsqueda es necesario dar clic en el botón limpiar.";
+                            document.getElementById("texto_16i").textContent = "Contactos";
+                            document.getElementById("texto_17i").textContent = "Dr. Grigori Sidorov";
+                            document.getElementById("texto_18i").textContent = "Desarrollador de software de descripción visual estructural de glifos mayas y desarrollo de base de datos";
+                            document.getElementById("texto_19i").textContent = "Correo: grigori@cic.ipn.mx";
+                            document.getElementById("texto_20i").textContent = "Página web: https://www.cic.ipn.mx/~sidorov/";
+                            document.getElementById("texto_21i").textContent = "Desarrollador de software de descripción visual estructural de glifos mayas y desarrollo de base de datos";
+                            document.getElementById("texto_22i").textContent = "Correo: electrónicoopichardola@ipn.mx";
+                            document.getElementById("texto_23i").textContent = "Desarrollador de página web de descripción visual estructural de glifos mayas";
+                            document.getElementById("texto_24i").textContent = "Correo: dsotoo2023@cic.ipn.mx";
+                        
+                        
+                        }
+                        else if(idioma == "ingles")
+                        {
+                            document.getElementById("boton_ingles").style = "border: thin solid rgb(239,239,239);";
+                            document.getElementById("boton_español").style = "none"
+                            document.getElementById("texto_1i").textContent = "Visual and structural description of Maya glyphs";
+                            document.getElementById("texto_2i").textContent = "Login";
+                            document.getElementById("texto_3ia").textContent = "Register"
+                            document.getElementById("texto_3i").textContent = "Information";
+                            document.getElementById("texto_4i").textContent = "Instructions";
+                            document.getElementById("texto_5i").textContent = "Developers";
+                            document.getElementById("texto_6i").textContent = "This website is a computational tool made up of different modules for the storage, consultation and characterization of the symbols that make up John Montgomery's dictionary of Mayan glyphs.";
+                            document.getElementById("texto_7i").textContent = "This software is a tool for researchers since it facilitates the glyph search process and also serves as a didactic tool that supports beginners in learning the signs that make up the Mayan script.";
+                            document.getElementById("texto_8i").textContent = "Database section";
+                            document.getElementById("texto_9i").textContent = "The information about the glyphs is presented in a tabular way, each one of the rows is equivalent to a record with the complete information of the glyph, the columns correspond to a descriptive field that belongs to one of the tables that make up the database.";
+                            document.getElementById("texto_10i").textContent= "In this section, the tabulated data can be sorted by 3 different criteria: Thomson number, Translation or Transcription and it is also possible to search for a specific element through its Thomson number.";
+                            document.getElementById("texto_11i").textContent= "Search by attributes section"
+                            document.getElementById("texto_12i").textContent= ""
+                            document.getElementById("texto_13i").textContent= ""
+                            document.getElementById("texto_14i").textContent= "Search by attributes section"
+                            document.getElementById("texto_15i").textContent= "This section allows data searches through the user's characteristics, to perform the search it is necessary to mark the attributes that are going to be considered for the search, when clicking on the search data button the page is updated and only loads that data that correspond to the search and these attributes are shown in the set of characteristics box, in case you want to carry out another search it is necessary to click on the clean button."
+                            document.getElementById("texto_16i").textContent= "Contacts"
+                            document.getElementById("texto_17i").textContent= "Dr. Grigori Sidorov"
+                            document.getElementById("texto_18i").textContent= "Mayan glyph structural visual description software developer and database development"
+                            document.getElementById("texto_19i").textContent= "Email: grigori@cic.ipn.mx"
+                            document.getElementById("texto_20i").textContent= "Web page: https://www.cic.ipn.mx/~sidorov/"
+                            document.getElementById("texto_21i").textContent= "Mayan glyph structural visual description software developer and database development"
+                            document.getElementById("texto_22i").textContent= "Email: electrónicoopichardola@ipn.mx"
+                            document.getElementById("texto_23i").textContent= "Mayan Glyph Structural Visual Description Website Developer"
+                            document.getElementById("texto_24i").textContent= "Email: dsotoo2023@cic.ipn.mx"
+
+                            console.log("Idioma ingles")
+                        }
+                    }
+
+                </script>
+            </header>
+
+            <div class="titulo">
+                <h3 id="texto_1i" class="titulo1">Descripción visual y estructural de glifos mayas</h3>
+                <!--entrar_sistema();-->
+                <button id="texto_2i" class="texto_boton" onclick="inicio_sesion();">Iniciar sesión</button>
+                <button id="texto_3ia" class="texto_boton" onclick="registrarse();">Registrarse</button>
+                <button id="texto_3ia" class="texto_boton" onclick="llevar_a_index_invitado();">Invitado</button>
+            </div>
+
+            <div class="mensaje">
+            </div>
+
+            <div class="conjunto_botones">
+                    <a onclick="animacion_informacion()" class = "item boton_informacion" href="#informacion"><p id="texto_3i">Información</p></a>
+                    <a class = "item" href="#instrucciones"><p id="texto_4i">Instrucciones</p></a>
+                    <a class = "item" href="#desarrolladores"><p id="texto_5i">Desarrolladores</p></a>
+            </div>
+    </div>
+
+    <a href = "#inicio" class="botones_subir_bajas" id="inicio" style=" display:flex; margin:auto; align-items: center; justify-content:center; text-decoration: none;"> 
+        <span class="material-symbols-outlined">
+            arrow_upward
+            </span>
+    </a>
+    
+    <!-- CAJA CONTENEDORA DE INICIO DE SESION-->
+
+    <div id="informacion" class="informacion_1">
+        <div id="imagen_1" class="img1">
+            <img src="../static/imgs/glifos_maya_1.webp" alt="Glifos mayas">
+        </div>
+
+       <div id="texto_1" class="texto_1">
+            <p id="texto_6i">En este sitio web se busca que cualquier persona que esté interesada en el área tenga una herramienta computacional conformada por diferentes módulos para el almacenamiento, consulta y caracterización de los símbolos que componen el diccionario de glifos mayas de John Montgomery. 
+            </p>
+       </div>
+
+       <div id="imagen_2" class="img2">
+            <img src="../static/imgs/interfaz.png" alt="Interfaz de navegación">
+       </div>
+       <div id="texto_2" class="texto_2">
+            <p id="texto_7i">El uso de este software brinda a los investigadores una herramienta que facilita el proceso de búsqueda de los glifos y también sirve como una herramienta didáctica que apoya a los principiantes en el aprendizaje de los signos que componen la escritura maya. </p>
+       </div>
+    </div>
+
+    <div id="instrucciones" class="instrucciones_1">
+        <div class="caja_principal_instrucciones">
+            <div class="caja-img1">
+                <img class="ci-img-1" id="i-img-1" src="../static/imgs/img_base_de_datos.png" alt="Base de datos">
+            </div>
+
+            <div class="texto-i1">
+                <div class="texto-uni-1">
+                    <p id="texto_8i" class="tu1"><b>Pestaña de base de datos</b></p>
+                    <p id="texto_9i">La información sobre los glifos se presenta de manera tabular, cada una de las filas equivale a un registro con la información completa del glifo, las columnas corresponden a un campo descriptivo que pertenece a una de las tablas que conforman la base de datos. </p>
+                    <p id="texto_10i">En esta sección se pueden ordenar los datos tabulados en 3 criterios diferentes: Numero de Thomson, Traducción o Transcripción y también se permite realizar una búsqueda de un elemento en específico a través de su número de Thomson. </p>
+                </div>
+            </div>
+
+            <!--<div class="caja-img2">
+                <img class="ci-img-2" id="i-img-2" src="../static/imgs/img_identificacion.png" alt="Identificación">
+            </div>
+
+            <div class="texto-i2">
+                <div class="texto-uni-1">
+                    <p id="texto_11i" class="tu1"><b>Pestaña de identificación</b></p>
+                    <p id="texto_12i">El usuario puede generar su propio grupo de características y almacenarlo, de esta forma cada vez que lo deseé podrá acceder a esta información de igual forma a través del botón de Nuevo conjunto es posible generar un nuevo usuario junto con sus atributos. </p>
+                    <p id="texto_13i">Para almacenar un grupo de características se debe presionar el botón de guardar, de esta manera cada que vez que se seleccione este usuario aparecerán del lado derecho todos los atributos que se guardaron. En caso de querer borrar los datos guardados es necesario presionar el botón de limpiar. </p>
+                </div>
+            </div>-->
+
+            <div class="caja-img3">
+                <img class="ci-img-3" id="i-img-3" src="../static/imgs/img_busqueda_de_atributos.png" alt="Busqueda de atributos">
+            </div>
+
+            <div class="texto-i3">
+                <div class="texto-uni-1">
+                    <p id="texto_14i" class="tu1"><b>Pestaña búsqueda de atributos</b></p>
+                    <p id="texto_15i">Esta sección permite realizar búsquedas de datos por medio de las características del usuario, para realizar la búsqueda es necesario marcar los atributos que se van a considerar para la búsqueda, al dar en el botón de buscar datos la página se actualiza y solamente carga aquellos datos que correspondan con la búsqueda y estos atributos se muestran en la caja de conjunto de características, en caso de querer realizar otra búsqueda es necesario dar clic en el botón limpiar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="desarrolladores" class="desarrolladores_1">
+        <div class="caja_principal_0">
+             <p id="texto_16i" class="cabecera_contacto">Contactos<p>
+        </div>
+        <!--Contacto Dr. Grigori-->
+        <div class="caja_principal_1">
+            <div class="caja_interior_1 textos">
+                <p id="texto_17i">Dr. Grigori Sidorov</p>
+                <p id="texto_18i">Desarrollador de software de descripción visual estructural de glifos mayas y desarrollo de base de datos</p>
+                <a id="texto_19i" class="enlaces_contactos" href="mailto:sidorov@cic.ipn.mx">Correo: sidorov@cic.ipn.mx</a><br>
+                <a id="texto_20i" class="enlaces_contactos" href="https://www.cic.ipn.mx/~sidorov/">Página web: https://www.cic.ipn.mx/~sidorov/</a>
+            </div>
+            <div class="caja_exterior_1">
+        
+            </div>
+        </div>
+        <!--Contacto Dra. Obdulia-->
+        <div class="caja_principal_2">
+            <div class="caja_interior_2 textos">
+                <p>Dra. Obdulia Pichardo-Lagunas</p>
+                <p id="texto_21i">Desarrollador de software de descripción visual estructural de glifos mayas y desarrollo de base de datos</p>
+                <a id="texto_22i" class="enlaces_contactos" href="mailto:electrónicoopichardola@ipn.mx">Correo: electrónicoopichardola@ipn.mx</a>
+            </div>
+            <div class="caja_exterior_2">
+            </div>
+        </div>
+        <!-- Contacto David Soto -->
+        <div class="caja_principal_3">
+            <div class="caja_interior_3 textos">
+                <p>Ing. David Soto Osorio</p>
+                <p id="texto_23i">Desarrollador de página web de descripción visual estructural de glifos mayas</p>
+                <a id="texto_24i" class="enlaces_contactos" href="mailto:dsotoo2023@cic.ipn.mx">Correo: dsotoo2023@cic.ipn.mx</a>
+            </div>
+            <div class="caja_exterior_3">
+
+            </div>
+        </div>
+    </div>
+
+<!-- Default Statcounter code for Proyecto Glifos mayas
+http://148.204.64.250:81/ -->
+<script type="text/javascript">
+var sc_project=12895225; 
+var sc_invisible=0; 
+var sc_security="663c51bd"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<div class="statcounter" style="z-index:1000000000;" ><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/12895225/0/663c51bd/0/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div>
+<!-- End of Statcounter Code -->
+
+    <script>
+        var tamaño_pantalla = screen.width;
+        animacion_informacion();
+        console.log(tamaño_pantalla.toString());
+        window.onload = function() {
+            var contenedor = document.getElementById('contenedor-carga');
+            contenedor.style.visibility = 'hidden';
+            contenedor.style.opacity = '0';
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+            console.log(result);
+        }
+        function llevar_a_index_invitado()
+        {
+            {% set orden_datos = "thomson" %}
+            {% set datos_filtro = "1" %}
+            {% set datos_busqueda = "default" %}
+            {% set datos_atributes = "default" %}
+            {% set dato_usuario = "default" %}
+            // Construye la URL con parámetros
+            var nuevaUrl = "{{ url_for('index_invitado', orden_datos=orden_datos, datos_filtro=datos_filtro,datos_busqueda=datos_busqueda,datos_atributes=datos_atributes,dato_usuario=dato_usuario) }}";
+            window.location.href = nuevaUrl;
+        }
+        function entrar_sistema(){
+            var tamaño_pantalla = screen.width;
+            console.log(tamaño_pantalla.toString());
+            enlace = window.location.href
+
+
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+            console.log(result);
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result +"/"
+
+            if(tamaño_pantalla>=500)
+            {
+                enlace_pc = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result + "/index/thomson/1/default/default/default/#1"
+                console.log(enlace_pc)
+                window.location.href=enlace_pc;
+            }
+            else if(tamaño_pantalla<500)
+            {
+                //print("Prueba de cambio de enlace")
+                //enlace  = window.location.href
+                enlace_cel = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result+ "/index_movil/thomson/1/default/default/default/#1"
+                console.log(enlace_cel)
+                window.location.href=enlace_cel;
+            }
+        }
+
+        function inicio_sesion()
+        {   
+            var tamaño_pantalla = screen.width;
+            console.log(tamaño_pantalla.toString());
+            enlace = window.location.href
+
+
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+            console.log(result);
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result +"/iniciar_sesion/"
+            //alert(enlace_nuevo)
+            window.location.href=enlace_nuevo;
+        }
+
+        function registrarse()
+        {
+            var tamaño_pantalla = screen.width;
+            console.log(tamaño_pantalla.toString());
+            enlace = window.location.href
+
+
+            enlace_actual = window.location.href
+            enlace_actual_1 = window.location.hostname
+            enlace_actual_2 = window.location.pathname
+            enlace_actual_3 = window.location.protocol
+
+            console.log(enlace_actual.toString())
+            console.log(enlace_actual_1.toString())
+            console.log(enlace_actual_2.toString())
+            console.log(enlace_actual_3.toString())
+
+            var url = new URL(enlace_actual);
+            var result = url.port;
+            console.log(result);
+
+            enlace_nuevo = enlace_actual_3 + "//" + enlace_actual_1 + ":" + result +"/registrarse/" 
+            //alert(enlace_nuevo)
+            window.location.href=enlace_nuevo;
+        }
+
+        function animacion_informacion()
+        {
+            document.getElementById("imagen_1").style.animationName="seccion_informacion";
+            document.getElementById("imagen_1").style.animationDuration="1s";
+            document.getElementById("imagen_1").style.animationFillMode="forwards";
+
+            document.getElementById("imagen_2").style.animationName="seccion_informacion";
+            document.getElementById("imagen_2").style.animationDuration="1s";
+            document.getElementById("imagen_2").style.animationFillMode="forwards";
+
+            
+            document.getElementById("texto_1").style.animationName="seccion_informacion";
+            document.getElementById("texto_1").style.animationDuration="1s";
+            document.getElementById("texto_1").style.animationFillMode="forwards";
+
+            
+            document.getElementById("texto_2").style.animationName="seccion_informacion";
+            document.getElementById("texto_2").style.animationDuration="1s";
+            document.getElementById("texto_2").style.animationFillMode="forwards";
+        }
+
+        function desaparecer()
+        {
+            document.getElementById("imagen_1").style.animationName="desaparecer";
+            document.getElementById("imagen_1").style.animationDuration="3s";
+            document.getElementById("imagen_1").style.animationFillMode="forwards";
+
+            document.getElementById("imagen_2").style.animationName="desaparecer";
+            document.getElementById("imagen_2").style.animationDuration="3s";
+            document.getElementById("imagen_2").style.animationFillMode="forwards";
+
+            
+            document.getElementById("texto_1").style.animationName="desaparecer";
+            document.getElementById("texto_1").style.animationDuration="3s";
+            document.getElementById("texto_1").style.animationFillMode="forwards";
+
+            
+            document.getElementById("texto_2").style.animationName="desaparecer";
+            document.getElementById("texto_2").style.animationDuration="3s";
+            document.getElementById("texto_2").style.animationFillMode="forwards";
+        }
+
+    </script>
+</body>
+
+</html>

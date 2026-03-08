@@ -1,0 +1,329 @@
+body {
+font-family: Arial, sans-serif;
+background-color: rgb(10,50,67);
+display: flex;
+flex-direction: column;
+align-items: center;
+top:50vh;
+}
+
+h2{
+text-align: center;
+}
+
+.container{
+width: 50%;
+height: 40vh;
+color: rgb(10,50,67);
+background-color: white;
+display: flex;
+flex-direction: column;
+border-radius: 10px;
+position: absolute;
+top:30vh;
+border: 3px solid rgb(10,50,67);
+padding:30px;
+border-color:red;
+}
+
+label{
+display: block;
+width: 100%;
+text-align: center;
+background-color: white;
+
+}
+
+.cajas_texto{
+display: block;
+width: 80%;
+text-align: center;
+background-color: white;
+margin-left: 10%;
+/*margin-right: 10%;*/
+border: 2px solid rgb(10,50,67);
+border-radius: 4px;
+padding-top: 10px;
+padding-bottom: 10px;
+font-size: medium;
+}
+
+input[type="submit"]
+{
+background-color: rgb(10,50,67);
+color: #fff;
+padding: 10px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+position: absolute;
+width: 60%;
+text-align: center;
+left:20%;
+right: 20%;
+top:77%;
+}
+.encabezado
+{
+color:white;
+font-family:'Times New Roman', Times, serif ;
+font-size: 2vw;
+display: block;
+font-weight: 400;
+text-align: center;
+}
+.boton-cabecera{
+color:black;
+display:block;
+position:absolute;
+left:0;
+z-index: 11;
+animation-name: animacion-encabezado;
+animation-duration:1.5s;
+animation-fill-mode: forwards;
+background-color:rgb(10,49,67);
+height:6vh;
+width:10vw;
+}
+
+.boton-cabecera:hover{
+border-color: white;
+transition:0.5s;
+}
+.material-symbols-outlined{
+color:white;
+background-color:rgb(10,49,67);
+}
+
+.material-symbols-outlined:hover{
+border-color: white;
+cursor: pointer;
+}
+.submit_boton:hover
+{
+opacity:0.9;
+transition:0.5s;
+}
+.anuncio
+{
+text-align:left;
+color:red;
+margin:0;
+margin-bottom:20px;
+}
+.texto_letrero
+{
+font-weight: bold;
+
+}
+
+.español
+    {
+        width: 50%;
+        height: 5vh;
+        border:solid thin white;
+        color:white;
+        background-color:rgb(10,49,67);
+        border-radius: 5px 0px 0px 5px;
+    }
+    .ingles
+    {
+        width: 50%;
+        height: 5vh;
+        border: solid thin white;
+        color: white;
+        background-color:rgb(10,49,67);
+        border-radius: 0px 5px 5px 0px;
+    }
+    .español:hover
+    {
+        
+        opacity: 0.5;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .ingles:hover
+    {
+        
+        opacity: 0.5;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .idiomas
+    {
+    display:block;
+    width: 20%;
+    height: 5vh;
+    right: 0;
+    top:0;
+    position:absolute;
+    display:flex;
+    flex-direction: row;
+    }
+
+@media only screen and (max-width: 768px) and (orientation: portrait) 
+{
+    
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(10,50,67);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top:50vh;
+    }
+    
+    h2{
+    text-align: center;
+    }
+    
+    .container{
+    width: 80%;
+    height: 55vh;
+    color: rgb(10,50,67);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    position: absolute;
+    top:20vh;
+    border: 3px solid rgb(10,50,67);
+    padding:30px;
+    border-color:red;
+    }
+    
+    label{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    
+    }
+    
+    .cajas_texto{
+    display: block;
+    width: 80%;
+    text-align: center;
+    background-color: white;
+    margin-left: 10%;
+    /*margin-right: 10%;*/
+    border: 2px solid rgb(10,50,67);
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: medium;
+    }
+    
+    input[type="submit"]
+    {
+    background-color: rgb(10,50,67);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    width: 60%;
+    text-align: center;
+    left:20%;
+    right: 20%;
+    top:77%;
+    }
+    .encabezado
+    {
+    color:white;
+    font-family:'Times New Roman', Times, serif ;
+    font-size: 2vh;
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    }
+    .boton-cabecera{
+    color:black;
+    display:block;
+    position:absolute;
+    left:0;
+    z-index: 11;
+    animation-name: animacion-encabezado;
+    animation-duration:1.5s;
+    animation-fill-mode: forwards;
+    background-color:rgb(10,49,67);
+    height:6vh;
+    width:10vw;
+    }
+    
+    .boton-cabecera:hover{
+    border-color: white;
+    transition:0.5s;
+    }
+    .material-symbols-outlined{
+    color:white;
+    background-color:rgb(10,49,67);
+    }
+    
+    .material-symbols-outlined:hover{
+    border-color: white;
+    cursor: pointer;
+    }
+    .submit_boton:hover
+    {
+    opacity:0.9;
+    transition:0.5s;
+    }
+    .anuncio
+    {
+    text-align:left;
+    color:red;
+    margin:0;
+    margin-bottom:20px;
+    }
+    .texto_letrero
+    {
+    font-weight: bold;
+    
+    }
+
+    .español
+    {
+        width: 50%;
+        height: 5vh;
+        border:solid thin white;
+        color:white;
+        background-color:rgb(10,49,67);
+        border-radius: 5px 0px 0px 5px;
+    }
+    .ingles
+    {
+        width: 50%;
+        height: 5vh;
+        border: solid thin white;
+        color: white;
+        background-color:rgb(10,49,67);
+        border-radius: 0px 5px 5px 0px;
+    }
+    .español:hover
+    {
+        
+        opacity: 0.5;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .ingles:hover
+    {
+        
+        opacity: 0.5;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .idiomas
+{
+    display:block;
+    width: 60%;
+    height: 5vh;
+    right: 20vw;
+    top:95vh;
+    position:absolute;
+    display:flex;
+    flex-direction: row;
+}
+}

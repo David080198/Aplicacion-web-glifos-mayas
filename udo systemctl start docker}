@@ -1,0 +1,17 @@
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: inactive (dead) since Fri 2025-08-22 16:41:12 UTC; 2 months 21 days ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1404 (code=exited, status=0/SUCCESS)
+
+Aug 22 16:39:58 servubuntu dockerd[1404]: time="2025-08-22T16:39:58.932217525Z" level=info msg="ignoring event" container=e94af18d1ea258c431064dc27a86c1c01de60c6e2ae94144474645a313b554ef module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Aug 22 16:39:58 servubuntu dockerd[1404]: time="2025-08-22T16:39:58.952502077Z" level=warning msg="ShouldRestart failed, container will not be restarted" container=e94af18d1ea258c431064dc27a86c1c01de60c6e2ae94144474645a313b554ef daemonShuttingDown=false error="restart canceled" execDuration=12m15.40946564s exitStatus="{0 2025-08-22 16:39:58.915369442 +0000 UTC}" hasBeenManuallyStopped=true restartCount=0
+Aug 22 16:40:07 servubuntu dockerd[1404]: time="2025-08-22T16:40:07.224694306Z" level=info msg="ignoring event" container=aabd0effeef34d429e516b7e8dba3a8670accacf4802957770985e3a05570ad9 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Aug 22 16:40:07 servubuntu dockerd[1404]: time="2025-08-22T16:40:07.245772127Z" level=warning msg="ShouldRestart failed, container will not be restarted" container=aabd0effeef34d429e516b7e8dba3a8670accacf4802957770985e3a05570ad9 daemonShuttingDown=false error="restart canceled" execDuration=12m22.319730955s exitStatus="{0 2025-08-22 16:40:07.20764389 +0000 UTC}" hasBeenManuallyStopped=true restartCount=0
+Aug 22 16:41:12 servubuntu systemd[1]: Stopping Docker Application Container Engine...
+Aug 22 16:41:12 servubuntu dockerd[1404]: time="2025-08-22T16:41:12.679191356Z" level=info msg="Processing signal 'terminated'"
+Aug 22 16:41:12 servubuntu dockerd[1404]: time="2025-08-22T16:41:12.681248018Z" level=info msg="stopping event stream following graceful shutdown" error="<nil>" module=libcontainerd namespace=moby
+Aug 22 16:41:12 servubuntu dockerd[1404]: time="2025-08-22T16:41:12.682147575Z" level=info msg="Daemon shutdown complete"
+Aug 22 16:41:12 servubuntu systemd[1]: docker.service: Succeeded.
+Aug 22 16:41:12 servubuntu systemd[1]: Stopped Docker Application Container Engine.
