@@ -1,10 +1,17 @@
 version: "3.8"
+
+networks:
+  glifos_network:
+    driver: bridge
+
 services:
   app:
     build:
       context: app
     ports:
       - "5500"
+    networks:
+      - glifos_network
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - SESSION_TYPE=${SESSION_TYPE}
@@ -21,32 +28,38 @@ services:
       - MAIL_USE_SSL=${MAIL_USE_SSL}
     env_file:
       - .env
+    depends_on:
+      - db
 
   db:
-    container_name: db
     restart: always
     image: mysql:5.7
+    networks:
+      - glifos_network
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB}
     env_file:
       - .env
     ports:
       - "3308:3306"
     volumes:
       - ./db:/docker-entrypoint-initdb.d:rw
-      - ./db_data15:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
+    networks:
+      - glifos_network
     expose:
       - 80
     ports:
       - "82:80"
     environment:
       - PMA_HOST=db
-      - PMA_USER=${MYSQL_USER}
-      - PMA_PASSWORD=${MYSQL_PASSWORD}
+      - PMA_USER=root
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
     env_file:
       - .env
     depends_on:
@@ -54,9 +67,14 @@ services:
 
   nginx:
     image: nginx:latest
+    networks:
+      - glifos_network
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - app
     ports:
       - "81:81"
+
+volumes:
+  db_data:
