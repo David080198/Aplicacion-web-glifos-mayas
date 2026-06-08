@@ -54,7 +54,7 @@ services:
       - "5433:5432"
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-      - pg_data_v2:/var/lib/postgresql/data
+      - pg_data_v3:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
@@ -72,7 +72,7 @@ services:
     ports:
       - "82:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@glifosmayas.local}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: "False"
     env_file:
@@ -92,4 +92,4 @@ services:
       - "81:81"
 
 volumes:
-  pg_data_v2:
+  pg_data_v3:
