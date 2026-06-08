@@ -3,6 +3,11 @@
 
 # Datos de base de datos
 db_data*/
+pg_data/
+
+# Backups de migracion
+db/*.bak
+db/init.mysql.sql.bak
 
 # Python
 __pycache__/

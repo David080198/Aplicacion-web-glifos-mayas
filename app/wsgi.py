@@ -1,13 +1,15 @@
 from flask import Flask
-import mysql.connector
 from flask import render_template
 from flask import request
-from flask_mysqldb import MySQL
 from flask import Flask, request, render_template, session, redirect, url_for
 from flask_session import Session
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import bcrypt
+
+# Capa de compatibilidad: provee la misma API que flask_mysqldb
+# pero usando psycopg2 (PostgreSQL) por debajo.
+from db_compat import PostgresCompat
 
 
 from collections import Counter
@@ -25,27 +27,32 @@ app = Flask(__name__)
 
 
 print("Si estoy entrando",flush=True)
-print(os.environ["SECRET_KEY"],flush=True)
-print(os.environ["SESSION_TYPE"],flush=True)
-print(os.environ.get("MYSQL_USER", "root"),flush=True)
-print("***" if os.environ.get("MYSQL_PASSWORD") or os.environ.get("MYSQL_ROOT_PASSWORD") else "NO PASSWORD",flush=True)
-print(os.environ.get("MYSQL_HOST", "db"),flush=True)
-print(os.environ.get("MYSQL_PORT", "3306"),flush=True)
+print(os.environ.get("SECRET_KEY", "")[:8] + "...",flush=True)
+print(os.environ.get("SESSION_TYPE", "filesystem"),flush=True)
+print(os.environ.get("POSTGRES_USER") or os.environ.get("MYSQL_USER", "postgres"),flush=True)
+print("***" if os.environ.get("POSTGRES_PASSWORD") or os.environ.get("MYSQL_PASSWORD") else "NO PASSWORD",flush=True)
+print(os.environ.get("POSTGRES_HOST") or os.environ.get("MYSQL_HOST", "db"),flush=True)
+print(os.environ.get("POSTGRES_PORT") or os.environ.get("MYSQL_PORT", "5432"),flush=True)
 
 
-app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
-app.config['SESSION_TYPE'] = os.environ["SESSION_TYPE"]
-app.config['MYSQL_USER'] = os.environ.get("MYSQL_USER", "root")
-# Usar MYSQL_PASSWORD si existe, sino usar MYSQL_ROOT_PASSWORD como fallback
-app.config['MYSQL_PASSWORD'] = os.environ.get("MYSQL_PASSWORD") or os.environ.get("MYSQL_ROOT_PASSWORD", "")
-app.config['MYSQL_HOST'] = os.environ.get("MYSQL_HOST", "db")
-app.config['MYSQL_PORT'] = int(os.environ.get("MYSQL_PORT", "3306"))
-app.config['MYSQL_DB'] =  os.environ.get("MYSQL_DB", "base_grigori")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "change-me-in-production")
+app.config['SESSION_TYPE'] = os.environ.get("SESSION_TYPE", "filesystem")
 
-app.config['MAIL_SERVER'] = os.environ["MAIL_SERVER"]
-app.config['MAIL_PORT'] = int(os.environ["MAIL_PORT"])
-app.config['MAIL_USERNAME'] = os.environ["MAIL_USERNAME"]
-app.config['MAIL_PASSWORD'] = os.environ["MAIL_PASSWORD"]
+# Configuracion PostgreSQL (acepta tanto variables POSTGRES_* como MYSQL_* heredadas)
+app.config['POSTGRES_USER'] = os.environ.get("POSTGRES_USER") or os.environ.get("MYSQL_USER", "postgres")
+app.config['POSTGRES_PASSWORD'] = (
+    os.environ.get("POSTGRES_PASSWORD")
+    or os.environ.get("MYSQL_PASSWORD")
+    or os.environ.get("MYSQL_ROOT_PASSWORD", "")
+)
+app.config['POSTGRES_HOST'] = os.environ.get("POSTGRES_HOST") or os.environ.get("MYSQL_HOST", "db")
+app.config['POSTGRES_PORT'] = int(os.environ.get("POSTGRES_PORT") or os.environ.get("MYSQL_PORT", "5432"))
+app.config['POSTGRES_DB'] = os.environ.get("POSTGRES_DB") or os.environ.get("MYSQL_DB", "base_grigori")
+
+app.config['MAIL_SERVER'] = os.environ.get("MAIL_SERVER", "smtp.gmail.com")
+app.config['MAIL_PORT'] = int(os.environ.get("MAIL_PORT", "465"))
+app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME", "")
+app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD", "")
 # Corregir configuración de email
 app.config['MAIL_USE_TLS'] = os.environ.get("MAIL_USE_TLS", "True") == "True"
 app.config['MAIL_USE_SSL'] = os.environ.get("MAIL_USE_SSL", "False") == "True"
@@ -60,7 +67,9 @@ mail = Mail(app)
 Session(app)
 
 
-mysql = MySQL(app)
+# Variable `mysql` mantenida por compatibilidad con todas las llamadas existentes.
+# Internamente usa PostgreSQL (psycopg2) y traduce backticks -> comillas dobles.
+mysql = PostgresCompat(app)
 
 def todos_los_datos_2(cursor,orden_datos,datos_busqueda,datos_atributes):
     if datos_atributes != "default" and datos_busqueda == "default":

@@ -5,18 +5,16 @@ Flask==2.3.1
 Flask-Session
 flask_mail
 yagmail
-Flask-MySQLdb==1.0.1
 importlib-metadata==6.6.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.2
-mysqlclient==2.1.1
 Pillow==9.5.0
 Werkzeug==2.3.2
 zipp==3.15.0
-mysql-connector-python==8.0.33
 gunicorn
 python-dotenv
 bcrypt==4.0.1
-pymysql
+# PostgreSQL
+psycopg2-binary==2.9.9
 

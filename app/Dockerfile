@@ -1,20 +1,38 @@
-# Use an official Python runtime as an image
-FROM python:3.9.5
+# Imagen base ligera de Python
+FROM python:3.11-slim
 
-# The EXPOSE instruction indicates the ports on which a container
+# Variables de entorno para mejor experiencia en contenedor
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Dependencias del sistema para psycopg2 y compilacion
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        gcc \
+        libpq-dev \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Puerto expuesto por gunicorn
 EXPOSE 5500
 
-# Sets the working directory for following COPY and CMD instructions
-# Notice we haven’t created a directory by this name - this instruction
-# creates a directory with this name if it doesn’t exist
+# Directorio de trabajo
 WORKDIR /app
 
-COPY requirements.txt /app
-RUN python -m pip install --upgrade pip
-RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org --no-cache-dir -r requirements.txt
-CMD ["python","-u","main.py"]
-# Run app.py when the container launches
+# Instalar dependencias Python primero (mejor cache de Docker)
+COPY requirements.txt /app/
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copiar el resto de la app
 COPY static /app/static
 COPY templates /app/templates
-COPY wsgi.py /app
-CMD gunicorn --bind 0.0.0.0:5500 wsgi:app
+COPY wsgi.py /app/
+
+# Healthcheck simple
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -fsS http://localhost:5500/ || exit 1
+
+# Comando por defecto: gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5500", "--workers", "2", "--timeout", "120", "wsgi:app"]
