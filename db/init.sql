@@ -9,30 +9,30 @@ SET client_min_messages = warning;
 CREATE TABLE "atributos_guardados" (
   "id" INTEGER NOT NULL,
   "id_usuario" INTEGER NOT NULL,
-  "atributo" varchar(60) NOT NULL
+  "atributo" TEXT NOT NULL
 );
 
 CREATE TABLE "register_users" (
-  "nombre" varchar(100) DEFAULT NULL,
-  "apellidos" varchar(100) DEFAULT NULL,
-  "correo" varchar(100) DEFAULT NULL,
-  "universidad" varchar(100) DEFAULT NULL,
-  "password" varchar(1000) DEFAULT NULL,
-  "salt" varchar(1000) DEFAULT NULL,
-  "recuperacion" varchar(1000) DEFAULT NULL
+  "nombre" TEXT DEFAULT NULL,
+  "apellidos" TEXT DEFAULT NULL,
+  "correo" TEXT DEFAULT NULL,
+  "universidad" TEXT DEFAULT NULL,
+  "password" TEXT DEFAULT NULL,
+  "salt" TEXT DEFAULT NULL,
+  "recuperacion" TEXT DEFAULT NULL
 );
 
 CREATE TABLE "atributos_personales" (
-  "usuario" varchar(100) DEFAULT NULL,
-  "nombre_atributo" varchar(100) DEFAULT NULL,
-  "id" varchar(100) DEFAULT NULL,
-  "conjuntos" varchar(1000) DEFAULT NULL
+  "usuario" TEXT DEFAULT NULL,
+  "nombre_atributo" TEXT DEFAULT NULL,
+  "id" TEXT DEFAULT NULL,
+  "conjuntos" TEXT DEFAULT NULL
 );
 
 CREATE TABLE "atributos_personales_por_atributos" (
-  "usuario" varchar(100) DEFAULT NULL,
-  "nombre_atributo" varchar(100) DEFAULT NULL,
-  "glifo_id" varchar(1000) DEFAULT NULL
+  "usuario" TEXT DEFAULT NULL,
+  "nombre_atributo" TEXT DEFAULT NULL,
+  "glifo_id" TEXT DEFAULT NULL
 );
 
 --
@@ -52,7 +52,7 @@ INSERT INTO "atributos_guardados" ("id", "id_usuario", "atributo") VALUES
 CREATE TABLE "t_attributes" (
   "id_attribute" SERIAL,
   "id_usuario" INTEGER NOT NULL,
-  "attribute" varchar(60) NOT NULL
+  "attribute" TEXT NOT NULL
 );
 
 --
@@ -3553,11 +3553,11 @@ INSERT INTO "t_distinction" ("id_distinction", "id_usuario", "id_attribute", "id
 
 CREATE TABLE "t_general" (
   "num" SERIAL,
-  "montgomery" varchar(255) DEFAULT NULL,
-  "th_num" varchar(100) DEFAULT NULL,
-  "des_refo" varchar(255) DEFAULT NULL,
-  "des_traduccion" varchar(255) DEFAULT NULL,
-  "des_transcripcion" varchar(100) DEFAULT NULL,
+  "montgomery" TEXT DEFAULT NULL,
+  "th_num" TEXT DEFAULT NULL,
+  "des_refo" TEXT DEFAULT NULL,
+  "des_traduccion" TEXT DEFAULT NULL,
+  "des_transcripcion" TEXT DEFAULT NULL,
   "id_glifo" INTEGER DEFAULT NULL
 );
 
@@ -4778,11 +4778,11 @@ INSERT INTO "t_general" ("num", "montgomery", "th_num", "des_refo", "des_traducc
 
 CREATE TABLE "t_general_busqueda" (
   "num" SERIAL,
-  "montgomery" varchar(255) DEFAULT NULL,
-  "th_num" varchar(100) DEFAULT NULL,
-  "des_refo" varchar(255) DEFAULT NULL,
-  "des_traduccion" varchar(255) DEFAULT NULL,
-  "des_transcripcion" varchar(100) DEFAULT NULL,
+  "montgomery" TEXT DEFAULT NULL,
+  "th_num" TEXT DEFAULT NULL,
+  "des_refo" TEXT DEFAULT NULL,
+  "des_traduccion" TEXT DEFAULT NULL,
+  "des_transcripcion" TEXT DEFAULT NULL,
   "id_glifo" INTEGER DEFAULT NULL
 );
 
@@ -4816,11 +4816,11 @@ INSERT INTO "t_general_busqueda" ("num", "montgomery", "th_num", "des_refo", "de
 
 CREATE TABLE "t_general_thomson_number" (
   "num" SERIAL,
-  "montgomery" varchar(255) DEFAULT NULL,
-  "th_num" varchar(100) DEFAULT NULL,
-  "des_refo" varchar(255) DEFAULT NULL,
-  "des_traduccion" varchar(255) DEFAULT NULL,
-  "des_transcripcion" varchar(100) DEFAULT NULL,
+  "montgomery" TEXT DEFAULT NULL,
+  "th_num" TEXT DEFAULT NULL,
+  "des_refo" TEXT DEFAULT NULL,
+  "des_traduccion" TEXT DEFAULT NULL,
+  "des_transcripcion" TEXT DEFAULT NULL,
   "id_glifo" INTEGER DEFAULT NULL
 );
 
@@ -6041,11 +6041,11 @@ INSERT INTO "t_general_thomson_number" ("num", "montgomery", "th_num", "des_refo
 
 CREATE TABLE "t_general_transcription" (
   "num" SERIAL,
-  "montgomery" varchar(255) DEFAULT NULL,
-  "th_num" varchar(100) DEFAULT NULL,
-  "des_refo" varchar(255) DEFAULT NULL,
-  "des_traduccion" varchar(255) DEFAULT NULL,
-  "des_transcripcion" varchar(100) DEFAULT NULL,
+  "montgomery" TEXT DEFAULT NULL,
+  "th_num" TEXT DEFAULT NULL,
+  "des_refo" TEXT DEFAULT NULL,
+  "des_traduccion" TEXT DEFAULT NULL,
+  "des_transcripcion" TEXT DEFAULT NULL,
   "id_glifo" INTEGER DEFAULT NULL
 );
 
@@ -7266,11 +7266,11 @@ INSERT INTO "t_general_transcription" ("num", "montgomery", "th_num", "des_refo"
 
 CREATE TABLE "t_general_traslation" (
   "num" SERIAL,
-  "montgomery" varchar(255) DEFAULT NULL,
-  "th_num" varchar(100) DEFAULT NULL,
-  "des_refo" varchar(255) DEFAULT NULL,
-  "des_traduccion" varchar(255) DEFAULT NULL,
-  "des_transcripcion" varchar(100) DEFAULT NULL,
+  "montgomery" TEXT DEFAULT NULL,
+  "th_num" TEXT DEFAULT NULL,
+  "des_refo" TEXT DEFAULT NULL,
+  "des_traduccion" TEXT DEFAULT NULL,
+  "des_transcripcion" TEXT DEFAULT NULL,
   "id_glifo" INTEGER DEFAULT NULL
 );
 
@@ -8492,8 +8492,8 @@ INSERT INTO "t_general_traslation" ("num", "montgomery", "th_num", "des_refo", "
 CREATE TABLE "t_glifos" (
   "id_glifo" INTEGER NOT NULL,
   "graph_glifo" BYTEA NOT NULL,
-  "montgomery" varchar(255) DEFAULT NULL,
-  "th_num" varchar(100) DEFAULT NULL
+  "montgomery" TEXT DEFAULT NULL,
+  "th_num" TEXT DEFAULT NULL
 );
 
 --
@@ -9808,7 +9808,7 @@ INSERT INTO "t_glifos" ("id_glifo", "graph_glifo", "montgomery", "th_num") VALUE
 CREATE TABLE "t_refo" (
   "num_refo" SERIAL,
   "id_glifo" INTEGER NOT NULL,
-  "des_refo" varchar(255) DEFAULT NULL
+  "des_refo" TEXT DEFAULT NULL
 );
 
 --
@@ -11026,7 +11026,7 @@ INSERT INTO "t_refo" ("num_refo", "id_glifo", "des_refo") VALUES
 CREATE TABLE "t_traduccion" (
   "id_glifo" INTEGER NOT NULL,
   "num_traduccion" SERIAL,
-  "des_traduccion" varchar(255) DEFAULT NULL
+  "des_traduccion" TEXT DEFAULT NULL
 );
 
 --
@@ -12917,7 +12917,7 @@ INSERT INTO "t_traduccion" ("id_glifo", "num_traduccion", "des_traduccion") VALU
 CREATE TABLE "t_transcripcion" (
   "id_glifo" INTEGER NOT NULL,
   "num_transcrpcion" SERIAL,
-  "des_transcripcion" varchar(100) DEFAULT NULL
+  "des_transcripcion" TEXT DEFAULT NULL
 );
 
 --
@@ -14134,7 +14134,7 @@ INSERT INTO "t_transcripcion" ("id_glifo", "num_transcrpcion", "des_transcripcio
 
 CREATE TABLE "t_usuarios" (
   "id_usuario" SERIAL,
-  "usuario" varchar(50) NOT NULL
+  "usuario" TEXT NOT NULL
 );
 
 --

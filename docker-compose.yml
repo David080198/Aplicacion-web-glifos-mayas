@@ -54,13 +54,13 @@ services:
       - "5433:5432"
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-      - pg_data_v3:/var/lib/postgresql/data
+      - pg_data_v4:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 60s
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -92,4 +92,4 @@ services:
       - "81:81"
 
 volumes:
-  pg_data_v3:
+  pg_data_v4:
