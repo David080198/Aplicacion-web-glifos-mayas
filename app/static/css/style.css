@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   background-attachment: fixed;
   padding: 0;
   margin: 0;
@@ -39,7 +39,7 @@ body {
 
 .triangulo {
   border: 15px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #2a7396;
+  border-top-color: #667eea;
   border-top-style: solid;
   height: 100px;
   width: 100px;
@@ -74,7 +74,7 @@ body {
   animation-name: animacion-encabezado;
   animation-duration: 1.5s;
   animation-fill-mode: forwards;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: 6vh;
   width: 100%;
@@ -91,7 +91,7 @@ body {
   animation-name: animacion-encabezado;
   animation-duration: 1.5s;
   animation-fill-mode: forwards;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
   border-radius: 8px;
   height: 6vh;
@@ -115,7 +115,7 @@ body {
   animation-name: animacion-encabezado;
   animation-duration: 1.5s;
   animation-fill-mode: forwards;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
   border-radius: 8px;
   height: 6vh;
@@ -140,7 +140,7 @@ body {
   animation-name: animacion-encabezado;
   animation-duration: 1.5s;
   animation-fill-mode: forwards;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 8px;
   height: 6vh;
   width: 16vw;
@@ -209,7 +209,7 @@ body {
 .contenedor_anuncio_atributos {
   grid-column: 16/19;
   grid-row: 18/20;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
   font-weight: bold;
   display: flex;
@@ -225,8 +225,7 @@ body {
 }
 
 .boton_nuevo_atributo_1:hover {
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
-  color: white;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
@@ -236,11 +235,9 @@ body {
 .boton_nuevo_atributo button {
   width: 100%;
   height: 100%;
-  background: #fff;
-  color: #0a3243;
-  font-weight: 600;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   font-size: 1.2vw;
-  border: 1.5px solid #2a7396;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -253,8 +250,7 @@ body {
 }
 
 .eliminar_conjunto_1:hover {
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
-  color: white;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
@@ -264,11 +260,9 @@ body {
 .eliminar_conjunto button {
   width: 100%;
   height: 100%;
-  background: #fff;
-  color: #0a3243;
-  font-weight: 600;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   font-size: 1.2vw;
-  border: 1.5px solid #2a7396;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -281,8 +275,7 @@ body {
 }
 
 .ver_simbolos_1:hover {
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
-  color: white;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
@@ -292,11 +285,9 @@ body {
 .ver_simbolos button {
   width: 100%;
   height: 100%;
-  background: #fff;
-  color: #0a3243;
-  font-weight: 600;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   font-size: 1.2vw;
-  border: 1.5px solid #2a7396;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -323,7 +314,7 @@ body {
   grid-column: 8/14;
   grid-row: 5/6;
   color: white;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -350,7 +341,7 @@ body {
   grid-column: 8/14;
   grid-row: 8/9;
   color: white;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -371,14 +362,14 @@ body {
 .contenedor-principal .item_1 {
   grid-column: 1/4;
   grid-row: 1/3;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .boton-glifos {
   display: block;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   width: 100%;
   height: 100%;
   font-size: 1.4vw;
@@ -401,7 +392,7 @@ body {
 .contenedor-principal .item_2 {
   grid-column: 4/7;
   grid-row: 1/3;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -411,7 +402,7 @@ body {
   width: 100%;
   height: 100%;
   font-size: 1.4vw;
-  background: linear-gradient(135deg, #2a7396 0%, #1f5a78 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: rgb(239, 239, 239);
   border: none;
   border-radius: 12px;
@@ -1367,7 +1358,7 @@ tbody {
 
 /* ============================================================================
    MEJORAS DE INTERFAZ (mismo esquema de colores, mejor UX)
-   - Morado primario: #2a7396 -> #1f5a78 (header)
+   - Morado primario: #667eea -> #764ba2 (header)
    - Teal acento:    #276e90 (tabs, botones)
    - Azul profundo:  #0a3243 (tipografia / bordes)
    - Sin cambios de layout (grid intacto)
@@ -1377,8 +1368,8 @@ tbody {
   --gm-primary: #276e90;
   --gm-primary-hover: #2d85ad;
   --gm-primary-dark: #0a3243;
-  --gm-violet-start: #2a7396;
-  --gm-violet-end: #1f5a78;
+  --gm-violet-start: #667eea;
+  --gm-violet-end: #764ba2;
   --gm-bg-soft: #f5f7fa;
   --gm-bg-card: #ffffff;
   --gm-border-soft: rgba(10, 50, 67, 0.12);
@@ -1518,9 +1509,8 @@ tbody {
 }
 #dato_a_buscar:focus {
   border-color: var(--gm-primary) !important;
-  box-shadow:
-    0 0 0 3px rgba(39, 110, 144, 0.18),
-    inset 0 1px 3px rgba(10, 50, 67, 0.05);
+  box-shadow: 0 0 0 3px rgba(39, 110, 144, 0.18),
+              inset 0 1px 3px rgba(10, 50, 67, 0.05);
 }
 
 /* Botones de filtro */
@@ -1528,21 +1518,13 @@ tbody {
   border-radius: var(--gm-radius-sm) !important;
   font-weight: 600 !important;
   border: none !important;
-  background: linear-gradient(
-    180deg,
-    var(--gm-primary) 0%,
-    #1f5a78 100%
-  ) !important;
+  background: linear-gradient(180deg, var(--gm-primary) 0%, #1f5a78 100%) !important;
   box-shadow: var(--gm-shadow-sm);
   transition: all 0.2s ease;
   letter-spacing: 0.3px;
 }
 .boton-submit:hover {
-  background: linear-gradient(
-    180deg,
-    #2d85ad 0%,
-    var(--gm-primary) 100%
-  ) !important;
+  background: linear-gradient(180deg, #2d85ad 0%, var(--gm-primary) 100%) !important;
   transform: translateY(-1px);
   box-shadow: var(--gm-shadow-md);
   opacity: 1 !important;
@@ -1556,11 +1538,7 @@ tbody {
 .botones-caja .botones {
   border-radius: var(--gm-radius-sm) !important;
   border: none !important;
-  background: linear-gradient(
-    180deg,
-    var(--gm-primary) 0%,
-    #1f5a78 100%
-  ) !important;
+  background: linear-gradient(180deg, var(--gm-primary) 0%, #1f5a78 100%) !important;
   color: #fff !important;
   font-weight: 600;
   box-shadow: var(--gm-shadow-sm);
@@ -1575,11 +1553,7 @@ tbody {
   transition: transform 0.2s ease;
 }
 .botones-caja .botones:hover {
-  background: linear-gradient(
-    180deg,
-    #2d85ad 0%,
-    var(--gm-primary) 100%
-  ) !important;
+  background: linear-gradient(180deg, #2d85ad 0%, var(--gm-primary) 100%) !important;
   transform: translateY(-1px);
   box-shadow: var(--gm-shadow-md);
 }
@@ -1594,11 +1568,7 @@ tbody {
 .aumentar-glifo {
   border-radius: var(--gm-radius-sm) !important;
   border: none !important;
-  background: linear-gradient(
-    180deg,
-    var(--gm-primary) 0%,
-    #1f5a78 100%
-  ) !important;
+  background: linear-gradient(180deg, var(--gm-primary) 0%, #1f5a78 100%) !important;
   color: #fff !important;
   font-weight: 700 !important;
   font-size: 1.8vw !important;
@@ -1606,11 +1576,7 @@ tbody {
   transition: all 0.2s ease;
 }
 .aumentar-glifo:hover {
-  background: linear-gradient(
-    180deg,
-    #2d85ad 0%,
-    var(--gm-primary) 100%
-  ) !important;
+  background: linear-gradient(180deg, #2d85ad 0%, var(--gm-primary) 100%) !important;
   transform: translateY(-1px);
   box-shadow: var(--gm-shadow-md);
 }
@@ -1619,22 +1585,14 @@ tbody {
 .detalles-glifos {
   border-radius: var(--gm-radius-sm) !important;
   border: none !important;
-  background: linear-gradient(
-    180deg,
-    var(--gm-primary) 0%,
-    #1f5a78 100%
-  ) !important;
+  background: linear-gradient(180deg, var(--gm-primary) 0%, #1f5a78 100%) !important;
   font-weight: 700 !important;
   letter-spacing: 0.5px;
   box-shadow: var(--gm-shadow-sm);
   transition: all 0.2s ease;
 }
 .detalles-glifos:hover {
-  background: linear-gradient(
-    180deg,
-    #2d85ad 0%,
-    var(--gm-primary) 100%
-  ) !important;
+  background: linear-gradient(180deg, #2d85ad 0%, var(--gm-primary) 100%) !important;
   transform: translateY(-2px);
   box-shadow: var(--gm-shadow-md);
 }
@@ -1653,11 +1611,7 @@ tbody {
 }
 
 .tabla1 thead {
-  background: linear-gradient(
-    180deg,
-    var(--gm-primary-dark) 0%,
-    #143e54 100%
-  ) !important;
+  background: linear-gradient(180deg, var(--gm-primary-dark) 0%, #143e54 100%) !important;
   box-shadow: 0 2px 8px rgba(10, 50, 67, 0.25);
 }
 
@@ -1674,9 +1628,7 @@ tbody {
 }
 
 .tabla1 tbody tr {
-  transition:
-    background 0.15s ease,
-    transform 0.15s ease;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .tabla1 tbody td {
@@ -1714,11 +1666,7 @@ tbody {
 
 /* Hover de fila completa - se aplica al tbody */
 .tabla1 tbody:hover td {
-  background: linear-gradient(
-    180deg,
-    rgba(39, 110, 144, 0.1) 0%,
-    rgba(39, 110, 144, 0.06) 100%
-  ) !important;
+  background: linear-gradient(180deg, rgba(39, 110, 144, 0.10) 0%, rgba(39, 110, 144, 0.06) 100%) !important;
   cursor: pointer;
   color: var(--gm-primary-dark) !important;
 }
@@ -1774,11 +1722,7 @@ tbody {
 
 /* ---------- BLOQUE DE DATOS (fondo teal de la seccion derecha) ---------- */
 .contenedor-principal .item_9 {
-  background: linear-gradient(
-    135deg,
-    var(--gm-primary) 0%,
-    #1f5a78 100%
-  ) !important;
+  background: linear-gradient(135deg, var(--gm-primary) 0%, #1f5a78 100%) !important;
   border: none !important;
   border-radius: 0 0 var(--gm-radius-md) var(--gm-radius-md);
   box-shadow: inset 0 2px 8px rgba(10, 50, 67, 0.18);
@@ -1792,11 +1736,7 @@ tbody {
 }
 
 .ventana-encabezado {
-  background: linear-gradient(
-    135deg,
-    var(--gm-violet-start) 0%,
-    var(--gm-violet-end) 100%
-  ) !important;
+  background: linear-gradient(135deg, var(--gm-violet-start) 0%, var(--gm-violet-end) 100%) !important;
 }
 
 .ventana-encabezado h2 {
@@ -1834,30 +1774,14 @@ select:focus-visible {
 .tabla1 tbody {
   animation: gm-fade-up 0.4s ease-out backwards;
 }
-.tabla1 tbody:nth-child(1) {
-  animation-delay: 0.02s;
-}
-.tabla1 tbody:nth-child(2) {
-  animation-delay: 0.04s;
-}
-.tabla1 tbody:nth-child(3) {
-  animation-delay: 0.06s;
-}
-.tabla1 tbody:nth-child(4) {
-  animation-delay: 0.08s;
-}
-.tabla1 tbody:nth-child(5) {
-  animation-delay: 0.1s;
-}
-.tabla1 tbody:nth-child(6) {
-  animation-delay: 0.12s;
-}
-.tabla1 tbody:nth-child(7) {
-  animation-delay: 0.14s;
-}
-.tabla1 tbody:nth-child(8) {
-  animation-delay: 0.16s;
-}
+.tabla1 tbody:nth-child(1) { animation-delay: 0.02s; }
+.tabla1 tbody:nth-child(2) { animation-delay: 0.04s; }
+.tabla1 tbody:nth-child(3) { animation-delay: 0.06s; }
+.tabla1 tbody:nth-child(4) { animation-delay: 0.08s; }
+.tabla1 tbody:nth-child(5) { animation-delay: 0.10s; }
+.tabla1 tbody:nth-child(6) { animation-delay: 0.12s; }
+.tabla1 tbody:nth-child(7) { animation-delay: 0.14s; }
+.tabla1 tbody:nth-child(8) { animation-delay: 0.16s; }
 
 /* ---------- TOOLTIP visual en filas (indicador "click para detalles") ---------- */
 .tabla1 tbody:hover {
