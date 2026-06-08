@@ -61,12 +61,16 @@ class _CursorWrapper:
         return tuple(row)
 
     def fetchall(self):
+        # MySQLdb devuelve tupla-de-tuplas: ((1200,),)
+        # psycopg2 devuelve lista-de-tuplas: [(1200,)]
+        # Devolvemos tupla-de-tuplas para mantener compatibilidad EXACTA con
+        # codigo que hace str(resultado) y limpia parentesis manualmente.
         rows = self._cursor.fetchall()
-        return [tuple(r) for r in rows]
+        return tuple(tuple(r) for r in rows)
 
     def fetchmany(self, size: int = 1):
         rows = self._cursor.fetchmany(size)
-        return [tuple(r) for r in rows]
+        return tuple(tuple(r) for r in rows)
 
     def close(self):
         try:
