@@ -29,6 +29,7 @@ RUN pip install --upgrade pip && \
 COPY static /app/static
 COPY templates /app/templates
 COPY wsgi.py /app/
+COPY db_compat.py /app/
 
 # Healthcheck simple
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
