@@ -27,19 +27,20 @@ app = Flask(__name__)
 print("Si estoy entrando",flush=True)
 print(os.environ["SECRET_KEY"],flush=True)
 print(os.environ["SESSION_TYPE"],flush=True)
-print(os.environ["MYSQL_USER"],flush=True)
-print(os.environ["MYSQL_PASSWORD"],flush=True)
-print(os.environ["MYSQL_HOST"],flush=True)
-print(os.environ["MYSQL_PORT"],flush=True)
+print(os.environ.get("MYSQL_USER", "root"),flush=True)
+print("***" if os.environ.get("MYSQL_PASSWORD") or os.environ.get("MYSQL_ROOT_PASSWORD") else "NO PASSWORD",flush=True)
+print(os.environ.get("MYSQL_HOST", "db"),flush=True)
+print(os.environ.get("MYSQL_PORT", "3306"),flush=True)
 
 
 app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
 app.config['SESSION_TYPE'] = os.environ["SESSION_TYPE"]
-app.config['MYSQL_USER'] = os.environ["MYSQL_USER"]
-app.config['MYSQL_PASSWORD'] = os.environ["MYSQL_PASSWORD"]
-app.config['MYSQL_HOST'] = os.environ["MYSQL_HOST"]
-app.config['MYSQL_PORT'] = int(os.environ["MYSQL_PORT"])
-app.config['MYSQL_DB'] =  os.environ["MYSQL_DB"]
+app.config['MYSQL_USER'] = os.environ.get("MYSQL_USER", "root")
+# Usar MYSQL_PASSWORD si existe, sino usar MYSQL_ROOT_PASSWORD como fallback
+app.config['MYSQL_PASSWORD'] = os.environ.get("MYSQL_PASSWORD") or os.environ.get("MYSQL_ROOT_PASSWORD", "")
+app.config['MYSQL_HOST'] = os.environ.get("MYSQL_HOST", "db")
+app.config['MYSQL_PORT'] = int(os.environ.get("MYSQL_PORT", "3306"))
+app.config['MYSQL_DB'] =  os.environ.get("MYSQL_DB", "base_grigori")
 
 app.config['MAIL_SERVER'] = os.environ["MAIL_SERVER"]
 app.config['MAIL_PORT'] = int(os.environ["MAIL_PORT"])
