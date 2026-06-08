@@ -1,52 +1,53 @@
-"""  
-Diccionario de Glifos Mayas - Aplicación Flask
-Instituto Politécnico Nacional
-"""
-import os
-import logging
-from flask import Flask, request, render_template, session, redirect, url_for
+from flask import Flask
+import mysql.connector
+from flask import render_template
+from flask import request
 from flask_mysqldb import MySQL
+from flask import Flask, request, render_template, session, redirect, url_for
 from flask_session import Session
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
+import bcrypt
+
+
 from collections import Counter
 import random
 import yagmail
 import base64
 import io
+import os
 import time
 import json
 from PIL import Image
 import hashlib
-
-# Cargar variables de entorno
-load_dotenv()
-
-# Configurar logging (sin información sensible)
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
+import os
 app = Flask(__name__)
 
-# Log de inicio sin información sensible
-logger.info("Iniciando aplicación Glifos Mayas...")
 
-# Configuración de la aplicación desde variables de entorno
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "default-secret-key-change-in-production")
-app.config['SESSION_TYPE'] = os.environ.get("SESSION_TYPE", "filesystem")
-app.config['MYSQL_USER'] = os.environ.get("MYSQL_USER", "root")
-app.config['MYSQL_PASSWORD'] = os.environ.get("MYSQL_PASSWORD", "")
-app.config['MYSQL_HOST'] = os.environ.get("MYSQL_HOST", "localhost")
-app.config['MYSQL_PORT'] = int(os.environ.get("MYSQL_PORT", "3306"))
-app.config['MYSQL_DB'] = os.environ.get("MYSQL_DB", "base_grigori")
+print("Si estoy entrando",flush=True)
+print(os.environ["SECRET_KEY"],flush=True)
+print(os.environ["SESSION_TYPE"],flush=True)
+print(os.environ["MYSQL_USER"],flush=True)
+print(os.environ["MYSQL_PASSWORD"],flush=True)
+print(os.environ["MYSQL_HOST"],flush=True)
+print(os.environ["MYSQL_PORT"],flush=True)
 
-# Configuración de correo
-app.config['MAIL_SERVER'] = os.environ.get("MAIL_SERVER", "smtp.gmail.com")
-app.config['MAIL_PORT'] = int(os.environ.get("MAIL_PORT", "465"))
-app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME", "")
-app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD", "")
-app.config['MAIL_USE_TLS'] = os.environ.get("MAIL_USE_TLS", "False").lower() == "true"
-app.config['MAIL_USE_SSL'] = os.environ.get("MAIL_USE_SSL", "True").lower() == "true"
+
+app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
+app.config['SESSION_TYPE'] = os.environ["SESSION_TYPE"]
+app.config['MYSQL_USER'] = os.environ["MYSQL_USER"]
+app.config['MYSQL_PASSWORD'] = os.environ["MYSQL_PASSWORD"]
+app.config['MYSQL_HOST'] = os.environ["MYSQL_HOST"]
+app.config['MYSQL_PORT'] = int(os.environ["MYSQL_PORT"])
+app.config['MYSQL_DB'] =  os.environ["MYSQL_DB"]
+
+app.config['MAIL_SERVER'] = os.environ["MAIL_SERVER"]
+app.config['MAIL_PORT'] = int(os.environ["MAIL_PORT"])
+app.config['MAIL_USERNAME'] = os.environ["MAIL_USERNAME"]
+app.config['MAIL_PASSWORD'] = os.environ["MAIL_PASSWORD"]
+# Corregir configuración de email
+app.config['MAIL_USE_TLS'] = os.environ.get("MAIL_USE_TLS", "True") == "True"
+app.config['MAIL_USE_SSL'] = os.environ.get("MAIL_USE_SSL", "False") == "True"
 
 #app.config['RECAPTCHA_ENABLED'] = True
 #app.config['RECAPTCHA_SITE_KEY'] = "6LeE4ywpAAAAAJy-JLCxVHfSYf-94aWM6KYZqEFn"
@@ -380,17 +381,32 @@ def total_de_campos(cursor,orden_datos,datos_busqueda,conjunto_datos,datos_atrib
     return total_datos_1,total_datos_glifos_1
 
 def hash_password(password, salt=None):
-    if salt is None:
-        salt = os.urandom(16)  # Genera un valor de sal aleatorio
+    """
+    Hash password using bcrypt (más seguro que SHA-256)
+    """
+    # Convertir password a bytes si es string
+    if isinstance(password, str):
+        password = password.encode('utf-8')
+    
+    # Generar hash con bcrypt (incluye salt automáticamente)
+    hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+    
+    # Retornar el hash como string y un salt dummy para compatibilidad
+    return hashed.decode('utf-8'), ""
 
-    # Combina la contraseña y la sal
-    password_salt = password.encode() + salt
-
-    # Crea un hash utilizando el algoritmo de hash seguro (por ejemplo, SHA-256)
-    hashed_password = hashlib.sha256(password_salt).hexdigest()
-
-    # Devuelve el hash y la sal
-    return hashed_password, salt
+def verify_password(password, hashed_password):
+    """
+    Verificar password con bcrypt
+    """
+    if isinstance(password, str):
+        password = password.encode('utf-8')
+    if isinstance(hashed_password, str):
+        hashed_password = hashed_password.encode('utf-8')
+    
+    try:
+        return bcrypt.checkpw(password, hashed_password)
+    except:
+        return False
 
 @app.route('/')
 def principal():
@@ -423,19 +439,33 @@ def registrarse():
         universidad = request.form["universidad"]
         password = request.form["contrasena"]
         pass_con = request.form["con-contrasena"]
+        # captcha_response = request.form['g-recaptcha-response']
         captcha_response = "hola"
         recuperacion = ""
         hashed_password, salt = hash_password(password)
         
         hashed_password = str(hashed_password)
         salt = str(salt.hex())
+        print(nombre_apellidos, flush=True)
+        print(nombre_de_usuario, flush=True)
+        print(correo, flush=True)
+        print(universidad, flush=True)
+        print(hashed_password, flush=True)
+        print(salt, flush=True)
+        print(captcha_response,flush=True)
         
-        # Consultas parametrizadas para prevenir SQL Injection
-        cursor.execute("SELECT correo FROM register_users WHERE correo = %s", (correo,))
+
+        cursor.execute("SELECT correo FROM `register_users` WHERE `correo` = %s;", (correo,))
         correo_resultado_busqueda = cursor.fetchall()
         
-        cursor.execute("SELECT apellidos FROM register_users WHERE apellidos = %s", (nombre_de_usuario,))
+        cursor.execute("SELECT apellidos FROM `register_users` WHERE `apellidos` = %s;", (nombre_de_usuario,))
         usuario_resultado_busqueda = cursor.fetchall()
+        
+        print(correo_resultado_busqueda,flush=True)
+        print(usuario_resultado_busqueda,flush=True)
+        
+        print(str(correo_resultado_busqueda),flush=True)
+        print(str(usuario_resultado_busqueda),flush=True)
         
         if str(nombre_apellidos) == "" or str(nombre_de_usuario) == "" or str(correo) == "" or str(universidad) == "" or str(hashed_password) == "" or str(salt) == "" or str(captcha_response) == "":
             mensaje = "Hacen falta datos para completar el registro"
@@ -445,8 +475,7 @@ def registrarse():
         elif str(nombre_apellidos) != "" and str(nombre_de_usuario) != "" and str(correo) != "" and str(universidad) != "" and str(hashed_password) != "" and str(salt) != "":
             if captcha_response != "":
                 if str(correo_resultado_busqueda) == "()" and str(usuario_resultado_busqueda) == "()":
-                    logger.info("Nuevo usuario registrado")
-                    # INSERT parametrizado para prevenir SQL Injection
+                    print("El correo no esta registrado",flush=True)
                     cursor.execute(
                         "INSERT INTO register_users(nombre,apellidos,correo,universidad,password,salt,recuperacion) VALUES (%s,%s,%s,%s,%s,%s,%s)",
                         (nombre_apellidos, nombre_de_usuario, correo, universidad, hashed_password, salt, recuperacion)
@@ -454,41 +483,59 @@ def registrarse():
                     mysql.connection.commit()
                     return redirect(url_for('registro_confirmado')) 
                 elif str(str(correo_resultado_busqueda)) != "()" and str(usuario_resultado_busqueda) == "()":
+                    print("El correo si esta registrado",flush=True)
                     mensaje = "El correo que ingresaste ya esta registrado"
+                    #return "<h1>Si estoy funcionando entro a 1</h1>"
                     return render_template("registrarse.html",mensaje=mensaje)
                 elif str(str(correo_resultado_busqueda)) == "()" and str(usuario_resultado_busqueda) != "()":
+                    print("El correo si esta registrado",flush=True)
                     mensaje = "Alguien mas ya utilizo este nombre de usuario"
+                    #return "<h1>Si estoy funcionando entro a 1</h1>"
                     return render_template("registrarse.html",mensaje=mensaje)
                 elif str(str(correo_resultado_busqueda)) != "()" and str(usuario_resultado_busqueda) != "()":
+                    print("El correo si esta registrado",flush=True)
                     mensaje = "Este correo y usuario ya han sido registrados"
+                    #return "<h1>Si estoy funcionando entro a 1</h1>"
                     return render_template("registrarse.html",mensaje=mensaje)
             else: 
                 mensaje = "Te falto seleccionar el captcha"
                 return render_template("registrarse.html",mensaje=mensaje)
+            
+        
+    print(nombre_apellidos, flush=True)
+    print(nombre_de_usuario, flush=True)
+    print(correo, flush=True)
+    print(universidad, flush=True)
+    print(hashed_password, flush=True)
+    print(salt, flush=True)
+    
     
     return render_template("registrarse.html", nombre_apellidos = nombre_apellidos,nombre_de_usuario=nombre_de_usuario,correo=correo,mensaje = mensaje )
 
 def comparando_datos(user_password,stored_password,salt):
-    valor = 0
-    # Convierte la sal y la contraseña ingresada a bytes
-    salt_bytes = bytes.fromhex(salt)
-    password_bytes = user_password.encode()
-
-    # Combina la contraseña ingresada con la sal almacenada
-    password_salt = password_bytes + salt_bytes
-
-    # Calcular el hash de la contraseña ingresada
-    hashed_password = hashlib.sha256(password_salt).hexdigest()
-
-    # Verificar si el hash coincide con el almacenado en la base de datos
-    if hashed_password == stored_password:
-        mensaje = "Contraseña válida. Inicio de sesión exitoso."
-        valor = 1
-    else:
-        mensaje = "Contraseña incorrecta. Inicio de sesión fallido."
-        valor = 2
+    """
+    Comparar contraseña con hash almacenado
+    Primero intenta con bcrypt (nuevo sistema)
+    Si falla, intenta con SHA-256 (legacy, para retrocompatibilidad)
+    """
+    # Intentar verificación con bcrypt
+    if verify_password(user_password, stored_password):
+        return "Contraseña válida. Inicio de sesión exitoso.", 1
     
-    return mensaje,valor
+    # Retrocompatibilidad: verificar con SHA-256 antiguo
+    try:
+        if salt:
+            salt_bytes = bytes.fromhex(salt)
+            password_bytes = user_password.encode()
+            password_salt = password_bytes + salt_bytes
+            hashed_password = hashlib.sha256(password_salt).hexdigest()
+            
+            if hashed_password == stored_password:
+                return "Contraseña válida. Inicio de sesión exitoso.", 1
+    except:
+        pass
+    
+    return "Contraseña incorrecta. Inicio de sesión fallido.", 2
 
 
 @app.route('/iniciar_sesion/',methods=['GET', 'POST'])
@@ -509,21 +556,36 @@ def iniciar_sesion():
         datos_filtro = '1'
         orden_datos = 'thomson'
         busqueda = 'default'
+        #correo = request.form.get("correo")
+        #password = request.form.get("password")
+        
+        print("Impresion de inicio sesion",flush=True)
+        print(correo, flush=True)
+        print(password, flush=True)
+        print(pantalla,flush=True)
 
         pantalla = pantalla.split("x")
         pantalla = [int(valor) for valor in pantalla]
 
-        # Consulta parametrizada para prevenir SQL Injection
-        cursor.execute("SELECT password,salt,nombre,apellidos FROM register_users WHERE correo = %s", (correo,))
+        cursor.execute("SELECT password,salt,nombre,apellidos FROM `register_users` WHERE `correo` = %s;", (correo,))
         correo_base_datos = cursor.fetchall()
         
         if str(correo_base_datos) != "()":
             user = correo_base_datos[0][3]
+            # Haciendo la solicitud de busqueda 
             decision,valor = comparando_datos(password,correo_base_datos[0][0],correo_base_datos[0][1])
             
+            print("Dato encontrado en la base de datos",flush=True)
+            print(correo_base_datos[0][0], flush=True)
+            print(correo_base_datos[0][1], flush=True)
+            print(decision)
+            print(type(correo_base_datos), flush=True)
+            
             if valor == 1:
-                logger.info("Inicio de sesión exitoso")
+                print("Si logre entrar a la sesion",flush=True)
                 session['username'] = user
+                print("VALORES DE LA PANTALLA",flush=True)
+                print(pantalla,flush=True)
                 if pantalla[0] > 768:
                     return redirect(url_for('index',orden_datos=orden_datos,datos_filtro=datos_filtro,datos_busqueda=datos_busqueda,datos_atributes=datos_atributes,dato_usuario=dato_usuario))
                 if pantalla[0] <= 768:
@@ -540,23 +602,27 @@ def iniciar_sesion():
 @app.route('/contrasena_olvidada',methods=['GET', 'POST'])
 def contrasena_olvidada():
     cursor = mysql.connection.cursor()
+    print("Entro a la funcion de contrasena olvidada",flush=True)
     if request.method == "POST":
             correo = request.form["email"]
-            # Consulta parametrizada
-            cursor.execute("SELECT correo FROM register_users WHERE correo = %s", (correo,))
+            print("Si leo el dato del formulario", flush=True)
+            print(correo,flush=True)
+            cursor.execute("SELECT correo FROM `register_users` WHERE `correo` = %s;", (correo,))
             correo_resultado_busqueda = cursor.fetchall()
+            print("Resultado de busqueda de correo", flush=True)
+            print(correo_resultado_busqueda, flush=True)
             if correo_resultado_busqueda == ():
                 mensaje = "El correo que ingresaste no esta registrado"
                 return render_template("contrasena_olvidada.html",mensaje=mensaje)
             elif correo_resultado_busqueda != ():
                 
-                email = app.config['MAIL_USERNAME']
-                contrasena = app.config['MAIL_PASSWORD']
+                email = 'glifosmayascicipn@gmail.com'
+                contrasena = 'djidujmnparrakgk'
                 numero_aleatorio = random.randint(100000, 999999)
-                # UPDATE parametrizado
-                cursor.execute("UPDATE register_users SET recuperacion = %s WHERE correo = %s", (numero_aleatorio, correo))
+                cursor.execute("UPDATE `register_users` SET `recuperacion` = %s WHERE `correo` = %s;", (numero_aleatorio, correo))
                 mysql.connection.commit() 
                 
+                print("Entro en la condicion",flush=True)
                 yag = yagmail.SMTP(user=email,password=contrasena)
                 
                 destinatarios = [correo]
@@ -565,6 +631,9 @@ def contrasena_olvidada():
                 html = 'Ingresa este codigo en el sistema para actualizar tu password'
                 
                 yag.send(destinatarios,asunto,[mensaje,html])
+                #msg = Message("Recuperación de contraseña Glifos Mayas",sender = 'hola',recipients = ['dsotoo2023@cic.ipn.mx'])
+                #msg.body = "La lave de acceso es: "
+                #mail.send(msg)
                 return redirect(url_for('ingresar_clave',correo=correo))            
     return render_template("contrasena_olvidada.html")
 
@@ -574,20 +643,23 @@ def ingresar_clave(correo):
     if request.method == "POST":
         if 'form1_submit' in request.form:
             clave = request.form["clave"]
-            # Consulta parametrizada
-            cursor.execute("SELECT correo,recuperacion FROM register_users WHERE correo = %s AND recuperacion = %s", (correo, clave))
+            cursor.execute("SELECT correo,recuperacion FROM `register_users` WHERE `correo` = %s AND `recuperacion` = %s;", (correo, clave))
             clave_busqueda = cursor.fetchall()
+            print("LOS VALORES ENCONTRADOS EN : ",flush=True)
+            print(clave_busqueda,flush=True)
+            print(clave_busqueda[0][0],flush=True)
+            print(clave_busqueda[0][1],flush=True)
 
-            if clave_busqueda and clave_busqueda[0][0] == correo and clave == clave_busqueda[0][1]:
+            if clave_busqueda[0][0] == correo and clave == clave_busqueda[0][1]:
                 return redirect(url_for('cambiar_contrasena',correo=correo))
         elif 'form2_submit' in request.form:
-            email = app.config['MAIL_USERNAME']
-            contrasena = app.config['MAIL_PASSWORD']
+            email = 'glifosmayascicipn@gmail.com'
+            contrasena = 'djidujmnparrakgk'
             numero_aleatorio = random.randint(100000, 999999)
-            # UPDATE parametrizado
-            cursor.execute("UPDATE register_users SET recuperacion = %s WHERE correo = %s", (numero_aleatorio, correo))
+            cursor.execute("UPDATE `register_users` SET `recuperacion` = %s WHERE `correo` = %s;", (numero_aleatorio, correo))
             mysql.connection.commit() 
             
+            print("Entro en la condicion",flush=True)
             yag = yagmail.SMTP(user=email,password=contrasena)
             
             destinatarios = [correo]
@@ -607,8 +679,7 @@ def cambiar_contrasena(correo):
         contraseña = request.form["contrasena"]
         conf_password = request.form["con-contrasena"]
         
-        # Consulta parametrizada
-        cursor.execute("SELECT correo FROM register_users WHERE correo = %s", (correo,))
+        cursor.execute("SELECT correo FROM `register_users` WHERE `correo` = %s;", (correo,))
         correo_resultado_busqueda = cursor.fetchall()
         
         
@@ -616,13 +687,26 @@ def cambiar_contrasena(correo):
                 mensaje = "El correo que ingresaste no esta registrado"
                 return render_template("contrasena_olvidada.html",mensaje=mensaje)
         elif correo_resultado_busqueda[0][0] == correo:
+            print("Loa valores agregados son ",flush=True)
+            print(contraseña,flush=True)
+            print(contraseña,flush=True)
+            
             hashed_password, salt = hash_password(contraseña)
             hashed_password = str(hashed_password)
             salt = str(salt.hex())
             
-            recuperacion = ""
+            print(hashed_password,flush=True)
+            print(salt,flush=True)
+            print(correo_resultado_busqueda[0][0],flush=True)
             
-            cursor.execute(f"UPDATE `register_users` SET `password` = '{hashed_password}',`salt` = '{salt}',`recuperacion` = '{recuperacion}'  WHERE `correo` = '{correo_resultado_busqueda[0][0]}';")
+            recuperacion = ""
+            #cursor.execute(f"INSERT INTO register_users(nombre,apellidos,correo,universidad,password,salt,recuperacion) VALUES ('{nombre}','{apellidos}','{correo}','{universidad}','{hashed_password}','{salt}','{recuperacion}')")
+            #mysql.connection.commit()
+            
+            cursor.execute(
+                "UPDATE `register_users` SET `password` = %s, `salt` = %s, `recuperacion` = %s WHERE `correo` = %s;",
+                (hashed_password, salt, recuperacion, correo_resultado_busqueda[0][0])
+            )
             mysql.connection.commit() 
             
             return redirect(url_for('confirmacion_contrasena'))

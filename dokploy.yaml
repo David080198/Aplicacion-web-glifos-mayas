@@ -1,0 +1,46 @@
+# Dokploy Configuration
+# This file configures the deployment settings for Dokploy
+
+name: glifos-mayas
+type: docker-compose
+
+build:
+  context: .
+  dockerfile: docker-compose.prod.yml
+
+domains:
+  - name: glifos-mayas.yourdomain.com
+    port: 80
+
+env:
+  # Copy these from your .env file
+  - SECRET_KEY=${SECRET_KEY}
+  - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  - MYSQL_USER=${MYSQL_USER}
+  - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  - MYSQL_DB=${MYSQL_DB}
+  - MAIL_SERVER=${MAIL_SERVER}
+  - MAIL_PORT=${MAIL_PORT}
+  - MAIL_USERNAME=${MAIL_USERNAME}
+  - MAIL_PASSWORD=${MAIL_PASSWORD}
+  - MAIL_USE_TLS=${MAIL_USE_TLS}
+  - MAIL_USE_SSL=${MAIL_USE_SSL}
+
+volumes:
+  - name: mysql_data
+    path: /var/lib/mysql
+
+ports:
+  - 80:80
+
+healthcheck:
+  enabled: true
+  path: /
+  interval: 30s
+  timeout: 10s
+  retries: 3
+
+resources:
+  limits:
+    memory: 2G
+    cpus: "1.0"

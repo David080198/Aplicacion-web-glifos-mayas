@@ -1,29 +1,20 @@
-# Imagen base con Python 3.11 slim para menor tamaño
-FROM python:3.11-slim
+# Use an official Python runtime as an image
+FROM python:3.9.5
 
-# Instalar dependencias del sistema necesarias para mysqlclient
-RUN apt-get update && apt-get install -y \
-    gcc \
-    default-libmysqlclient-dev \
-    pkg-config \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Puerto de la aplicación
+# The EXPOSE instruction indicates the ports on which a container
 EXPOSE 5500
 
-# Directorio de trabajo
+# Sets the working directory for following COPY and CMD instructions
+# Notice we haven’t created a directory by this name - this instruction
+# creates a directory with this name if it doesn’t exist
 WORKDIR /app
 
-# Copiar e instalar dependencias primero (para cache de Docker)
 COPY requirements.txt /app
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copiar archivos de la aplicación
+RUN python -m pip install --upgrade pip
+RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org --no-cache-dir -r requirements.txt
+CMD ["python","-u","main.py"]
+# Run app.py when the container launches
 COPY static /app/static
 COPY templates /app/templates
 COPY wsgi.py /app
-
-# Comando para ejecutar la aplicación
-CMD ["gunicorn", "--bind", "0.0.0.0:5500", "--workers", "2", "--timeout", "120", "wsgi:app"]
+CMD gunicorn --bind 0.0.0.0:5500 wsgi:app
